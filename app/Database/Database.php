@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db_config.php';
+require_once ROOT_DIR.'/config/db_config.php';
 
 class Database {
     
@@ -19,9 +19,9 @@ class Database {
     public function query($table, $select = "*", $where = null, $limit = "100")
     {
         if ($where===null){
-            $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";";
+            $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";"; //Query without WHERE
         } else {
-            $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";";
+            $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";"; //Query with WHERE
         }
 
         $connection = $this->connect();
