@@ -1,11 +1,37 @@
 <?php
 
 define('ROOT_DIR', __DIR__);
-require_once('app/Database/Database.php');
+require_once 'app/Controllers/LoginController.php';
+require_once 'app/Models/User.php';
 
-$db = new Database();
-$result = $db->defaultQuery("users", "user_name", "id = 1");
-
-// var_dump($result);
-echo mysqli_fetch_assoc($result)['user_name'];
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <?php 
+        if (isset($_POST['login']) && isset($_POST['password'])){
+            $login=$_POST['login'];
+            $password=$_POST['password'];
+            $user = new LoginController($login, $password);
+        };
+        ?> 
+
+    <form method="POST" action="index.php">
+        <div>
+            <label for="login">Username:</label>
+            <input type="text" name="login" id="login">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</body>
+</html>

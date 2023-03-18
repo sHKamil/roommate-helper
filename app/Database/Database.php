@@ -16,12 +16,20 @@ class Database {
         return $connection;
     }
 
-    public function defaultQuery($table, $select = "*", $where = null, $limit = "100")
+    public function defaultQuery($table, $select = "*", $where = null, $limit = null)
     {
         if ($where===null){
-            $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";"; //Query without WHERE
+            if($limit===null){
+                $query = "SELECT ".$select." FROM ".$table.";"; //Query without LIMIT and WHERE
+            }else{
+                $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";"; //Query without WHERE
+            }
         } else {
-            $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";"; //Query with WHERE
+            if($limit===null){
+                $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." ;"; //Query without LIMIT
+            }else{
+            $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";"; //Query with WHERE and LIMIT
+            }
         }
 
         $connection = $this->connect();

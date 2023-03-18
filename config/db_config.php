@@ -1,8 +1,8 @@
 <?php
 
     define('DB_HOST', 'localhost'); // Fill it with your details
-    define('DB_USER', ''); // Database user
-    define('DB_PASS', ''); // Database password
-    define('DB_NAME', ''); // Database name (schema name)
+    define('DB_USER', 'root'); // Database user
+    define('DB_PASS', 'admin'); // Database password
+    define('DB_NAME', 'rhelper'); // Database name (schema name)
 
 ?>
