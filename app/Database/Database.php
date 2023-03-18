@@ -16,7 +16,7 @@ class Database {
         return $connection;
     }
 
-    public function query($table, $select = "*", $where = null, $limit = "100")
+    public function defaultQuery($table, $select = "*", $where = null, $limit = "100")
     {
         if ($where===null){
             $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";"; //Query without WHERE
@@ -24,6 +24,17 @@ class Database {
             $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";"; //Query with WHERE
         }
 
+        $connection = $this->connect();
+        $this->checkConnection($connection);
+
+        $result = mysqli_query($connection, $query);
+        $this->endConnection($connection);
+
+        return $result;
+    }
+
+    public function query($query)
+    {
         $connection = $this->connect();
         $this->checkConnection($connection);
 
