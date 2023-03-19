@@ -34,7 +34,7 @@ require_once 'app/Models/User.php';
             <button type="submit">Login</button>
         </div>
     </form>
-    <form method="POST" action="app/Views/main.php">
+    <form method="POST" action="app/Views/login.php">
         <div>
             <button type="submit">TEST</button>
         </div>
