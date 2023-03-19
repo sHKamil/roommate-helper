@@ -9,6 +9,7 @@ require_once 'app/Models/User.php';
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <title>Login</title>
 </head>
 <body>
@@ -31,6 +32,11 @@ require_once 'app/Models/User.php';
         </div>
         <div>
             <button type="submit">Login</button>
+        </div>
+    </form>
+    <form method="POST" action="app/Views/main.php">
+        <div>
+            <button type="submit">TEST</button>
         </div>
     </form>
 </body>
