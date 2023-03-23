@@ -1,8 +1,8 @@
 <?php
 
 define('ROOT_DIR', __DIR__);
-require_once 'app/Controllers/LoginController.php';
-require_once 'app/Models/User.php';
+// require_once 'app/Controllers/LoginController.php';
+// require_once 'app/Models/User.php';
 
 ?>
 
@@ -14,11 +14,11 @@ require_once 'app/Models/User.php';
 </head>
 <body>
     <?php 
-        if (isset($_POST['login']) && isset($_POST['password'])){
-            $login=$_POST['login'];
-            $password=$_POST['password'];
-            $user = new LoginController($login, $password);
-        };
+        // if (isset($_POST['login']) && isset($_POST['password'])){
+        //     $login=$_POST['login'];
+        //     $password=$_POST['password'];
+        //     $user = new LoginController($login, $password);
+        // };
         ?> 
 
     <form method="POST" action="index.php">
