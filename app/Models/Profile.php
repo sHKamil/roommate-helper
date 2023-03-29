@@ -11,7 +11,7 @@ class Profile{
 
     public function __construct($id) {
         $this->db = new Database;
-        $attempt = $this->db->defaultQuery("users","id,name, lastname, login",'id='.$id.';');
+        $attempt = $this->db->defaultQuery("users","id, name, lastname, login",'id='.$id.';');
  
         if ($attempt->num_rows==1){
             $attempt=$attempt->fetch_assoc();
