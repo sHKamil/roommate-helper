@@ -1,0 +1,9 @@
+
+.schedule-rows{
+    height: 15vh;
+}
+
+table td:hover {
+    background-color: rgba(148, 148, 148, 0.075);
+    cursor: pointer;
+}
