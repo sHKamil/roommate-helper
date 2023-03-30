@@ -2,8 +2,8 @@
 
 require_once ROOT_DIR.'/config/db_config.php';
 
-class Database {
-    
+class Database
+{
     private $name = DB_NAME;
     private $host = DB_HOST;
     private $user = DB_USER;
@@ -67,5 +67,3 @@ class Database {
     }
 
 }
-
-?>

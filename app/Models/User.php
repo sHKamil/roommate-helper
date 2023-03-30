@@ -2,7 +2,8 @@
 
 require_once ROOT_DIR."/app/Database/Database.php";
 
-class User{
+class User
+{
     private $db;
     public $id;
     public $login;

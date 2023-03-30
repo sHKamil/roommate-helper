@@ -2,7 +2,8 @@
 
 require_once ROOT_DIR."/app/Models/User.php";
 
-class LoginController{
+class LoginController
+{
     public $model;
 
     public function __construct($login, $password) {
