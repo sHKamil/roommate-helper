@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT_DIR."/app/Models/User.php";
+require_once "../Models/User.php";
 
 class LoginController
 {

@@ -1,7 +1,7 @@
 <?php
 
-require_once ROOT_DIR."/app/Database/Database.php";
-require_once ROOT_DIR."/app/Models/Profile.php";
+require_once "../Database/Database.php";
+require_once "../Models/User.php";
 
 class ProfleController
 {

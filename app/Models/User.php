@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT_DIR."/app/Database/Database.php";
+require_once "../Database/Database.php";
 
 class User
 {
