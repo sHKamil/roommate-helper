@@ -52,6 +52,19 @@ class Database
         return $result;
     }
 
+    public function insertQuery($table, $columns, $rows)
+    {
+        $query = 'INSERT INTO '.$table.' ('.$columns.') VALUES ('.$rows.');';
+
+        $connection = $this->connect();
+        $this->checkConnection($connection);
+
+        $result = mysqli_query($connection, $query);
+        $this->endConnection($connection);
+
+        return $result;
+    }
+
     private function endConnection($connection): void
     {
         mysqli_close($connection);

@@ -3,6 +3,7 @@
 define('ROOT_DIR', __DIR__);
 require_once 'app/Controllers/LoginController.php';
 require_once 'app/Controllers/ProfileController.php';
+// require_once 'app/Database/Database.php';
 // require_once 'app/Models/User.php';
 
 session_start();
