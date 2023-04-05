@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Models/User.php";
+require_once $_SESSION['BASE_PATH']."/app/Models/User.php";
 
 class LoginController
 {
@@ -12,12 +12,14 @@ class LoginController
 
     public function LogIn()
     {
+        session_start();
         $_SESSION["id"]=$this->model->id;
         $_SESSION["login"]=$this->model->login;
     }
 
     public function LogOut()
     {
+        session_start();
         session_destroy();
     }
 

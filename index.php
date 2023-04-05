@@ -1,11 +1,16 @@
 <?php
+session_start();
+
+$_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
+
 
 require_once 'app/Controllers/LoginController.php';
-require_once 'app/Controllers/ProfileController.php';
+// require_once 'app/Controllers/ProfileController.php';
+// require_once 'app/Views/register.php';
+// require_once 'app/Views/login.php';
 // require_once 'app/Database/Database.php';
 // require_once 'app/Models/User.php';
 
-session_start();
 
 ?>
 
@@ -17,15 +22,15 @@ session_start();
 </head>
 <body>
     <?php 
-        if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-            $profile = new ProfleController($_SESSION['id']);
-            echo "Witaj ".$profile->model->name."!";
-        }elseif(isset($_POST['login']) && isset($_POST['password'])){
+        if(isset($_POST['login']) && isset($_POST['password'])){
             $login=$_POST['login'];
             $password=$_POST['password'];
             $user = new LoginController($login, $password);
             $user->LogIn();
             echo "Zostałeś zalogowany jako ".$user->model->name;
+        }elseif(isset($_SESSION['id']) && isset($_SESSION['login'])){
+            $profile = new ProfleController($_SESSION['id']);
+            echo "Witaj ".$profile->model->name."!";
         }else{
             header("Location: app/views/login.php");
         }

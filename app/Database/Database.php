@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../config/db_config.php';
+require_once $_SESSION['BASE_PATH']."/config/db_config.php";
 
 class Database
 {

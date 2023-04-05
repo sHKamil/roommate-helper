@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Database/Database.php";
+require_once $_SESSION['BASE_PATH']."/app/Database/Database.php";
 
 class RegisterController
 {
