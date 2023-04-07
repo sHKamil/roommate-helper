@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 $_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
 
@@ -27,18 +31,21 @@ require_once 'app/Controllers/LoginController.php';
             $password=$_POST['password'];
             $user = new LoginController($login, $password);
             $user->LogIn();
-            echo "Zostałeś zalogowany jako ".$user->model->name;
+            echo "Zostałeś zalogowany jako ".
+                $user->model->name.'
+                <form method="POST" action="logout.php">
+                <div>
+                    <button type="submit">Wyloguj</button>
+                </div>
+                </form>';
         }elseif(isset($_SESSION['id']) && isset($_SESSION['login'])){
-            $profile = new ProfleController($_SESSION['id']);
-            echo "Witaj ".$profile->model->name."!";
+            // $profile = new ProfleController($_SESSION['id']);
+            // echo "Witaj ".$profile->model->name."!";
         }else{
-            header("Location: app/views/login.php");
+            echo '<a href="app/Views/login.php">
+                    <button type="submit">Zaloguj</button>
+                </form>';
         }
         ?>
-    <form method="POST" action="logout.php">
-        <div>
-            <button type="submit">Wyloguj</button>
-        </div>
-    </form>
 </body>
 </html>

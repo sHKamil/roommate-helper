@@ -12,14 +12,20 @@ class LoginController
 
     public function LogIn()
     {
-        session_start();
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
         $_SESSION["id"]=$this->model->id;
         $_SESSION["login"]=$this->model->login;
     }
 
     public function LogOut()
     {
-        session_start();
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
         session_destroy();
     }
 
