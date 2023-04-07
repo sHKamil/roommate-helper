@@ -7,11 +7,11 @@ class HtmlBuilder
 
     public function __construct()
     {
-        $this->BuildHeader();
-        $this->BuildFooter();
+        $this->buildHeader();
+        $this->buildFooter();
     }
 
-    public function BuildHeader($title = "RHelper", $custom_css_url = NULL)
+    public function buildHeader($title = "RHelper", $custom_css_url = NULL)
     {
         $custom_css = '';
         if ($custom_css_url != NULL) {
@@ -32,7 +32,7 @@ class HtmlBuilder
             </head>';
     }
 
-    public function BuildFooter()
+    public function buildFooter()
     {
         $this->footer =
             '<div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">

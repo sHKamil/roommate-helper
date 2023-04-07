@@ -24,7 +24,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
 }
 
 $html = new HtmlBuilder();
-$html->BuildHeader("RHelper - Schedule", "assets/css/schedule.css");
+$html->buildHeader("RHelper - Schedule", "assets/css/schedule.css");
 echo $html->head;
     
 ?>

@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 include_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
 
 $html = new HtmlBuilder();
-$html->BuildHeader("RHelper - LogIn");
+$html->buildHeader("RHelper - LogIn");
 echo $html->head;
 
 ?>
