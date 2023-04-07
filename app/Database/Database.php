@@ -34,7 +34,7 @@ class Database
 
         $connection = $this->_connect();
         $this->_checkConnection($connection);
-        $this->_checkTableExists($table);
+        $this->checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
         $this->_endConnection($connection);
@@ -59,7 +59,7 @@ class Database
 
         $connection = $this->_connect();
         $this->_checkConnection($connection);
-        $this->_checkTableExists($table);
+        $this->checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
         $this->_endConnection($connection);
@@ -81,13 +81,15 @@ class Database
         return;
     }
 
-    private function _checkTableExists($table)
+    protected function checkTableExists($table)
     {
         $result = mysqli_num_rows($this->query('SHOW TABLES LIKE "' . $table . '"; '));
 
         if ($result != 1) {
-            die('Query error: Table <i>"' . $table . '"</i> not found. <br>' . mysqli_connect_error());
+            return false;
+            // die('Query error: Table <i>"' . $table . '"</i> not found. <br>' . mysqli_connect_error());
+        }else{       
+            return true;
         }
-        return;
     }
 }
