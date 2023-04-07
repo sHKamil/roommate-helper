@@ -30,6 +30,7 @@ class HtmlBuilder
                 ' . $custom_css . '
                 <title>' . $title . '</title>
             </head>';
+        return;
     }
 
     public function buildFooter()
@@ -43,5 +44,6 @@ class HtmlBuilder
                     <!-- Right -->
                 </div>
             </div>';
+        return;
     }
 }

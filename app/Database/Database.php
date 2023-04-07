@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SESSION['BASE_PATH']."/config/db_config.php";
+require_once $_SESSION['BASE_PATH'] . "/config/db_config.php";
 
 class Database
 {
@@ -9,69 +9,71 @@ class Database
     private $user = DB_USER;
     private $pass = DB_PASS;
 
-    private function connect()
+    private function _connect()
     {
         $connection = mysqli_connect($this->host, $this->user, $this->pass,  $this->name);
-        $this->checkConnection($connection);
+        $this->_checkConnection($connection);
         return $connection;
     }
 
-    public function defaultQuery($table, $select = "*", $where = null, $limit = null)
+    public function defaultSelectQuery($table, $select = "*", $where = null, $limit = null)
     {
-        if ($where===null){
-            if($limit===null){
-                $query = "SELECT ".$select." FROM ".$table.";"; //Query without LIMIT and WHERE
-            }else{
-                $query = "SELECT ".$select." FROM ".$table." LIMIT ".$limit.";"; //Query without WHERE
+        if ($where === null) {
+            if ($limit === null) {
+                $query = "SELECT " . $select . " FROM " . $table . ";"; //SELECT query without LIMIT and WHERE
+            } else {
+                $query = "SELECT " . $select . " FROM " . $table . " LIMIT " . $limit . ";"; //SELECT query without WHERE
             }
         } else {
-            if($limit===null){
-                $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." ;"; //Query without LIMIT
-            }else{
-            $query = "SELECT ".$select." FROM ".$table." WHERE ".$where." LIMIT ".$limit.";"; //Query with WHERE and LIMIT
+            if ($limit === null) {
+                $query = "SELECT " . $select . " FROM " . $table . " WHERE " . $where . " ;"; //SELECT query without LIMIT
+            } else {
+                $query = "SELECT " . $select . " FROM " . $table . " WHERE " . $where . " LIMIT " . $limit . ";"; //SELECT query with WHERE and LIMIT
             }
         }
 
-        $connection = $this->connect();
-        $this->checkConnection($connection);
+        $connection = $this->_connect();
+        $this->_checkConnection($connection);
+        $this->_checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
-        $this->endConnection($connection);
+        $this->_endConnection($connection);
 
         return $result;
     }
 
     public function query($query)
     {
-        $connection = $this->connect();
-        $this->checkConnection($connection);
+        $connection = $this->_connect();
+        $this->_checkConnection($connection);
 
         $result = mysqli_query($connection, $query);
-        $this->endConnection($connection);
+        $this->_endConnection($connection);
 
         return $result;
     }
 
     public function insertQuery($table, $columns, $rows)
     {
-        $query = 'INSERT INTO '.$table.' ('.$columns.') VALUES ('.$rows.');';
+        $query = 'INSERT INTO ' . $table . ' (' . $columns . ') VALUES (' . $rows . ');';
 
-        $connection = $this->connect();
-        $this->checkConnection($connection);
+        $connection = $this->_connect();
+        $this->_checkConnection($connection);
+        $this->_checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
-        $this->endConnection($connection);
+        $this->_endConnection($connection);
 
         return $result;
     }
 
-    private function endConnection($connection): void
+    private function _endConnection($connection): void
     {
         mysqli_close($connection);
         return;
     }
 
-    private function checkConnection($connection)
+    private function _checkConnection($connection)
     {
         if (!$connection) {
             die('Connection failed: ' . mysqli_connect_error());
@@ -79,4 +81,13 @@ class Database
         return;
     }
 
+    private function _checkTableExists($table)
+    {
+        $result = mysqli_num_rows($this->query('SHOW TABLES LIKE "' . $table . '"; '));
+
+        if ($result != 1) {
+            die('Query error: Table <i>"' . $table . '"</i> not found. <br>' . mysqli_connect_error());
+        }
+        return;
+    }
 }
