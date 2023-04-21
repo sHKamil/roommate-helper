@@ -1,93 +1,250 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/schedule-test.css">
-    <title>schedule</title>
-</head>
-<body>
-<div class="container text-center">
-  <div class="row justify-content-md-center bg-dark mt-3">
-    <div class="col col-lg-4 text-center bg-secondary">
-      <button class="btn btn-dark"><i class="bi bi-arrow-left"></i></button>
-    </div>
-    <div id="actual_date" class="col-lg-4 text-light">
-      Data dzisiejsza
-    </div>
-    <div class="col col-lg-4 bg-secondary">
-        <button class="btn btn-dark"><i class="bi bi-arrow-right"></i></button>
-    </div>
-    <table class="table table-bordered table-lf text-light" style="table-layout: fixed;">
-        <thead>
-            <tr>
-            <th scope="col">Poniedziałek</th>
-            <th scope="col">Wtorek</th>
-            <th scope="col">Środa</th>
-            <th scope="col">Czwartek</th>
-            <th scope="col">Piątek</th>
-            <th scope="col">Sobota</th>
-            <th scope="col">Niedziela</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="schedule-rows">
-                <td id="d1">1</td>
-                <td id="d2">2</td>
-                <td id="d3">3</td>
-                <td id="d4">4</td>
-                <td id="d5">5</td>
-                <td id="d6">6</td>
-                <td id="d7">7</td>
-            </tr>
-            <tr class="schedule-rows">
-                <td id="d8">8</td>
-                <td id="d9">9</td>
-                <td id="d10">10</td>
-                <td id="d11">11</td>
-                <td id="d12">12</td>
-                <td id="d13">13</td>
-                <td id="d14">14</td>
-            </tr>
-            <tr class="schedule-rows">
-                <td id="d15">15</td>
-                <td id="d16">16</td>
-                <td id="d17">17</td>
-                <td id="d18">18</td>
-                <td id="d19">19</td>
-                <td id="d20">20</td>
-                <td id="d21">21</td>
-            </tr>
-            <tr class="schedule-rows">
-                <td id="d22">22</td>
-                <td id="d23">23</td>
-                <td id="d24">24</td>
-                <td id="d25">25</td>
-                <td id="d26">26</td>
-                <td id="d27">27</td>
-                <td id="d28">28</td>
-            </tr>
-            <tr class="schedule-rows">
-                <td id="d29">29</td>
-                <td id="d30">30</td>
-                <td id="d31">31</td>
-                <td id="d32">32</td>
-                <td id="d33">33</td>
-                <td id="d34">34</td>
-                <td id="d35">35</td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
-</div>
+    <title>Schedule</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+<link href='assets/css/schedule-test.css' rel='stylesheet' />
+<link href='assets/css/schedule-test.print.css' rel='stylesheet' media='print' />
 <script
   src="https://code.jquery.com/jquery-3.6.4.js"
   integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
   crossorigin="anonymous"></script>
-<script src="assets/js/schedule-test.js"></script>
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+	integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+	crossorigin="anonymous">
+</script>
+<script src='assets/js/schedule-test.js' type="text/javascript"></script>
+<script>
+
+	$(document).ready(function() {
+	    var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		/*  className colors
+
+		className: default(transparent), important(red), chill(pink), success(green), info(blue)
+
+		*/
+
+
+		/* initialize the external events
+		-----------------------------------------------------------------*/
+
+		$('#external-events div.external-event').each(function() {
+
+			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			// it doesn't need to have a start or end
+			var eventObject = {
+				title: $.trim($(this).text()) // use the element's text as the event title
+			};
+
+			// store the Event Object in the DOM element so we can get to it later
+			$(this).data('eventObject', eventObject);
+
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+
+		});
+
+
+		/* initialize the calendar
+		-----------------------------------------------------------------*/
+
+		var calendar =  $('#calendar').fullCalendar({
+			header: {
+				left: 'title',
+				center: 'agendaDay,agendaWeek,month',
+				right: 'prev,next today'
+			},
+			editable: true,
+			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+			selectable: true,
+			defaultView: 'month',
+
+			axisFormat: 'h:mm',
+			columnFormat: {
+                month: 'ddd',    // Mon
+                week: 'ddd d', // Mon 7
+                day: 'dddd M/d',  // Monday 9/7
+                agendaDay: 'dddd d'
+            },
+            titleFormat: {
+                month: 'MMMM yyyy', // September 2009
+                week: "MMMM yyyy", // September 2009
+                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+            },
+			allDaySlot: false,
+			selectHelper: true,
+			select: function(start, end, allDay) {
+				var title = prompt('Event Title:');
+				if (title) {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+				calendar.fullCalendar('unselect');
+			},
+			droppable: true, // this allows things to be dropped onto the calendar !!!
+			drop: function(date, allDay) { // this function is called when something is dropped
+
+				// retrieve the dropped element's stored Event Object
+				var originalEventObject = $(this).data('eventObject');
+
+				// we need to copy it, so that multiple events don't have a reference to the same object
+				var copiedEventObject = $.extend({}, originalEventObject);
+
+				// assign it the date that was reported
+				copiedEventObject.start = date;
+				copiedEventObject.allDay = allDay;
+
+				// render the event on the calendar
+				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+				// is the "remove after drop" checkbox checked?
+				if ($('#drop-remove').is(':checked')) {
+					// if so, remove the element from the "Draggable Events" list
+					$(this).remove();
+				}
+
+			},
+
+			events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false,
+					className: 'important'
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false,
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/',
+					className: 'success'
+				}
+			],
+		});
+
+
+	});
+
+</script>
+<style>
+
+	body {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 14px;
+		font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+		background-color: #DDDDDD;
+		}
+
+	#wrap {
+		width: 1100px;
+		margin: 0 auto;
+		}
+
+	#external-events {
+		float: left;
+		width: 150px;
+		padding: 0 10px;
+		text-align: left;
+		}
+
+	#external-events h4 {
+		font-size: 16px;
+		margin-top: 0;
+		padding-top: 1em;
+		}
+
+	.external-event { /* try to mimick the look of a real event */
+		margin: 10px 0;
+		padding: 2px 4px;
+		background: #3366CC;
+		color: #fff;
+		font-size: .85em;
+		cursor: pointer;
+		}
+
+	#external-events p {
+		margin: 1.5em 0;
+		font-size: 11px;
+		color: #666;
+		}
+
+	#external-events p input {
+		margin: 0;
+		vertical-align: middle;
+		}
+
+	#calendar {
+/* 		float: right; */
+        margin: 0 auto;
+		width: 900px;
+		background-color: #FFFFFF;
+		  border-radius: 6px;
+        box-shadow: 0 1px 2px #C3C3C3;
+		}
+
+</style>
+</head>
+<body>
+<div id='wrap'>
+
+<div id='calendar'></div>
+
+<div style='clear:both'></div>
+</div>
+
+
 </body>
 </html>

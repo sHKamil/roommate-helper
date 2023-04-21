@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
 require_once $_SESSION['BASE_PATH']."/app/Controllers/RegisterController.php";
 

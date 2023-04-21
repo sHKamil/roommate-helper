@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SESSION['BASE_PATH']."/app/Database/Database.php";
+require_once $_SESSION['BASE_PATH'] . "/app/Database/Database.php";
 
 class User
 {
@@ -21,10 +21,10 @@ class User
     public function findUserByLogin($login, $password)
     {
         $this->db = new Database;
-        $attempt = $this->db->defaultQuery("users","id, login, name",'login="'.$login.'" AND password = "'.$password.'"');
+        $attempt = $this->db->defaultSelectQuery("users", "id, login, name", 'login="' . $login . '" AND password = "' . $password . '"');
 
-        if ($attempt->num_rows==1){
-            $attempt=$attempt->fetch_assoc();
+        if ($attempt->num_rows == 1) {
+            $attempt = $attempt->fetch_assoc();
             $this->id = $attempt["id"];
             $this->login = $attempt["login"];
             $this->name = $attempt["name"];

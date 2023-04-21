@@ -1,4 +1,12 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+include_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
+
+$html = new HtmlBuilder();
+$html->buildHeader("RHelper - LogIn");
+echo $html->head;
 
 class LoginView
 {
@@ -62,6 +70,19 @@ class LoginView
                                             <a href="register.php" class="link-danger">Register</a>
                                         </p>
                                     </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php
+            echo $html->footer;
+        ?>
+    </section>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
 
                                 </form>
                             </div>

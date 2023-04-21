@@ -30,7 +30,10 @@ class LoginController
 
     public function LogOut()
     {
-        session_start();
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
         session_destroy();
     }
 
