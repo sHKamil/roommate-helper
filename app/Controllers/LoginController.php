@@ -1,15 +1,10 @@
 <?php
-// session_start();
+
 require_once $_SESSION['BASE_PATH']."/app/Models/User.php";
 
 class LoginController
 {
     public $model;
-
-    // public function __construct() {
-    //     $this->model = new User();
-    //     $this->login();
-    // }
 
     public function login()
     {
