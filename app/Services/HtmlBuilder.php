@@ -5,13 +5,7 @@ class HtmlBuilder
     public $head;
     public $footer;
 
-    public function __construct()
-    {
-        $this->buildHeader();
-        $this->buildFooter();
-    }
-
-    public function buildHeader($title = "RHelper", $custom_css_url = NULL)
+    public function buildHeader($title = "RHelper", $custom_css_url = NULL): void
     {
         $custom_css = '';
         if ($custom_css_url != NULL) {
@@ -26,14 +20,14 @@ class HtmlBuilder
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-                <link rel="stylesheet" href="assets/css/style.css">
+                <link rel="stylesheet" href="../../app/Views/assets/css/style.css">
                 ' . $custom_css . '
                 <title>' . $title . '</title>
             </head>';
         return;
     }
 
-    public function buildFooter()
+    public function buildFooter(): void
     {
         $this->footer =
             '<div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">

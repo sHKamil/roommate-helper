@@ -4,27 +4,25 @@ if (!isset($_SESSION)) {
 }
 include_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
 
-$html = new HtmlBuilder();
-$html->buildHeader("RHelper - LogIn");
-echo $html->head;
+// $html = new HtmlBuilder();
+// $html->buildHeader("RHelper - LogIn");
+// echo $html->head;
 
-class LoginView
+class LoginView extends HtmlBuilder
 {
     public $html;
 
     public function __construct() 
     {
-        $this->html = '
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
-                    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="../../app/Views/assets/css/style.css">
-                    <title>Roommate-helper</title>
-                </head>
+        $this->buildLoginView();
+    }
+
+    private function buildLoginView()
+    {
+        $this->buildHeader("Rhelper - LogIn");
+        $this->buildfooter();
+        $this->html .= $this->head;
+        $this->html .= '
                 <body>
                     <section class="vh-100">
                     <div class="container-fluid h-custom">
@@ -70,38 +68,16 @@ class LoginView
                                             <a href="register.php" class="link-danger">Register</a>
                                         </p>
                                     </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php
-            echo $html->footer;
-        ?>
-    </section>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-</body>
-
-</html>
-
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div
-                        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-                        <div class="text-white mb-3 mb-md-0">
-                            Copyright © 2020. All rights reserved.
-                        </div>
-                        <div>
-                            <!-- Right -->
-                        </div>
-                    </div>
+                    </div>';
+        $this->html .= $this->footer;
+        $this->html .= '
                     </section>
                     <script src="../../bootstrap/js/bootstrap.min.js"></script>
-                    </body>
+                </body>
                 </html>
-        ';
-        return;
+                ';
     }
 }
