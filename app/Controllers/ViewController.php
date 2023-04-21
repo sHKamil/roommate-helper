@@ -4,7 +4,7 @@ require_once 'LoginController.php';
 // require_once 'RegisterController.php';
 require_once  $_SESSION['BASE_PATH'].'/app/Views/Login.php';
 // require_once  $_SESSION['BASE_PATH'].'/app/Views/register.php';
-require_once  $_SESSION['BASE_PATH'].'/app/Views/schedule.php';
+require_once  $_SESSION['BASE_PATH'].'/app/Views/Schedule.php';
 
 
 
@@ -16,19 +16,19 @@ class ViewController
 
     public function __construct() 
     {
-        $this->chooseView();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $this->view == "login") $this->loginAttempt();
+        $this->_chooseView();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $this->view == "login") $this->_loginAttempt();
         echo $this->html;
     }
 
-    private function chooseView(): void
+    private function _chooseView(): void
     {
-        if(!$this->loggedIn())
+        if(!$this->_loggedIn())
         {
             $login_view = new LoginView;
             $this->html = $login_view->html;
             $this->view = "login";
-        }elseif($this->loggedIn())
+        }elseif($this->_loggedIn())
         {
             $schedule_view = new ScheduleView;
             $this->html = $schedule_view->html;
@@ -37,7 +37,7 @@ class ViewController
         return;
     }
 
-    private function loggedIn (): bool
+    private function _loggedIn (): bool
     {
         if(isset($_SESSION['id'])) {
             $this->id = $_SESSION['id'];
@@ -46,7 +46,7 @@ class ViewController
         return false;
     }
 
-    private function loginAttempt(): void
+    private function _loginAttempt(): void
     {
         $login = new LoginController;
         $login->login();

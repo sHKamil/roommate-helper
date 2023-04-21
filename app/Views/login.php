@@ -10,10 +10,10 @@ class LoginView extends HtmlBuilder
 
     public function __construct() 
     {
-        $this->buildLoginView();
+        $this->_buildLoginView();
     }
 
-    private function buildLoginView()
+    private function _buildLoginView(): void
     {
         $this->buildHeader("Rhelper - LogIn");
         $this->buildfooter();
@@ -75,5 +75,6 @@ class LoginView extends HtmlBuilder
                 </body>
                 </html>
                 ';
+        return;
     }
 }

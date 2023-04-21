@@ -16,7 +16,7 @@ class User
         $attempt = $this->db->defaultSelectQuery("users", "id, login, lastname, name", 'login="' . $login . '" AND password = "' . $password . '"');
 
         if ($attempt->num_rows == 1) {
-            $this->asignData($attempt);
+            $this->_asignData($attempt);
         }else{
             throw new Exception(' Login failed. '); // better frontend needed
         }
@@ -28,13 +28,13 @@ class User
         $attempt = $this->db->defaultSelectQuery("users","id, name, lastname, login",'id='.$id.';');
  
         if ($attempt->num_rows == 1){
-            $this->asignData($attempt);
+            $this->_asignData($attempt);
         }else{
             throw new Exception(' Login failed. '); // better frontend needed
         }
     }
 
-    private function asignData($data)
+    private function _asignData($data)
     {
         $data = $data->fetch_assoc();
         $this->id = $data["id"];

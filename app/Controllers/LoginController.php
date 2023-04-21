@@ -26,7 +26,7 @@ class LoginController
         }
     }
 
-    public function LogOut()
+    public function logOut()
     {
         if(!isset($_SESSION)) 
         { 
@@ -35,7 +35,7 @@ class LoginController
         session_destroy();
     }
 
-    public function GetUserId()
+    public function getUserId()
     {
         return $this->model->id;
     }

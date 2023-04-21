@@ -7,38 +7,19 @@ if (!isset($_SESSION)) {
 require_once $_SESSION['BASE_PATH'] . "/app/Controllers/ProfileController.php";
 require_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
 
-// if (isset($_POST['login']) && isset($_POST['password'])) {
-//   $login = $_POST['login'];
-//   $password = $_POST['password'];
-//   $user = new LoginController($login, $password);
-//   $user->LogIn();
-//   echo 'Zostałeś zalogowany jako ' .
-//     $user->model->name . '
-//         <form method="POST" action="../../logout.php">
-// 			<div>
-// 				<button type="submit">Wyloguj</button>
-// 			</div>
-//         </form>';
-// } else {
-//   header("Location: login.php");
-// }
-
-// $html = new HtmlBuilder();
-// $html->buildHeader("RHelper - Schedule", "assets/css/schedule.css");
-// echo $html->head;
-
 class ScheduleView extends HtmlBuilder
 {
 	public $html;
 
 	public function __construct()
 	{
-		$this->buildScheduleView();
+		$this->_buildScheduleView();
 	}
 
-	private function buildScheduleView()
+	private function _buildScheduleView(): void
 	{
 		$user = new ProfileController($_SESSION['id']);
+		
 		$this->buildHeader("Rhelper - Schedule", "../../app/Views/assets/css/schedule.css");
 		$this->buildFooter();
 		$this->html = $this->head;
@@ -133,5 +114,6 @@ class ScheduleView extends HtmlBuilder
 	  </body>
 	  </html>
 		';
+		return;
 	}
 }

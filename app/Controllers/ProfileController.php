@@ -10,10 +10,10 @@ class ProfileController
 
     public function __construct($id) {
         $this->id = $id;
-        $this->fillUpModel();
+        $this->_fillUpModel();
     }
 
-    public function fillUpModel(): void
+    private function _fillUpModel(): void
     {
         $user = new User();
         $user->findUserById($this->id);

@@ -11,7 +11,7 @@ class RegisterController
         $this->db = new Database;
     }
 
-    public function AddUser($login, $password, $name, $lastname)
+    public function addUser($login, $password, $name, $lastname)
     {
         $rows = '"'.$login.'","'.$password.'","'.$name.'","'.$lastname.'"';
         $this->db->insertQuery("users","login,password,name,lastname",$rows);
