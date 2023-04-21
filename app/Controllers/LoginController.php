@@ -6,13 +6,14 @@ class LoginController
 {
     public $model;
 
-    public function __construct() {
-        $this->model = new User();
-        $this->login();
-    }
+    // public function __construct() {
+    //     $this->model = new User();
+    //     $this->login();
+    // }
 
     public function login()
     {
+        $this->model = new User();
         $login = (isset($_POST['login']) && isset($_POST['password'])) ? $_POST['login'] : exit();
         $password = $_POST['password'];
         try {

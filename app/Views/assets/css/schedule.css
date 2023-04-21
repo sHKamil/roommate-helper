@@ -7,3 +7,7 @@ table td:hover {
     background-color: rgba(148, 148, 148, 0.075);
     cursor: pointer;
 }
+
+.container {
+    margin-bottom: 5vh;
+}

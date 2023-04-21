@@ -4,7 +4,7 @@ require_once 'LoginController.php';
 // require_once 'RegisterController.php';
 require_once  $_SESSION['BASE_PATH'].'/app/Views/Login.php';
 // require_once  $_SESSION['BASE_PATH'].'/app/Views/register.php';
-// require_once  $_SESSION['BASE_PATH'].'/app/Views/schedule.php';
+require_once  $_SESSION['BASE_PATH'].'/app/Views/schedule.php';
 
 
 
@@ -28,6 +28,11 @@ class ViewController
             $login_view = new LoginView;
             $this->html = $login_view->html;
             $this->view = "login";
+        }elseif($this->loggedIn())
+        {
+            $schedule_view = new ScheduleView;
+            $this->html = $schedule_view->html;
+            $this->view = "schedule";
         }
         return;
     }
@@ -41,8 +46,10 @@ class ViewController
         return false;
     }
 
-    private function loginAttempt()
+    private function loginAttempt(): void
     {
-        new LoginController;
+        $login = new LoginController;
+        $login->login();
+        return;
     }
 }

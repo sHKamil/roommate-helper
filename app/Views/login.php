@@ -4,10 +4,6 @@ if (!isset($_SESSION)) {
 }
 include_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
 
-// $html = new HtmlBuilder();
-// $html->buildHeader("RHelper - LogIn");
-// echo $html->head;
-
 class LoginView extends HtmlBuilder
 {
     public $html;
@@ -21,7 +17,7 @@ class LoginView extends HtmlBuilder
     {
         $this->buildHeader("Rhelper - LogIn");
         $this->buildfooter();
-        $this->html .= $this->head;
+        $this->html = $this->head;
         $this->html .= '
                 <body>
                     <section class="vh-100">
