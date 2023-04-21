@@ -16,7 +16,7 @@ class DatabaseBuilder extends Database
                 array_push($this->failed_tables, $table);
             };
         }
-        if($this->failed_tables[0]=="users") $this->_buildUsers();
+        if(isset($this->failed_tables[0]) && $this->failed_tables[0]=="users") $this->_buildUsers();
     }
 
     private function _buildUsers()
