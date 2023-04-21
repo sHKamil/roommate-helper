@@ -18,15 +18,12 @@ class LoginController
         $password = $_POST['password'];
         try {
             $this->model->findUserByLogin($login, $password);
-            
+            $_SESSION["id"]=$this->model->id;
+            $_SESSION["login"]=$this->model->login;
+            header("Location: index.php");
         } catch (Exception $e) {
             echo 'Caught exeption', $e->getMessage(), "\n";
         }
-
-
-        // session_start();
-        $_SESSION["id"]=$this->model->id;
-        $_SESSION["login"]=$this->model->login;
     }
 
     public function LogOut()
