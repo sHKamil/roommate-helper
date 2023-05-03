@@ -6,12 +6,13 @@ class Database
 {
     private $name = DB_NAME;
     private $host = DB_HOST;
+    private $port = DB_PORT;
     private $user = DB_USER;
     private $pass = DB_PASS;
 
     private function _connect()
     {
-        $connection = mysqli_connect($this->host, $this->user, $this->pass,  $this->name);
+        $connection = mysqli_connect($this->host, $this->user, $this->pass,  $this->name, $this->port);
         $this->_checkConnection($connection);
         return $connection;
     }
