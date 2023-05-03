@@ -12,9 +12,21 @@ class Database
 
     private function _connect()
     {
-        $connection = mysqli_connect($this->host, $this->user, $this->pass,  $this->name, $this->port);
-        $this->_checkConnection($connection);
-        return $connection;
+        try {
+            $connection = mysqli_connect($this->host, $this->user, $this->pass,  $this->name, $this->port);
+
+            // Connection check
+            if ($connection->connect_errno) {
+                throw new Exception("Connection failed: " . $connection->connect_error);
+            }
+            
+            // Successful connection
+            return $connection;
+        } catch (Exception $e) {
+            // Connection error
+            echo "Connection failed: " . $e->getMessage();
+          }
+        
     }
 
     public function defaultSelectQuery($table, $select = "*", $where = null, $limit = null)
@@ -34,7 +46,6 @@ class Database
         }
 
         $connection = $this->_connect();
-        $this->_checkConnection($connection);
         $this->checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
@@ -46,7 +57,6 @@ class Database
     public function query($query)
     {
         $connection = $this->_connect();
-        $this->_checkConnection($connection);
 
         $result = mysqli_query($connection, $query);
         $this->_endConnection($connection);
@@ -59,7 +69,6 @@ class Database
         $query = 'INSERT INTO ' . $table . ' (' . $columns . ') VALUES (' . $rows . ');';
 
         $connection = $this->_connect();
-        $this->_checkConnection($connection);
         $this->checkTableExists($table);
 
         $result = mysqli_query($connection, $query);
@@ -73,15 +82,7 @@ class Database
         mysqli_close($connection);
         return;
     }
-
-    private function _checkConnection($connection)
-    {
-        if (!$connection) {
-            die('Connection failed: ' . mysqli_connect_error());
-        }
-        return;
-    }
-
+    
     protected function checkTableExists($table)
     {
         $result = mysqli_num_rows($this->query('SHOW TABLES LIKE "' . $table . '"; '));
