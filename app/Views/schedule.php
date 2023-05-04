@@ -14,16 +14,7 @@ class ScheduleView extends HtmlBuilder
 
 	public function __construct()
 	{
-		$this->_setDateCookie();
 		$this->_buildScheduleView();
-	}
-
-	private function _setDateCookie()
-	{
-		$date = new ScheduleController;
-		$date_package = [$date->day, $date->month, $date->year];
-		$date_package = $date->day;
-		setcookie('date_package', json_encode($date_package), time() + 3600);
 	}
 
 	private function _buildScheduleView(): void
