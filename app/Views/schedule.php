@@ -5,6 +5,7 @@ if (!isset($_SESSION)) {
 }
 
 require_once $_SESSION['BASE_PATH'] . "/app/Controllers/ProfileController.php";
+require_once $_SESSION['BASE_PATH'] . "/app/Controllers/ScheduleController.php";
 require_once $_SESSION['BASE_PATH'] . "/app/Services/HtmlBuilder.php";
 
 class ScheduleView extends HtmlBuilder
@@ -13,13 +14,22 @@ class ScheduleView extends HtmlBuilder
 
 	public function __construct()
 	{
+		$this->_setDateCookie();
 		$this->_buildScheduleView();
+	}
+
+	private function _setDateCookie()
+	{
+		$date = new ScheduleController;
+		$date_package = [$date->day, $date->month, $date->year];
+		$date_package = $date->day;
+		setcookie('date_package', json_encode($date_package), time() + 3600);
 	}
 
 	private function _buildScheduleView(): void
 	{
 		$user = new ProfileController($_SESSION['id']);
-		
+
 		$this->buildHeader("Rhelper - Schedule", "../../app/Views/assets/css/schedule.css");
 		$this->buildFooter();
 		$this->html = $this->head;
@@ -57,7 +67,7 @@ class ScheduleView extends HtmlBuilder
 							</thead>
 							<tbody>
 							<tr class="schedule-rows">
-								<td id="d1">1</td>
+								<td class="actual_day" id="d1">1</td>
 								<td id="d2">2</td>
 								<td id="d3">3</td>
 								<td id="d4">4</td>
