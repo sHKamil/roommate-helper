@@ -5,6 +5,8 @@ ad.text(date.getDate()+"."+date.getMonth()+"."+date.getFullYear());
 
 console.log(getCookie("date_package"));
 
+setDay(getCookie("date_package"));
+
 function getCookie(name) {
   let pattern = RegExp(name + "=[^]*");
   const matched = document.cookie.match(pattern);
@@ -18,3 +20,18 @@ function getCookie(name) {
   }
   return null;
 }
+
+function setDay(day) {
+  clearActualDay()
+  const element = document.getElementById('d'+day);
+  element.classList.add('actual_day');
+}
+
+function clearActualDay() {
+  const elements = document.querySelectorAll('.actual_day');
+
+  elements.forEach((element) => {
+    element.classList.remove('actual_day');
+  });
+}
+

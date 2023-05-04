@@ -67,17 +67,17 @@ class ScheduleView extends HtmlBuilder
 							</thead>
 							<tbody>
 							<tr class="schedule-rows">
-								<td class="actual_day" id="d1">1</td>
-								<td id="d2">2</td>
-								<td id="d3">3</td>
-								<td id="d4">4</td>
-								<td id="d5">5</td>
-								<td id="d6">6</td>
-								<td id="d7">7</td>
+								<td class="actual_day" id="d01">1</td>
+								<td id="d02">2</td>
+								<td id="d03">3</td>
+								<td id="d04">4</td>
+								<td id="d05">5</td>
+								<td id="d06">6</td>
+								<td id="d07">7</td>
 							</tr>
 							<tr class="schedule-rows">
-								<td id="d8">8</td>
-								<td id="d9">9</td>
+								<td id="d08">8</td>
+								<td id="d09">9</td>
 								<td id="d10">10</td>
 								<td id="d11">11</td>
 								<td id="d12">12</td>
