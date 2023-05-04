@@ -3,12 +3,12 @@ var ad = $('#actual_date');
 var day = date.getDate();
 ad.text(date.getDate()+"."+date.getMonth()+"."+date.getFullYear());
 
-console.log(getCookie("date_package"));
+console.log(getCookie("today"));
 
-setDay(getCookie("date_package"));
+setDay(getCookie("today"));
 
 function getCookie(name) {
-  let pattern = RegExp(name + "=[^]*");
+  let pattern = RegExp(name + "=[^;]*");
   const matched = document.cookie.match(pattern);
 
   if (matched) {
@@ -34,4 +34,5 @@ function clearActualDay() {
     element.classList.remove('actual_day');
   });
 }
+
 

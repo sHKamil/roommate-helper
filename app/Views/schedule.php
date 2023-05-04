@@ -14,6 +14,7 @@ class ScheduleView extends HtmlBuilder
 
 	public function __construct()
 	{
+		new ScheduleController;
 		$this->_buildScheduleView();
 	}
 
