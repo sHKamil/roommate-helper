@@ -29,31 +29,6 @@ class Database
         
     }
 
-    public function defaultSelectQuery($table, $select = "*", $where = null, $limit = null)
-    {
-        if ($where === null) {
-            if ($limit === null) {
-                $query = "SELECT " . $select . " FROM " . $table . ";"; //SELECT query without LIMIT and WHERE
-            } else {
-                $query = "SELECT " . $select . " FROM " . $table . " LIMIT " . $limit . ";"; //SELECT query without WHERE
-            }
-        } else {
-            if ($limit === null) {
-                $query = "SELECT " . $select . " FROM " . $table . " WHERE " . $where . " ;"; //SELECT query without LIMIT
-            } else {
-                $query = "SELECT " . $select . " FROM " . $table . " WHERE " . $where . " LIMIT " . $limit . ";"; //SELECT query with WHERE and LIMIT
-            }
-        }
-
-        $connection = $this->_connect();
-        $this->checkTableExists($table);
-
-        $result = mysqli_query($connection, $query);
-        $this->_endConnection($connection);
-
-        return $result;
-    }
-
     public function query($query)
     {
         $connection = $this->_connect();
@@ -62,6 +37,18 @@ class Database
         $this->_endConnection($connection);
 
         return $result;
+    }
+
+    public function secureQuery($query, $params)
+    {
+        $connection = $this->_connect();
+        $statement = $connection->prepare($query);
+
+        $statement->execute($params);
+
+        $this->_endConnection($connection);
+
+        return $statement;
     }
 
     public function insertQuery($table, $columns, $rows)
