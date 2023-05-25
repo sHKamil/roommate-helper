@@ -7,8 +7,8 @@ if(!isset($_SESSION))
 
 $_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
 
-// const BASE_PATH = __DIR__ . '/../';
-const BASE_PATH = __DIR__ ;
+const BASE_PATH = __DIR__ . '/../';
+// const BASE_PATH = __DIR__ ;
 
 require_once 'app/Controllers/ViewController.php';
 require_once 'app/Services/DatabaseBuilder.php';
