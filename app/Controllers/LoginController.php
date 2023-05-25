@@ -6,6 +6,11 @@ class LoginController
 {
     public $model;
 
+    public function show()
+    {
+        view(base_path('app/Views/login.php'));
+    }
+
     public function login()
     {
         $this->model = new User();
