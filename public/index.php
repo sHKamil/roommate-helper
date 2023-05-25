@@ -10,9 +10,9 @@ $_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
 const BASE_PATH = __DIR__ . '/../';
 // const BASE_PATH = __DIR__ ;
 
-require_once 'app/Controllers/ViewController.php';
-require_once 'app/Services/DatabaseBuilder.php';
-require_once 'core.php';
+// require_once 'app/Controllers/ViewController.php';
+require_once BASE_PATH . 'core.php';
+require_once base_path('app/Services/DatabaseBuilder.php');
 require_once base_path('/app/Router/Router.php');
 
 // new ViewController;

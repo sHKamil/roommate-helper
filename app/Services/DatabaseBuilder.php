@@ -2,7 +2,7 @@
 // It will be completely remake in the future.
 // Now its only for quick rebuilding database on different machines
 
-require_once $_SESSION['BASE_PATH'] . "/app/Database/Database.php";
+require_once base_path("/app/Database/Database.php");
 
 class DatabaseBuilder extends Database
 {

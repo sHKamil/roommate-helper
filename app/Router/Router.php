@@ -52,7 +52,7 @@ class Router
             if($route['uri'] === $uri && $route['request_method'] === strtoupper($request_method))
             {
                 // die($route['controller']);
-                require base_path('/'.$route['controller']);
+                return require base_path($route['controller']);
                 // return call_user_func([
                 //             'Core', $class_method
                 //         ]);

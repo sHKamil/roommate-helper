@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SESSION['BASE_PATH']."/app/Models/User.php";
+require_once base_path("/app/Models/User.php");
 
 class LoginController
 {

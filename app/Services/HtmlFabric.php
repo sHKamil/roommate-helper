@@ -15,16 +15,16 @@ class HtmlFabric
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+                <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-                <link rel="stylesheet" href="../../app/Views/assets/css/style.css">
+                <link rel="stylesheet" href="/assets/css/style.css">
                 ' . $custom_css . '
                 <title>' . $title . '</title>
             </head>';
         return $head;
     }
 
-    public function buildFooter(): string
+    public static function buildFooter(): string
     {
         $footer =
             '<div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
