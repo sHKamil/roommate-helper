@@ -1,17 +1,14 @@
 <?php
 
-class HtmlBuilder
+class HtmlFabric
 {
-    public $head;
-    public $footer;
-
-    public function buildHeader($title = "RHelper", $custom_css_url = NULL): void
+    public static function buildHeader($title = "RHelper", $custom_css_url = NULL): string
     {
         $custom_css = '';
         if ($custom_css_url != NULL) {
             $custom_css = '<link rel="stylesheet" href="' . $custom_css_url . '">';
         }
-        $this->head =
+        $head =
             '<!DOCTYPE html>
             <html lang="pl">
             <head>
@@ -24,12 +21,12 @@ class HtmlBuilder
                 ' . $custom_css . '
                 <title>' . $title . '</title>
             </head>';
-        return;
+        return $head;
     }
 
-    public function buildFooter(): void
+    public function buildFooter(): string
     {
-        $this->footer =
+        $footer =
             '<div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
                 <div class="text-white mb-3 mb-md-0">
                     Copyright © 2023. All rights reserved.
@@ -38,6 +35,6 @@ class HtmlBuilder
                     <!-- Right -->
                 </div>
             </div>';
-        return;
+        return $footer;
     }
 }
