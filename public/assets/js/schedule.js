@@ -14,7 +14,7 @@ function getCookie(name) {
   if (matched) {
     const cookie = matched[0].split('=');
     let string = cookie[1];
-    pattern = RegExp(/[%22]*/g);
+    pattern = RegExp(/[%22]*/g); // fix needed
     string = string.replace(pattern,'');
     return string;
   }

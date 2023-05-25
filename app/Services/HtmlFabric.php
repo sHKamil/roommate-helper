@@ -20,7 +20,8 @@ class HtmlFabric
                 <link rel="stylesheet" href="/assets/css/style.css">
                 ' . $custom_css . '
                 <title>' . $title . '</title>
-            </head>';
+            </head>
+    ';
         return $head;
     }
 
@@ -34,7 +35,8 @@ class HtmlFabric
                 <div>
                     <!-- Right -->
                 </div>
-            </div>';
+            </div>
+            ';
         return $footer;
     }
 }

@@ -57,3 +57,5 @@ echo HtmlFabric::buildHeader("Rhelper - LogIn");
         </div>
     </div>
 <?php echo HtmlFabric::buildFooter(); ?>
+</body>
+</html>
