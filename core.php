@@ -1,9 +1,13 @@
 <?php
 
-class Core
+function base_path($path)
 {
-    public static function get()
-    {
-        echo 'XD';
-    }
+    return BASE_PATH . $path;
+}
+
+function view($path, $attributes = [])
+{
+    extract($attributes);
+
+    require base_path('app/Views/' . $path);
 }

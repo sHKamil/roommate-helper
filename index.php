@@ -1,22 +1,24 @@
 <?php
 
-// if(!isset($_SESSION)) 
-// { 
-//     session_start(); 
-// } 
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 
-// $_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
+$_SESSION['BASE_PATH'] = realpath(dirname(__FILE__));
 
+const BASE_PATH = __DIR__ . '/../';
 
-// require_once 'app/Controllers/ViewController.php';
-// require_once 'app/Services/DatabaseBuilder.php';
-
-// new ViewController;
-
+require_once 'app/Controllers/ViewController.php';
+require_once 'app/Services/DatabaseBuilder.php';
 require 'core.php';
 
-$test = 'get';
+new ViewController;
 
-call_user_func([
-    'Core', $test
-]);
+
+
+// $test = 'get';
+
+// call_user_func([
+//     'Core', $test
+// ]);
