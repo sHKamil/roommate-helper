@@ -2,20 +2,55 @@
 
 namespace app\Controllers;
 
-use app\Database\Database;
+use app\Database\DatabasePDO;
+use app\Services\Validator;
 
 class RegisterController
 {
-    private $db;
+    public $errors;
 
-    public function __construct() 
+    public function show()
     {
-        $this->db = new Database;
+        view('register.php');
     }
 
-    public function addUser($login, $password, $name, $lastname)
+    public function register()
     {
-        $rows = '"'.$login.'","'.$password.'","'.$name.'","'.$lastname.'"';
-        $this->db->insertQuery("users","login,password,name,lastname",$rows);
+        $login = $_POST['login'];
+        $password1 = $_POST['password'];
+        $password2 = $_POST['repeat_password'];
+
+        if($this->validateInputs($login, $password1, $password2)) {
+            $db = new DatabasePDO;
+            $db->query("INSERT INTO users(nazwa, haslo) VALUES(:login, :password)", [
+                ':login' => $login,
+                ':password' => password_hash($password1, PASSWORD_BCRYPT)
+            ]);
+            header('Location: /login');
+        }
     }
+
+    private function validateInputs($login, $password1, $password2)
+    {
+  
+        if(!Validator::string($login, 5, 200)) $this->errors['login'] = 'Login musi mieć minimum 5 znaków oraz maksimum 200.';
+        if(!Validator::string($password1, 8, 200)) $this->errors['password_min'] = 'Hasło musi mieć minimum 8 znaków oraz maksimum 200.';
+        if(Validator::containNumber($password1)) $this->errors['password_num'] = 'Hasło musi zawierać przynajmniej jedną cyfrę.';
+        if(Validator::containSpecialCharacter($password1)) $this->errors['password_spec'] = 'Hasło musi zawierać przynajmniej jeden znak specjalny.';
+        if(($password1 !== $password2)) $this->errors['password_repeat'] = 'Hasła muszą być identyczne';
+    
+        if (!empty($this->errors)) return view('register.php', ['errors' => $this->errors]);
+
+        if(!$this->uniqueLogin($login)) $this->errors['login_duplicate'] = 'Taki login już istnieje';
+
+        if (!empty($this->errors)) return view('register.php', ['errors' => $this->errors]);
+        return true;
+    }
+
+    private function uniqueLogin($login)
+    {
+        if(Validator::isNotDoubled('users', 'nazwa', $login)) return true;
+        return false;
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Service;
+namespace app\Services;
 
 use app\Database\Database;
 

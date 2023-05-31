@@ -4,13 +4,6 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 
-use app\Controllers\RegisterController;
-
-if (isset($_POST['rlogin'])&&isset($_POST['rpassword'])&&isset($_POST['rname'])&&isset($_POST['rlastname'])){
-    $register = new RegisterController;
-    $register->AddUser($_POST['rlogin'],$_POST['rpassword'],$_POST['rname'],$_POST['rlastname']);
-    header("Location: login.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -28,33 +21,33 @@ if (isset($_POST['rlogin'])&&isset($_POST['rpassword'])&&isset($_POST['rname'])&
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form method="POST" action="register.php">
+                <form method="POST" action="">
                     <div class="divider d-flex align-items-center my-4">
                         <p class="text-center fw-bold mx-3 mb-0">Sign up</p>
                     </div>
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="text" name="rlogin" class="form-control form-control-lg" placeholder="Enter your login" />
-                        <label class="form-label" for="rlogin">Login</label>
+                        <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" />
+                        <label class="form-label" for="login">Login</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
-                        <input type="password" name="rpassword" class="form-control form-control-lg" placeholder="Enter password" />
-                        <label class="form-label" for="rpassword">Password</label>
+                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
+                        <label class="form-label" for="password">Password</label>
                     </div>
 
                     <!-- Name input -->
                     <div class="form-outline mb-3">
-                        <input type="text" name="rname" class="form-control form-control-lg" placeholder="Enter name" />
-                        <label class="form-label" for="rname">Name</label>
+                        <input type="password" name="repeat_password" class="form-control form-control-lg" placeholder="repeat password" />
+                        <label class="form-label" for="repeat_password">Repeat password</label>
                     </div>
 
                     <!-- Lastname input -->
                     <div class="form-outline mb-3">
-                        <input type="text" name="rlastname" class="form-control form-control-lg" placeholder="Enter lastname" />
-                        <label class="form-label" for="rlastname">Lastname</label>
+                        <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter lastname" />
+                        <label class="form-label" for="name">Name</label>
                     </div>
 
 
