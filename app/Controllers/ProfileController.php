@@ -1,7 +1,9 @@
 <?php
 
+namespace app\Controllers;
+
+use app\Models\User;
 require_once base_path("/app/Database/Database.php");
-require_once base_path("/app/Models/User.php");
 
 class ProfileController
 {

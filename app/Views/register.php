@@ -4,7 +4,7 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 
-require_once $_SESSION['BASE_PATH']."/app/Controllers/RegisterController.php";
+use app\Controllers\RegisterController;
 
 if (isset($_POST['rlogin'])&&isset($_POST['rpassword'])&&isset($_POST['rname'])&&isset($_POST['rlastname'])){
     $register = new RegisterController;

@@ -2,7 +2,9 @@
 // It will be completely remake in the future.
 // Now its only for quick rebuilding database on different machines
 
-require_once base_path("/app/Database/Database.php");
+namespace app\Services;
+
+use app\Database\Database;
 
 class DatabaseBuilder extends Database
 {

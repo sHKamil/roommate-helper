@@ -4,11 +4,9 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-require_once base_path("/app/Controllers/ProfileController.php");
-require_once base_path("/app/Controllers/ScheduleController.php");
-require_once base_path("/app/Services/HtmlFabric.php");
+use app\Services\HtmlFabric;
 
-new ScheduleController;
+// new ScheduleController;
 echo HtmlFabric::buildHeader("Rhelper - Schedule", "/assets/css/schedule.css");
 // $user = new ProfileController($_SESSION['id']);
 ?>

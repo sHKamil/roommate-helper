@@ -1,6 +1,8 @@
 <?php
 
-require_once base_path("/app/Models/User.php");
+namespace app\Controllers;
+
+use app\Models\User;
 
 class LoginController
 {
@@ -8,7 +10,7 @@ class LoginController
 
     public function show()
     {
-        view(base_path('app/Views/login.php'));
+        view('login.php');
     }
 
     public function login()
@@ -21,7 +23,7 @@ class LoginController
             $_SESSION["id"]=$this->model->id;
             $_SESSION["login"]=$this->model->login;
             header("Location: index.php");
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Caught exeption', $e->getMessage(), "\n";
         }
     }

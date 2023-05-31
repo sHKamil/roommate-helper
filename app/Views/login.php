@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once base_path("/app/Services/HtmlFabric.php");
+use app\Services\HtmlFabric;
 
 echo HtmlFabric::buildHeader("Rhelper - LogIn");
 ?>

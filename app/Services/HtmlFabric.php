@@ -1,5 +1,7 @@
 <?php
 
+namespace app\Services;
+
 class HtmlFabric
 {
     public static function buildHeader($title = "RHelper", $custom_css_url = NULL): string

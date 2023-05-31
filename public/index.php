@@ -12,8 +12,10 @@ const BASE_PATH = __DIR__ . '/../';
 
 // require_once 'app/Controllers/ViewController.php';
 require_once BASE_PATH . 'core.php';
-require_once base_path('app/Services/DatabaseBuilder.php');
-require_once base_path('/app/Router/Router.php');
+spl_autoload_register('autoloader');
+
+// require_once base_path('app/Services/DatabaseBuilder.php');
+// require_once base_path('/app/Router/Router.php');
 
 // new ViewController;
 
@@ -22,6 +24,8 @@ require_once base_path('/app/Router/Router.php');
 // call_user_func([
 //     'Core', $test
 // ]);
+
+
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];

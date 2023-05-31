@@ -1,6 +1,8 @@
 <?php
 
-require_once base_path("/app/Database/Database.php");
+namespace app\Controllers;
+
+use app\Database\Database;
 
 class RegisterController
 {

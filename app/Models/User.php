@@ -1,6 +1,8 @@
 <?php
 
-require_once base_path("/app/Database/Database.php");
+namespace app\Models;
+
+use app\Database\Database;
 
 class User
 {
@@ -18,7 +20,7 @@ class User
         if ($attempt->num_rows == 1) {
             $this->_asignData($attempt);
         }else{
-            throw new Exception(' Login failed. '); // better frontend needed
+            throw new \Exception(' Login failed. '); // better frontend needed
         }
     }
 
@@ -30,7 +32,7 @@ class User
         if ($attempt->num_rows == 1){
             $this->_asignData($attempt);
         }else{
-            throw new Exception(' Login failed. '); // better frontend needed
+            throw new \Exception(' Login failed. '); // better frontend needed
         }
     }
 

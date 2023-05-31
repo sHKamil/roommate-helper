@@ -1,5 +1,7 @@
 <?php
 
+namespace app\Database;
+
 require_once base_path("/config/db_config.php");
 
 class Database
@@ -17,12 +19,12 @@ class Database
 
             // Connection check
             if ($connection->connect_errno) {
-                throw new Exception("Connection failed: " . $connection->connect_error);
+                throw new \Exception("Connection failed: " . $connection->connect_error);
             }
             
             // Successful connection
             return $connection;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Connection error
             echo "Connection failed: " . $e->getMessage();
           }
