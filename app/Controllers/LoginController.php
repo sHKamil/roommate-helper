@@ -19,17 +19,18 @@ class LoginController
     {
         if($this->attempt()) {
             $this->_createSession($this->login);
-            
+            header('Location: /schedule');
         }
     }
 
-    public function logOut()
+    public function logout()
     {
         if(!isset($_SESSION)) 
         { 
             session_start(); 
         } 
         session_destroy();
+        header('Location: /');
     }
 
     public function attempt()
