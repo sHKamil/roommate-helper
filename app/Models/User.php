@@ -3,6 +3,7 @@
 namespace app\Models;
 
 use app\Database\Database;
+use app\Database\DatabasePDO;
 
 class User
 {
@@ -14,14 +15,15 @@ class User
 
     public function findUserByLogin($login, $password)
     {
-        $this->db = new Database;
-        $attempt = $this->db->defaultSelectQuery("users", "id, login, lastname, name", 'login="' . $login . '" AND password = "' . $password . '"');
-
-        if ($attempt->num_rows == 1) {
-            $this->_asignData($attempt);
-        }else{
-            throw new \Exception(' Login failed. '); // better frontend needed
+        $db = new DatabasePDO;
+        $attempt = $db->query("SELECT login, password FROM users WHERE login = :login", [
+            ':login' => $login,
+        ]);
+        if ($attempt->rowCount() === 1) {
+            $data = $attempt->fetch();
+            if(password_verify($password, $data['password'])) return true;
         }
+        return false;
     }
 
     public function findUserById($id)

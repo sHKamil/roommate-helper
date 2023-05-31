@@ -8,12 +8,17 @@ class ScheduleController
     public $month;
     public $year;
 
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->day = date('d');
+    //     $this->month = date('m');
+    //     $this->year = date('Y');
+    //     $this->_setDateCookie();
+    // }
+
+    public function show()
     {
-        $this->day = date('d');
-        $this->month = date('m');
-        $this->year = date('Y');
-        $this->_setDateCookie();
+        return view('schedule.php');
     }
 
 	private function _setDateCookie()

@@ -7,6 +7,7 @@ use app\Models\User;
 class LoginController
 {
     public $model;
+    public $error;
 
     public function show()
     {
@@ -18,14 +19,16 @@ class LoginController
         $this->model = new User();
         $login = (isset($_POST['login']) && isset($_POST['password'])) ? $_POST['login'] : exit();
         $password = $_POST['password'];
-        try {
-            $this->model->findUserByLogin($login, $password);
+
+        if($this->model->findUserByLogin($login, $password)){
             $_SESSION["id"]=$this->model->id;
             $_SESSION["login"]=$this->model->login;
-            header("Location: index.php");
-        } catch (\Exception $e) {
-            echo 'Caught exeption', $e->getMessage(), "\n";
-        }
+            $_SESSION["user_type"]='member';
+            header("Location: /schedule");
+        }else{
+            $this->error = ['Niepoprawny login lub hasło'];
+            return view('login.php', $this->error);
+        };
     }
 
     public function logOut()
