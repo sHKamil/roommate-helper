@@ -2,10 +2,6 @@
 
 namespace app\Middleware;
 
-use app\Middleware\Guest;
-use app\Middleware\Admin;
-
-
 class Middleware
 {
     public const MAP = [
