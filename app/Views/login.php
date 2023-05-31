@@ -48,7 +48,7 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
                         <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login"/>
                         <p class="small fw-bold mt-2 pt-1 mb-0">
                             Don t have an account? 
-                            <a href="register.php" class="link-danger">Register</a>
+                            <a href="register" class="link-danger">Register</a>
                         </p>
                     </div>
                 </form>
