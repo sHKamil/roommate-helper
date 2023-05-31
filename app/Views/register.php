@@ -2,7 +2,7 @@
 
 use app\Services\HtmlFactory;
 
-echo HtmlFactory::buildHeader('Rhelper - Register');
+echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css']);
 ?>
 <section class="vh-100">
     <div class="container-fluid h-custom">
@@ -22,11 +22,13 @@ echo HtmlFactory::buildHeader('Rhelper - Register');
                     <div class="form-outline mb-3">
                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
                         <label class="form-label" for="password">Password</label>
-                        <?php 
-                            if(isset($errors['password_min'])) echo '<label for="password" class="error_label">'.$errors['password_min'].'</label><br>'; 
-                            if(isset($errors['password_num'])) echo '<label for="password" class="error_label">'.$errors['password_num'].'</label><br>'; 
-                            if(isset($errors['password_spec'])) echo '<label for="password" class="error_label">'.$errors['password_spec'].'</label><br>'; 
-                        ?>
+                        <div class='error_slot'>
+                            <?php 
+                                if(isset($errors['password_min'])) echo '<label for="password" class="error_label">'.$errors['password_min'].'</label><br>'; 
+                                if(isset($errors['password_num'])) echo '<label for="password" class="error_label">'.$errors['password_num'].'</label><br>'; 
+                                if(isset($errors['password_spec'])) echo '<label for="password" class="error_label">'.$errors['password_spec'].'</label><br>'; 
+                            ?>
+                        </div>
                     </div>
                     <div class="form-outline mb-3">
                         <input type="password" name="repeat_password" class="form-control form-control-lg" placeholder="repeat password" />
