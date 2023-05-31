@@ -48,7 +48,6 @@ class Validator
     public static function isNotDoubled($table, $row, $param) : bool
     {
         $db = new DatabasePDO;
-        // dd($param);
         $result = $db->query('SELECT id FROM ' . $table . ' WHERE ' . $row . ' = :param ', $param);
         if($result->rowCount() === 0) return true;
 

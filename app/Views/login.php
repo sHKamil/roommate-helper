@@ -8,7 +8,7 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
-                <a href="../../index.php">
+                <a href="/">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
                 </a>
             </div>
