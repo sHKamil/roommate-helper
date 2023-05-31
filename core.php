@@ -1,5 +1,10 @@
 <?php
 
+function dd($data)
+{
+    return die(var_dump(($data)));
+}
+
 function base_path($path)
 {
     return BASE_PATH . $path;

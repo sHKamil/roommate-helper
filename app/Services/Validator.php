@@ -3,6 +3,7 @@
 namespace app\Services;
 
 use app\Database\Database;
+use app\Database\DatabasePDO;
 
 class Validator
 {
@@ -46,10 +47,10 @@ class Validator
 
     public static function isNotDoubled($table, $row, $param) : bool
     {
-        $db = new Database;
-
-        $result = $db->secureQuery('SELECT id FROM ' . $table . ' WHERE ' . $row . ' = ?', $param);
-        if($result->num_rows === 0) return true;
+        $db = new DatabasePDO;
+        // dd($param);
+        $result = $db->query('SELECT id FROM ' . $table . ' WHERE ' . $row . ' = :param ', $param);
+        if($result->rowCount() === 0) return true;
 
         return false;
     }

@@ -22,7 +22,7 @@ class RegisterController
 
         if($this->validateInputs($login, $password1, $password2)) {
             $db = new DatabasePDO;
-            $db->query("INSERT INTO users(nazwa, haslo) VALUES(:login, :password)", [
+            $db->query("INSERT INTO users(login, password) VALUES(:login, :password)", [
                 ':login' => $login,
                 ':password' => password_hash($password1, PASSWORD_BCRYPT)
             ]);
@@ -49,7 +49,7 @@ class RegisterController
 
     private function uniqueLogin($login)
     {
-        if(Validator::isNotDoubled('users', 'nazwa', $login)) return true;
+        if(Validator::isNotDoubled('users', 'login', ['param' => $login])) return true;
         return false;
     }
 
