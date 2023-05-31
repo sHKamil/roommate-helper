@@ -3,7 +3,6 @@
 namespace app\Controllers;
 
 use app\Models\User;
-require_once base_path("/app/Database/Database.php");
 
 class ProfileController
 {

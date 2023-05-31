@@ -1,10 +1,12 @@
 <?php
 
+
+
 use app\Services\HtmlFabric;
 
 echo HtmlFabric::buildHeader("Rhelper - LogIn");
 
-if(isset($_SESSION)){
+if(isset($_SESSION['user_type'])){
     echo '<a href="/schedule"><button>Schedule</button></a>';
 }else{
     echo '<a href="/login"><button>Login</button></a>';

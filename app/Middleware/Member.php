@@ -6,7 +6,7 @@ class Member
 {
     public function handle()
     {
-        if($_SESSION['user_type'] === 'member')
+        if(!$_SESSION['user_type'] ?? false)
         {
             header('Location: /');
             exit();

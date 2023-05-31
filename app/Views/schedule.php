@@ -1,9 +1,5 @@
 <?php
 
-if (!isset($_SESSION)) {
-  session_start();
-}
-
 use app\Services\HtmlFabric;
 
 // new ScheduleController;
@@ -11,8 +7,9 @@ echo HtmlFabric::buildHeader("Rhelper - Schedule", "/assets/css/schedule.css");
 // $user = new ProfileController($_SESSION['id']);
 ?>
 		<body>
-			<form method="POST" action="logout.php">
+			<form method="POST" action="">
 				<div>
+					<input type="hidden" name="_method" value="LOGOUT">
 					<button type="submit">Wyloguj</button>
 				</div>
 			</form>

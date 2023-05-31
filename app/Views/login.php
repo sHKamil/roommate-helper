@@ -1,7 +1,5 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 use app\Services\HtmlFabric;
 
 echo HtmlFabric::buildHeader("Rhelper - LogIn");
