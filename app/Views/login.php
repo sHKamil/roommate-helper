@@ -2,7 +2,7 @@
 
 use app\Services\HtmlFabric;
 
-echo HtmlFabric::buildHeader("Rhelper - LogIn");
+echo HtmlFabric::buildHeader("Rhelper - LogIn", "/assets/css/form_errors.css");
 ?>
 
 <body>
@@ -30,6 +30,9 @@ echo HtmlFabric::buildHeader("Rhelper - LogIn");
                     <div class="form-outline mb-3">
                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
                         <label class="form-label" for="password">Password</label>
+                        <div class="error_slot">
+                            <?php if(isset($error)) echo $error ?>
+                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">

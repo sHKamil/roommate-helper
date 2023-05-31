@@ -20,6 +20,9 @@ class LoginController
         if($this->attempt()) {
             $this->_createSession($this->login);
             header('Location: /schedule');
+        }else{
+            $this->error = 'Niepoprawny login lub hasło';
+            return view('login.php', ['error' => $this->error]);
         }
     }
 
@@ -41,10 +44,8 @@ class LoginController
 
         if($this->model->findUserByLogin($this->login, $password)){
             return true;
-        }else{
-            $this->error = ['Niepoprawny login lub hasło'];
-            return view('login.php', $this->error);
-        };
+        }
+        return false;
     }
 
     public function getUserId()
