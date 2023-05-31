@@ -1,12 +1,10 @@
 <?php
 
-use app\Services\HtmlFabric;
+use app\Services\HtmlFactory;
 
-echo HtmlFabric::buildHeader("Rhelper - LogIn", "/assets/css/form_errors.css");
+echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]);
 ?>
-
-<body>
-    <section class="vh-100">
+<section class="vh-100">
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
@@ -57,6 +55,5 @@ echo HtmlFabric::buildHeader("Rhelper - LogIn", "/assets/css/form_errors.css");
             </div>
         </div>
     </div>
-<?php echo HtmlFabric::buildFooter(); ?>
-</body>
-</html>
+</section>
+<?php echo HtmlFactory::buildFooter(); ?>

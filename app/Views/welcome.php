@@ -2,9 +2,9 @@
 
 
 
-use app\Services\HtmlFabric;
+use app\Services\HtmlFactory;
 
-echo HtmlFabric::buildHeader("Rhelper - LogIn");
+echo HtmlFactory::buildHeader("Rhelper - LogIn");
 
 if(isset($_SESSION['user_type'])){
     echo '<a href="/schedule"><button>Schedule</button></a>';
@@ -17,4 +17,4 @@ if(isset($_SESSION['user_type'])){
 
 dwaDAW2@
 
-<?php echo HtmlFabric::buildFooter(); ?>
+<?php echo HtmlFactory::buildFooter(); ?>
