@@ -2,7 +2,7 @@
 
 namespace app\Middleware;
 
-class Guest
+class Owner
 {
     public function handle()
     {

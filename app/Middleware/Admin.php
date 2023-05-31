@@ -2,7 +2,7 @@
 
 namespace app\Middleware;
 
-class Guest
+class Admin
 {
     public function handle()
     {
