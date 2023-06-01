@@ -16,7 +16,7 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
                         <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" required/>
                         <label class="form-label" for="login">Login</label>
                         <div class='error_slot'>
-                            <?php if(isset($errors['login'])) echo '<label for="login" class="error_label">'.$errors['login']; ?>
+                            <?php if(isset($errors['login_duplicate'])) echo '<label for="login" class="error_label">'.$errors['login_duplicate']; ?>
                         </div>
                     </div>
                     <div class="form-outline mb-3">
