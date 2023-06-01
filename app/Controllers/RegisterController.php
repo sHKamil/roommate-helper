@@ -19,6 +19,7 @@ class RegisterController
         $login = $_POST['login'];
         $password1 = $_POST['password'];
         $password2 = $_POST['repeat_password'];
+        $user_name = $_POST['name'];
 
         if($this->validateInputs($login, $password1, $password2)) {
             $db = new DatabasePDO;

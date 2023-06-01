@@ -13,14 +13,14 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
                         <p class="text-center fw-bold mx-3 mb-0">Sign up</p>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" />
+                        <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" required/>
                         <label class="form-label" for="login">Login</label>
                         <div class='error_slot'>
                             <?php if(isset($errors['login'])) echo '<label for="login" class="error_label">'.$errors['login']; ?>
                         </div>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
+                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required/>
                         <label class="form-label" for="password">Password</label>
                         <div class='error_slot'>
                             <?php 
@@ -31,14 +31,14 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
                         </div>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="password" name="repeat_password" class="form-control form-control-lg" placeholder="repeat password" />
+                        <input type="password" name="repeat_password" class="form-control form-control-lg" placeholder="repeat password" required/>
                         <label class="form-label" for="repeat_password">Repeat password</label>
                         <div class='error_slot'>
                             <?php if(isset($errors['password_repeat'])) echo '<label for="repeat_password" class="error_label">'.$errors['password_repeat'].'</label><br>'; ?>
                         </div>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter lastname" />
+                        <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter name" required/>
                         <label class="form-label" for="name">Name</label>
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">

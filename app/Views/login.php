@@ -20,13 +20,13 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
 
                     <!-- Login input -->
                     <div class="form-outline mb-4">
-                        <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" />
+                        <input type="text" name="login" class="form-control form-control-lg" placeholder="Enter your login" required/>
                         <label class="form-label" for="login">Login</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
-                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" />
+                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required/>
                         <label class="form-label" for="password">Password</label>
                         <div class="error_slot">
                             <?php if(isset($error)) echo $error ?>
