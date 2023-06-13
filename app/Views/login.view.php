@@ -25,18 +25,25 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
                         </div>
                     </div>
 
+                    <div class="form-outline mb-3">
+                        <input type="submit" class="btns btn__primary" value="Login"/>
+                    </div>
+
+                    <div class="form-outline mb-3">
+                        <p class="fw-bold mt-2 pt-1 mb-2">
+                        Don t have an account? 
+                        </p>
+                        <a href="register" style = "text-decoration: none;">
+                            <div class="btns btn__secondary">
+                                Register instead
+                            </div>
+                        </a>
+                    </div>
+
                     <!-- <div class="d-flex justify-content-between align-items-center">
                         <a href="#!" class="text-body">Forgot password?</a>
                     </div> -->
-
-                    <div class="text-center text-lg-start mt-4 pt-2">
-                        <input type="submit" class="btns btn__primary" value="Login"/>
-                </form>
-                <p class="fw-bold mt-2 pt-1 mb-2">
-                    Don t have an account? 
-                </p>
-                <a href="register" style = "text-decoration: none;"><idv class="btns btn__secondary">Register</div></a>
-                </div>
+            </form>
         </div>
     </div>
 </div>

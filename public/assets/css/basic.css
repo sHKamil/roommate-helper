@@ -27,9 +27,9 @@ html {
 }
 
 .container {
-  min-height: 100vh;
+  min-height: 90vh;
   min-width: 100%;
-  padding: 50h auto;
+  padding: 50vh auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@ html {
 
 .components {
   width: 75rem;
-  height: 40rem;
+  min-height: 40rem;
   border-radius: 3rem;
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
