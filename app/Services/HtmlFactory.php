@@ -11,7 +11,8 @@ class HtmlFactory
             // '/assets/css/style.css',
             '/bootstrap/css/bootstrap.min.css',
             'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css',
-            '/assets/css/basic.css'
+            '/assets/css/basic.css',
+            '/assets/css/footer.css'
         ];
         $css = static::_createLinks($css_url, $default_css, '<link rel="stylesheet" href="', '">');
         $head =
@@ -38,7 +39,7 @@ END;
         $footer =
 <<<END
 <footer>
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5">
         <div class="text-white mb-3 mb-md-0">
             Copyright © 2023. All rights reserved.
         </div>
