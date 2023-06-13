@@ -8,11 +8,11 @@ class LoginController
 {
     public $model;
     public $login;
-    public $error;
+    public $errors = [];
 
     public function show()
     {
-        view('login.php');
+        view('login', ['error' => $this->errors]);
     }
 
     public function login()
@@ -21,8 +21,8 @@ class LoginController
             $this->_createSession($this->login);
             header('Location: /schedule');
         }else{
-            $this->error = 'Niepoprawny login lub hasło';
-            return view('login.php', ['error' => $this->error]);
+            $this->errors = ['Niepoprawny login lub hasło'];
+            return view('login', ['error' => $this->errors]);
         }
     }
 

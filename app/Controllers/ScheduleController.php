@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 class ScheduleController
 {
+    public $errors = [];
     public $day;
     public $month;
     public $year;
@@ -18,7 +19,7 @@ class ScheduleController
 
     public function show()
     {
-        return view('schedule.php');
+        return view('schedule', ['errors' => $this->errors]);
     }
 
 	private function _setDateCookie()

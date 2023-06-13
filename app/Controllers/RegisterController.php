@@ -11,7 +11,7 @@ class RegisterController
 
     public function show()
     {
-        view('register.php');
+        view('register', ['errors' => $this->errors]);
     }
 
     public function register()
@@ -40,11 +40,11 @@ class RegisterController
         if(Validator::containSpecialCharacter($password1)) $this->errors['password_spec'] = 'Hasło musi zawierać przynajmniej jeden znak specjalny.';
         if(($password1 !== $password2)) $this->errors['password_repeat'] = 'Hasła muszą być identyczne';
     
-        if (!empty($this->errors)) return view('register.php', ['errors' => $this->errors]);
+        if (!empty($this->errors)) return view('register', ['errors' => $this->errors]);
 
         if(!$this->uniqueLogin($login)) $this->errors['login_duplicate'] = 'Taki login już istnieje';
 
-        if (!empty($this->errors)) return view('register.php', ['errors' => $this->errors]);
+        if (!empty($this->errors)) return view('register', ['errors' => $this->errors]);
         return true;
     }
 

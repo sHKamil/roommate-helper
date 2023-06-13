@@ -14,7 +14,7 @@ function view($path, $attributes = [])
 {
     extract($attributes);
 
-    require base_path('/app/Views/' . $path);
+    require base_path('/app/Views/' . $path . '.view.php');
 }
 
 function autoloader($className) {
