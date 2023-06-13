@@ -7,7 +7,12 @@ class HtmlFactory
 
     public static function buildHeader($title = "Rhelper", $css_url = NULL): string
     {   
-        $default_css = ['/assets/css/style.css','/bootstrap/css/bootstrap.min.css','https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css'];
+        $default_css = [
+            // '/assets/css/style.css',
+            '/bootstrap/css/bootstrap.min.css',
+            'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css',
+            '/assets/css/basic.css'
+        ];
         $css = static::_createLinks($css_url, $default_css, '<link rel="stylesheet" href="', '">');
         $head =
 <<<END
