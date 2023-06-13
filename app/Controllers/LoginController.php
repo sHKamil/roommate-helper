@@ -2,9 +2,10 @@
 
 namespace app\Controllers;
 
+use app\Interfaces\ViewControllerInterface;
 use app\Models\User;
 
-class LoginController
+class LoginController implements ViewControllerInterface
 {
     public $model;
     public $login;

@@ -3,9 +3,10 @@
 namespace app\Controllers;
 
 use app\Database\DatabasePDO;
+use app\Interfaces\ViewControllerInterface;
 use app\Services\Validator;
 
-class RegisterController
+class RegisterController implements ViewControllerInterface
 {
     public $errors;
 

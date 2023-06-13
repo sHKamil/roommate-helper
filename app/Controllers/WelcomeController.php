@@ -2,7 +2,9 @@
 
 namespace app\Controllers;
 
-class WelcomeController
+use app\Interfaces\ViewControllerInterface;
+
+class WelcomeController implements ViewControllerInterface
 {
     public $errors = [];
 

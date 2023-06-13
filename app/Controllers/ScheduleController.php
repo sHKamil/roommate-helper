@@ -2,7 +2,9 @@
 
 namespace app\Controllers;
 
-class ScheduleController
+use app\Interfaces\ViewControllerInterface;
+
+class ScheduleController implements ViewControllerInterface
 {
     public $errors = [];
     public $day;
