@@ -11,15 +11,15 @@ class ProfileController
 
     public function __construct($id) {
         $this->id = $id;
-        $this->_fillUpModel();
+        // $this->_fillUpModel();
     }
 
-    private function _fillUpModel(): void
-    {
-        $user = new User();
-        $user->findUserById($this->id);
-        $this->model = $user;
-        return;
-    }
+    // private function _fillUpModel(): void
+    // {
+    //     $user = new User();
+    //     $user->findUserById($this->id);
+    //     $this->model = $user;
+    //     return;
+    // }
 
 }

@@ -10,6 +10,7 @@ class WelcomeController implements ViewControllerInterface
 
     public function show()
     {
-        view('welcome', ['errors' => $this->errors]);
+        header('Location: /register');
+        // view('welcome', ['errors' => $this->errors]);
     }
 }

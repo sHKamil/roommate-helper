@@ -2,21 +2,52 @@
 
 namespace app\Models;
 
-use app\Database\Database;
 use app\Database\DatabasePDO;
+use app\Services\ModelHandler;
 
 class User
 {
     private $db;
-    public $id;
-    public $login;
-    public $name;
-    public $lastname;
+    public $allColumns = [];
+    public $fillable = [];
+    public $table;
 
-    public function findUserByLogin($login, $password)
+    public function __construct() {
+        $this->_prepareFields();
+        $this->db = new DatabasePDO;
+    }
+
+    private function _prepareFields() : void
     {
-        $db = new DatabasePDO;
-        $attempt = $db->query("SELECT login, password FROM users WHERE login = :login", [
+        $this->allColumns = [
+            'id',
+            'login',
+            'password',
+            'name',
+            'lastname',
+            'group_id',
+            'e-mail',
+            'user_type',
+            'failed_attempts',
+            'blocked_time'
+        ];
+        $this->fillable = [
+            'login',
+            'password',
+            'name',
+            'lastname',
+            'group_id',
+            'e-mail',
+            'user_type',
+            'failed_attempts',
+            'blocked_time'
+        ];
+        $this->table = 'users';
+    }
+
+    public function findUserByLogin(string $login, string $password)
+    {
+        $attempt = $this->db->query("SELECT login, password FROM users WHERE login = :login", [
             ':login' => $login,
         ]);
         if ($attempt->rowCount() === 1) {
@@ -25,27 +56,51 @@ class User
         }
         return false;
     }
-
-    public function findUserById($id)
+        
+    public function addUser(array $params = []) : void
     {
-        $this->db = new Database;
-        $attempt = $this->db->defaultSelectQuery("users","id, name, lastname, login",'id='.$id.';');
- 
-        if ($attempt->num_rows == 1){
-            $this->_asignData($attempt);
-        }else{
-            throw new \Exception(' Login failed. '); // better frontend needed
+        $fillable = $this->fillable;
+        $columns = ModelHandler::prepareFillableForSQL($fillable);
+        $placeholders = ModelHandler::preparePlaceholders($fillable);
+        $params = ModelHandler::createDictionaryParams($this->fillable, $params);
+        try
+        {
+            $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
         }
     }
 
-    private function _asignData($data)
+    public function getFailedAttempts(array $params = []) : int | null
     {
-        $data = $data->fetch_assoc();
-        $this->id = $data["id"];
-        $this->login = $data["login"];
-        $this->name = $data["name"];
-        $this->lastname = $data["lastname"];
+        try
+        {
+            return $this->db->query("SELECT failed_attempts FROM " . $this->table . " WHERE name = :login ", $params)->fetch()['failed_attempts'];
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return null;
+    }
+    
+    public function blockAccount(array $params = []) : void // sets block_date for user in db 
+    {
+        try
+        {
+            $this->db->query("UPDATE " . $this->table . " SET blocked_time = :blocked_time WHERE name = :login ", $params);
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return;
     }
 
-
+    public function setFailedAttempts(array $params = []) : void // sets failed_attempts for user in db
+    {
+        try
+        {
+            $this->db->query("UPDATE " . $this->table . " SET failed_attempts = :failed_attempts WHERE name = :login ", $params);
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return;
+    }
 }
