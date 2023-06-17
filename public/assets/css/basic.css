@@ -61,6 +61,19 @@ body {
   align-items: center;
 }
 
+.component {
+  min-width: 15rem;
+  min-height: 40rem;
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+  padding: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
 /*  BUTTONS  */
 .btns {
   text-decoration: none;

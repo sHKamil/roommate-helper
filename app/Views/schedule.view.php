@@ -10,6 +10,11 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]
 		<button type="submit">Wyloguj</button>
 	</div>
 </form>
+<a href="event/create">
+	<div class="btns btn__primary">
+		Create Event
+	</div>
+</a>
 <div class="container text-center">
 	<div class="row justify-content-md-center bg-dark mt-3">
 		<div class="col col-lg-4 text-center bg-secondary">

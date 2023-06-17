@@ -1,5 +1,6 @@
 <?php
 
+use app\Controllers\EventController;
 use app\Controllers\LoginController;
 use app\Controllers\RegisterController;
 use app\Controllers\ScheduleController;
@@ -14,3 +15,5 @@ $router->get('/register', RegisterController::class, 'show')->only('guest');
 $router->post('/register', RegisterController::class, 'register')->only('guest');
 
 $router->get('/schedule', ScheduleController::class, 'show')->only('member');
+
+$router->get('/event/create', EventController::class, 'showCreate')->only('member');
