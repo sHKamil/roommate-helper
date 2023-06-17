@@ -50,6 +50,11 @@ class Router
     {
         return $this->add($uri, $class, $class_method, 'LOGOUT');
     }
+
+    public function join($uri, $class, $class_method)
+    {
+        return $this->add($uri, $class, $class_method, 'JOIN');
+    }
     
     private function abort($code = 404)
     {
