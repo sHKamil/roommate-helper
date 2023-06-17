@@ -15,13 +15,14 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
                 <form class="form" method="POST" action="">
 
                     <div class="form-outline mb-4">
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                         <input type="text" name="login" class="form__input" placeholder="Enter your login" required/>
                     </div>
 
                     <div class="form-outline mb-3">
                         <input type="password" name="password" class="form__input" placeholder="Enter password" required/>
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $error ?>
+                            <?php if(isset($errors) && !empty($errors)) echo $errors ?>
                         </div>
                     </div>
 

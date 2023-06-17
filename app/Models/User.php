@@ -75,7 +75,7 @@ class User
     {
         try
         {
-            return $this->db->query("SELECT failed_attempts FROM " . $this->table . " WHERE name = :login ", $params)->fetch()['failed_attempts'];
+            return $this->db->query("SELECT failed_attempts FROM " . $this->table . " WHERE login = :login ", $params)->fetch()['failed_attempts'];
         } catch (\Exception $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
@@ -86,7 +86,7 @@ class User
     {
         try
         {
-            $this->db->query("UPDATE " . $this->table . " SET blocked_time = :blocked_time WHERE name = :login ", $params);
+            $this->db->query("UPDATE " . $this->table . " SET blocked_time = :blocked_time WHERE login = :login ", $params);
         } catch (\Exception $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
@@ -102,5 +102,28 @@ class User
             echo "Insert query failed: " . $e->getMessage();
         }
         return;
+    }
+
+    
+    public function getUserNameByLogin(array $params = []) : bool
+    {
+        try
+        {
+            if($this->db->query("SELECT name FROM " . $this->table . " WHERE login = :login ", $params)->rowCount()===1) return true;
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
+    public function getUserBlockedtimeStmt(array $params = [])
+    {
+        try
+        {
+            return $this->db->query("SELECT id, password, blocked_time FROM users WHERE login = :login", $params);
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
     }
 }

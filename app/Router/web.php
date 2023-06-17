@@ -3,7 +3,7 @@
 $router->get('/', 'app/Controllers/WelcomeController.php', 'app\Controllers\WelcomeController', 'show');
 $router->get('/login', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'show')->only('guest');
 $router->post('/login', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'login');
-$router->logout('/schedule', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'logout')->only('member');
+$router->logout('/schedule', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'logout');
 
 $router->get('/register', 'app/Controllers/RegisterController.php', 'app\Controllers\RegisterController', 'show')->only('guest');
 $router->post('/register', 'app/Controllers/RegisterController.php', 'app\Controllers\RegisterController', 'register')->only('guest');

@@ -34,7 +34,7 @@ END;
 
     public static function buildFooter($js_url = NULL): string
     {
-        $default_js = [];
+        $default_js = ['assets/js/sweetAlert2.js'];
         $js = static::_createLinks($js_url, $default_js, '<script src="', '"></script>');
         $footer =
 <<<END

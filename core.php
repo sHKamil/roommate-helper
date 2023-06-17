@@ -10,11 +10,12 @@ function base_path($path)
     return BASE_PATH . $path;
 }
 
-function view($path, $attributes = [])
+function view($path, $attributes = [], $alert = null)
 {
     extract($attributes);
 
     require base_path('/app/Views/' . $path . '.view.php');
+    if($alert !== '' && $alert !==null) echo $alert;
 }
 
 function autoloader($className) {

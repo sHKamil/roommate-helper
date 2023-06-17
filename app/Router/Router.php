@@ -55,7 +55,7 @@ class Router
     private function abort($code = 404)
     {
         http_response_code($code);
-        return view("error.php");
+        return view("error");
     }
 
     public function only($key)

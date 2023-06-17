@@ -4,15 +4,21 @@ namespace app\Controllers;
 
 use app\Database\DatabasePDO;
 use app\Interfaces\ViewControllerInterface;
+use app\Services\Alert;
 use app\Services\Validator;
 
 class RegisterController implements ViewControllerInterface
 {
+    private $csrf_token;
     public $errors;
 
     public function show()
     {
-        view('register', ['errors' => $this->errors]);
+        $csrf_token = $this->_createCSRF();
+        view('register', [
+            'errors' => $this->errors,
+            "csrf_token" => $csrf_token
+        ]);
     }
 
     public function register()
@@ -34,18 +40,29 @@ class RegisterController implements ViewControllerInterface
 
     private function validateInputs($login, $password1, $password2)
     {
-  
-        if(!Validator::string($login, 5, 200)) $this->errors['login'] = 'Login musi mieć minimum 5 znaków oraz maksimum 200.';
-        if(!Validator::string($password1, 8, 200)) $this->errors['password_min'] = 'Hasło musi mieć minimum 8 znaków oraz maksimum 200.';
-        if(Validator::containNumber($password1)) $this->errors['password_num'] = 'Hasło musi zawierać przynajmniej jedną cyfrę.';
-        if(Validator::containSpecialCharacter($password1)) $this->errors['password_spec'] = 'Hasło musi zawierać przynajmniej jeden znak specjalny.';
-        if(($password1 !== $password2)) $this->errors['password_repeat'] = 'Hasła muszą być identyczne';
-    
-        if (!empty($this->errors)) return view('register', ['errors' => $this->errors]);
+        if(Validator::validateCSRF($_SESSION['csrf_token'])) {
+            if(!Validator::string($login, 5, 200)) $this->errors['login'] = 'Login musi mieć minimum 5 znaków oraz maksimum 200.';
+            if(!Validator::string($password1, 8, 200)) $this->errors['password_min'] = 'Hasło musi mieć minimum 8 znaków oraz maksimum 200.';
+            if(Validator::containNumber($password1)) $this->errors['password_num'] = 'Hasło musi zawierać przynajmniej jedną cyfrę.';
+            if(Validator::containSpecialCharacter($password1)) $this->errors['password_spec'] = 'Hasło musi zawierać przynajmniej jeden znak specjalny.';
+            if(($password1 !== $password2)) $this->errors['password_repeat'] = 'Hasła muszą być identyczne';
+        
+            if (!empty($this->errors)) return view('register', [
+                'errors' => $this->errors,
+                'alert' => Alert::failed('Błąd', 'Rejestracja nie powiodła się')
+            ]);
 
-        if(!$this->uniqueLogin($login)) $this->errors['login_duplicate'] = 'Taki login już istnieje';
+            if(!$this->uniqueLogin($login)) $this->errors['login_duplicate'] = 'Taki login już istnieje';
 
-        if (!empty($this->errors)) return view('register', ['errors' => $this->errors]);
+            if (!empty($this->errors)) return view('register', [
+                'errors' => $this->errors,
+                'alert' => Alert::failed('Błąd', 'Rejestracja nie powiodła się')
+            ]);
+        } else {
+            return view('register', [
+                'alert' => Alert::failed('Błąd', 'Rejestracja nie powiodła się')
+            ]);
+        }
         return true;
     }
 
@@ -53,6 +70,15 @@ class RegisterController implements ViewControllerInterface
     {
         if(Validator::isNotDoubled('users', 'login', ['param' => $login])) return true;
         return false;
+    }
+
+    private function _createCSRF()
+    {
+        if(!isset ($_SESSION)) session_start();
+        if(!isset ($_SESSION['csrf_token']) || $this->csrf_token === null) {
+            $this->csrf_token = $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
     }
 
 }

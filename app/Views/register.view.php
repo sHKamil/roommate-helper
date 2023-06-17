@@ -13,6 +13,7 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
         </div>
         <form method="POST" action="">
             <div class="form-outline mb-4">
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                 <input type="text" name="login" class="form__input" placeholder="Enter your login" required/>
                 <div class='error_slot'>
                     <?php if(isset($errors['login_duplicate'])) echo '<label for="login" class="error_label">'.$errors['login_duplicate']; ?>

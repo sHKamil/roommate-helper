@@ -38,12 +38,12 @@ class Validator
         return false;
     }
 
-    public static function fileType($string) : bool
-    {
-        $allowedFileTypes = ['application/pdf'];
-        if (in_array($string, $allowedFileTypes)) return true;
-        return false;
-    }
+    // public static function fileType($string) : bool
+    // {
+    //     $allowedFileTypes = ['application/pdf'];
+    //     if (in_array($string, $allowedFileTypes)) return true;
+    //     return false;
+    // }
 
     public static function isNotDoubled($table, $row, $param) : bool
     {
@@ -54,4 +54,19 @@ class Validator
         return false;
     }
 
+    public static function validateCSRF($token) : bool
+    {
+        return $token === $_SESSION['csrf_token'] && $token === $_POST['csrf_token'];
+    }
+
+    public static function sessionClientIP() : bool
+    {    
+        if ($_SESSION['client_ip'] !== $_SERVER['REMOTE_ADDR']) {
+            return false;
+        }
+ 
+        return true;
+    }
+
+    
 }
