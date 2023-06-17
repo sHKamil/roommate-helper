@@ -63,7 +63,7 @@ body {
 
 .component {
   min-width: 15rem;
-  min-height: 40rem;
+  min-height: 20rem;
   border-radius: 3rem;
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),

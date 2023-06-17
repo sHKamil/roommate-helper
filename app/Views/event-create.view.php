@@ -2,7 +2,7 @@
 
 use app\Services\HtmlFactory;
 
-echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]);
+echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]);
 ?>
 <div class="container">
     <div class="component" style="margin-bottom: 5rem;">
@@ -10,7 +10,7 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
                 <form class="form" method="POST" action="">
 
                     <div class="form-outline mb-4">
-                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+                        <input type="hidden" name="_method" value="create">
                         <input type="text" name="name" class="form__input" placeholder="Event name" required/>
                         Name
                     </div>
