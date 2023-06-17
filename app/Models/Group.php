@@ -5,7 +5,7 @@ namespace app\Models;
 use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
-class Event
+class Group
 {
     private $db;
     public $allColumns = [];
@@ -43,5 +43,29 @@ class Event
         } catch (\Exception $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
+    }
+        
+    public function findGroupByToken(array $params = [])
+    {
+        try
+        {
+            $stmt = $this->db->query("SELECT name FROM " . $this->table . " WHERE token = :token ", $params);
+            return $stmt;
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+        
+    public function getIdByToken(array $params = [])
+    {
+        try
+        {
+            $stmt = $this->db->query("SELECT id FROM " . $this->table . " WHERE token = :token ", $params)->fetch()['id'];
+            return $stmt;
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
     }
 }

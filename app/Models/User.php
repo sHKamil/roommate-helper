@@ -104,6 +104,16 @@ class User
         return;
     }
 
+    public function asign(array $params) : void
+    {
+        try
+        {
+            $this->db->query("UPDATE " . $this->table . " SET group_id = :group_id WHERE id = :id ", $params);
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return;
+    }
     
     public function getUserNameByLogin(array $params = []) : bool
     {
