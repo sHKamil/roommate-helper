@@ -55,6 +55,11 @@ class Router
     {
         return $this->add($uri, $class, $class_method, 'JOIN');
     }
+
+    public function create($uri, $class, $class_method)
+    {
+        return $this->add($uri, $class, $class_method, 'CREATE');
+    }
     
     private function abort($code = 404)
     {

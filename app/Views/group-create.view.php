@@ -16,7 +16,7 @@ echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="text" name="name" class="form__input" placeholder="Invite token" required/>
+                        <input type="text" name="token" class="form__input" placeholder="Invite token" required/>
                         Token
                         <div class="error_slot">
                             <?php if(isset($errors) && !empty($errors)) echo $errors ?>

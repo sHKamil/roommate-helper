@@ -5,10 +5,11 @@ namespace app\Controllers;
 use app\Interfaces\ViewControllerInterface;
 use app\Models\Group;
 use app\Models\User;
+use app\Services\Validator;
 
 class GroupController implements ViewControllerInterface
 {
-    public $errors;
+    public $errors = [];
     public $model;
 
     public function show(string $alert = '')
@@ -30,6 +31,22 @@ class GroupController implements ViewControllerInterface
         return view('group-join', [
             "errors" => $this->errors
         ], $alert);
+    }
+
+    public function create()
+    {
+        $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+        $token = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : '';
+
+        if($token !== '' && $name !== '') {
+            if($this->_validate($name, $token) && !$this->_groupExist($token)) {
+                $this->model->addGroup([
+                    ':token' => $token,
+                    ':name' => $name,
+                    ':user_id' => $_SESSION['user_id']
+                ]);
+            }
+        }
     }
 
     public function join()
@@ -63,12 +80,26 @@ class GroupController implements ViewControllerInterface
         ]);
     }
 
-    private function _groupExist($token) : bool
+    private function _groupExist(string $token) : bool
     {
         $this->setModel(new Group);
-        if($this->model->findGroupByToken($token)->rowCount()===1) {
+        if($this->model->findGroupByToken([':token' => $token])->rowCount()===1) {
             return true;
         }
         return false;
+    }
+
+    private function _validate(string $name, string $token) : bool
+    {
+        if(!Validator::string($name, 1, 45)) $this->_addError('Nazwa może składać się maksymalnie z 45 znaków.');
+        if(!Validator::string($token, 1, 45)) $this->_addError('Token może składać się maksymalnie z 45 znaków.');
+        if(empty($this->errors)) return true;
+        return false;
+    }
+
+    private function _addError(string $error) : void
+    {
+        array_push($this->errors, $error);
+        return;
     }
 }

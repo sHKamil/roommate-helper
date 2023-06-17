@@ -22,13 +22,15 @@ class Group
         $this->allColumns = [
             'id',
             'token',
-            'name'
+            'name',
+            'user_id'
         ];
         $this->fillable = [
             'token',
-            'name'
+            'name',
+            'user_id'
         ];
-        $this->table = 'groups';
+        $this->table = 'user_groups';
     }
         
     public function addGroup(array $params = []) : void
@@ -36,7 +38,6 @@ class Group
         $fillable = $this->fillable;
         $columns = ModelHandler::prepareFillableForSQL($fillable);
         $placeholders = ModelHandler::preparePlaceholders($fillable);
-        $params = ModelHandler::createDictionaryParams($this->fillable, $params);
         try
         {
             $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
