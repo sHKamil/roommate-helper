@@ -97,7 +97,7 @@ class User
     {
         try
         {
-            $this->db->query("UPDATE " . $this->table . " SET failed_attempts = :failed_attempts WHERE name = :login ", $params);
+            $this->db->query("UPDATE " . $this->table . " SET failed_attempts = :failed_attempts WHERE login = :login ", $params);
         } catch (\Exception $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
