@@ -9,11 +9,10 @@ class Router
 
     private $routes = [];
 
-    public function add($uri, $controller, $class, $class_method, $method)
+    public function add($uri, $class, $class_method, $method)
     {
         $this->routes [] = [
             'uri' => $uri,
-            'controller' => $controller,
             'class' => $class,
             'class_method' => $class_method,
             'method' => $method,
@@ -22,34 +21,34 @@ class Router
         return $this;
     }
 
-    public function get($uri, $controller, $class, $class_method)
+    public function get($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'GET');
+        return $this->add($uri, $class, $class_method, 'GET');
     }
 
-    public function post($uri, $controller, $class, $class_method)
+    public function post($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'POST');
+        return $this->add($uri, $class, $class_method, 'POST');
     }
 
-    public function delete($uri, $controller, $class, $class_method)
+    public function delete($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'DELETE');
+        return $this->add($uri, $class, $class_method, 'DELETE');
     }
 
-    public function patch($uri, $controller, $class, $class_method)
+    public function patch($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'PATCH');
+        return $this->add($uri, $class, $class_method, 'PATCH');
     }
 
-    public function put($uri, $controller, $class, $class_method)
+    public function put($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'PUT');
+        return $this->add($uri, $class, $class_method, 'PUT');
     }
 
-    public function logout($uri, $controller, $class, $class_method)
+    public function logout($uri, $class, $class_method)
     {
-        return $this->add($uri, $controller, $class, $class_method, 'LOGOUT');
+        return $this->add($uri, $class, $class_method, 'LOGOUT');
     }
     
     private function abort($code = 404)
@@ -70,7 +69,6 @@ class Router
             if($route['uri'] === $uri && $route['method'] === strtoupper($method))
             {
                 Middleware::resolve($route['middleware']);
-                require base_path($route['controller']);
                 $class = new $route['class']();
                 return call_user_func([$class, $route['class_method']]);
             }

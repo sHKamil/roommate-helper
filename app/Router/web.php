@@ -1,11 +1,16 @@
 <?php
 
-$router->get('/', 'app/Controllers/WelcomeController.php', 'app\Controllers\WelcomeController', 'show');
-$router->get('/login', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'show')->only('guest');
-$router->post('/login', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'login');
-$router->logout('/schedule', 'app/Controllers/LoginController.php', 'app\Controllers\LoginController', 'logout');
+use app\Controllers\LoginController;
+use app\Controllers\RegisterController;
+use app\Controllers\ScheduleController;
+use app\Controllers\WelcomeController;
 
-$router->get('/register', 'app/Controllers/RegisterController.php', 'app\Controllers\RegisterController', 'show')->only('guest');
-$router->post('/register', 'app/Controllers/RegisterController.php', 'app\Controllers\RegisterController', 'register')->only('guest');
+$router->get('/', WelcomeController::class, 'show');
+$router->get('/login', LoginController::class, 'show')->only('guest');
+$router->post('/login', LoginController::class, 'login');
+$router->logout('/schedule', LoginController::class, 'logout');
 
-$router->get('/schedule','app/Controllers/ScheduleController.php', 'app\Controllers\ScheduleController', 'show')->only('member');
+$router->get('/register', RegisterController::class, 'show')->only('guest');
+$router->post('/register', RegisterController::class, 'register')->only('guest');
+
+$router->get('/schedule', ScheduleController::class, 'show')->only('member');
