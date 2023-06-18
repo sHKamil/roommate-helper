@@ -26,6 +26,13 @@ class GroupController implements ViewControllerInterface
         ], $alert);
     }
 
+    public function showMenage(string $alert = '')
+    {
+        return view('group-menage', [
+            "errors" => $this->errors
+        ], $alert);
+    }
+
     public function showJoin(string $alert = '')
     {
         return view('group-join', [
