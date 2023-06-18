@@ -23,7 +23,7 @@ $router->get('/group/create', GroupController::class, 'showCreate');
 $router->create('/group/create', GroupController::class, 'create');
 
 $router->get('/group/menage', GroupController::class, 'showMenage');
-$router->delete('/group/menage', GroupController::class, 'delete');
+$router->delete('/group/menage', GroupController::class, 'quit');
 
 $router->get('/group/join', GroupController::class, 'showJoin');
 $router->join('/group/join', GroupController::class, 'join');

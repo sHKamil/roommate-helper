@@ -69,4 +69,16 @@ class Group
         }
         return false;
     }
+            
+    public function getGroup(array $params = [])
+    {
+        try
+        {
+            $stmt = $this->db->query("SELECT id, name, token, user_id FROM " . $this->table . " WHERE id = :id ", $params);
+            return $stmt;
+        } catch (\Exception $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
 }

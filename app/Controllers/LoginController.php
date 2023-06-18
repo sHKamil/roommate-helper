@@ -48,7 +48,8 @@ class LoginController implements ViewControllerInterface
                         $password_db = $statement["password"];
                         if($this->_comparePassword($password, $password_db)) {
                             $this->resetFailedAttempts($login);
-                            $this->_createSession($id, $login);
+                            $user_data = $this->model->getUserData([':login' => $login]);
+                            $this->_createSession($user_data);
                             return header('Location: /schedule');
                         }
                     }
@@ -146,13 +147,17 @@ class LoginController implements ViewControllerInterface
         return;
     }
 
-    private function _createSession($id, $login)
+    private function _createSession(array $user_data)
     {
         if(!isset ($_SESSION)) session_start();
         session_regenerate_id(true);
-        $_SESSION['user_id'] = $id; 
-        $_SESSION['username'] = $login;
-        $_SESSION['user_type'] = "test";
+        $_SESSION['user_id'] = $user_data['id']; 
+        $_SESSION['user_login'] = $user_data['login']; 
+        $_SESSION['user_name'] = $user_data['name']; 
+        $_SESSION['user_lastname'] = $user_data['lastname']; 
+        $_SESSION['user_type'] = $user_data['user_type'];
+        $_SESSION['user_email'] = $user_data['email'];
+        $_SESSION['user_group_id'] = $user_data['group_id'];
         $_SESSION['client_ip'] = $_SERVER['REMOTE_ADDR'];
     }
 }

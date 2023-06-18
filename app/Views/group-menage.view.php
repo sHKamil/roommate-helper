@@ -16,21 +16,18 @@ echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]
                         <th>Leave Group</th>
                     </tr>
                     <?php
-                        if(isset($groups) && !empty($groups))
+                        if(isset($group) && !empty($group))
                         {
-                            foreach ($groups as $group) {
-                                echo "
-                                <tr>
-                                    <td>" . $group['name'] . "</td>
-                                    <td>" . $group['token'] . "</td>
-                                    <td><input type='checkbox' name='id' value=" . $group['id'] . " ></td>
-                                </tr>
-                                    ";
-                            }
+                            echo "
+                            <tr>
+                                <td>" . $group['name'] . "</td>
+                                <td>" . $group['token'] . "</td>
+                                <td><input type='submit' value class='btns btn__priamry'></td>
+                            </tr>
+                                ";
                         }
                     ?>
                 </table>
-                <?php if(isset($groups) && !empty($groups)) echo "<input type='submit' name='id' value class='btns btn__priamry'>"; ?>
             </form>
         </div>
     </div>

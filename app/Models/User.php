@@ -26,7 +26,7 @@ class User
             'name',
             'lastname',
             'group_id',
-            'e-mail',
+            'email',
             'user_type',
             'failed_attempts',
             'blocked_time'
@@ -37,7 +37,7 @@ class User
             'name',
             'lastname',
             'group_id',
-            'e-mail',
+            'email',
             'user_type',
             'failed_attempts',
             'blocked_time'
@@ -135,5 +135,17 @@ class User
             echo "Insert query failed: " . $e->getMessage();
         }
         return false;
+    }
+
+    public function quitGroup(array $params = []) : bool
+    {
+        $this->db->query("UPDATE " . $this->table . " SET group_id = null WHERE id = :id ", $params);
+        return true;
+    }
+
+    public function getUserData(array $params = []) : array | false
+    {
+        $stmt = $this->db->query("SELECT id, login, password, name, lastname, group_id, email, user_type FROM users WHERE login = :login", $params)->fetch();
+        return $stmt;
     }
 }

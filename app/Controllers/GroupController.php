@@ -5,6 +5,7 @@ namespace app\Controllers;
 use app\Interfaces\ViewControllerInterface;
 use app\Models\Group;
 use app\Models\User;
+use app\Services\Alert;
 use app\Services\Validator;
 
 class GroupController implements ViewControllerInterface
@@ -28,8 +29,11 @@ class GroupController implements ViewControllerInterface
 
     public function showMenage(string $alert = '')
     {
+        $group = $this->getMyGroup();
+        if(!$group) return header('Location: /group/join');
         return view('group-menage', [
-            "errors" => $this->errors
+            "errors" => $this->errors,
+            "groups" => $group,
         ], $alert);
     }
 
@@ -60,16 +64,26 @@ class GroupController implements ViewControllerInterface
     {
         $token = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : '';
         if($token !== '') {
-            if($this->_groupExist($token)) {
+            if($this->_groupExist($token) && $_SESSION['user_group_id'] === null) {
                 $group_id = $this->model->getIdByToken([':token' => $token]);
                 $this->asignUserToGroup($group_id);
+                $_SESSION['user_group_id']=$group_id;
+                return $this->show(Alert::success("You have successfully joined to the group!"));
             }
         }
+        return $this->showJoin(Alert::failed("Something went wrong."));
     }
 
     public function quit()
     {
-        // update group_id row in users table (set to null)
+        $id = $_SESSION['user_id'];
+        $user = new User;
+        $status = $user->quitGroup($id);
+        if($status) {
+            return $this->show(Alert::success("You have successfully left the group!"));
+        }else{
+            return $this->show(Alert::failed("Something went wrong."));
+        }
     }
                 
     public function setModel(Group $group) : void
@@ -85,6 +99,14 @@ class GroupController implements ViewControllerInterface
             ':group_id' => $group_id,
             ':id' => $_SESSION['user_id']
         ]);
+    }
+
+    public function getMyGroup() : array | false
+    {
+        $this->setModel(new Group);
+        $group = $this->model->getGroup([':id' => $_SESSION['user_group_id']])->fetch();
+
+        return $group;
     }
 
     private function _groupExist(string $token) : bool
