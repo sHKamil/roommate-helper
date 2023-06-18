@@ -15,19 +15,9 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]
 		Create Event
 	</div>
 </a>
-<a href="group/create">
+<a href="group">
 	<div class="btns btn__primary">
-		Create Group
-	</div>
-</a>
-<a href="group/create">
-	<div class="btns btn__primary">
-		Join to group
-	</div>
-</a>
-<a href="group/menage">
-	<div class="btns btn__primary">
-		My groups
+		My group
 	</div>
 </a>
 <div class="container text-center">

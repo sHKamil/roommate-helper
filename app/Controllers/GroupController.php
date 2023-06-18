@@ -15,8 +15,10 @@ class GroupController implements ViewControllerInterface
 
     public function show(string $alert = '')
     {
+        $group = $this->getMyGroup();
         return view('group', [
-            "errors" => $this->errors
+            "errors" => $this->errors,
+            "group" => $group,
         ], $alert);
     }
 
@@ -24,16 +26,6 @@ class GroupController implements ViewControllerInterface
     {
         return view('group-create', [
             "errors" => $this->errors
-        ], $alert);
-    }
-
-    public function showMenage(string $alert = '')
-    {
-        $group = $this->getMyGroup();
-        if(!$group) return header('Location: /group/join');
-        return view('group-menage', [
-            "errors" => $this->errors,
-            "groups" => $group,
         ], $alert);
     }
 
@@ -46,41 +38,52 @@ class GroupController implements ViewControllerInterface
 
     public function create()
     {
-        $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
-        $token = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : '';
+        if($_SESSION['user_group_id'] === null)
+        {
+            $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+            $token = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : '';
 
-        if($token !== '' && $name !== '') {
-            if($this->_validate($name, $token) && !$this->_groupExist($token)) {
-                $this->model->addGroup([
-                    ':token' => $token,
-                    ':name' => $name,
-                    ':user_id' => $_SESSION['user_id']
-                ]);
+            if($token !== '' && $name !== '') {
+                if($this->_validate($name, $token) && !$this->_groupExist($token)) {
+                    $this->model->addGroup([
+                        ':token' => $token,
+                        ':name' => $name,
+                        ':user_id' => $_SESSION['user_id']
+                    ]);
+                    $group_id = $this->model->getIdByToken([':token' => $token]);
+                    $this->asignUserToGroup($group_id);
+                    return $this->showCreate(Alert::success("You have successfully created your own group!"));
+                }
             }
+        } else {
+            return $this->showCreate(Alert::failed("You are already in group!"));
         }
     }
 
     public function join()
     {
         $token = isset($_POST['token']) ? htmlspecialchars($_POST['token']) : '';
-        if($token !== '') {
-            if($this->_groupExist($token) && $_SESSION['user_group_id'] === null) {
-                $group_id = $this->model->getIdByToken([':token' => $token]);
-                $this->asignUserToGroup($group_id);
-                $_SESSION['user_group_id']=$group_id;
-                return $this->show(Alert::success("You have successfully joined to the group!"));
+        if($_SESSION['user_group_id'] === null)
+        {
+            if($token !== '') {
+                if($this->_groupExist($token) && $_SESSION['user_group_id'] === null) {
+                    $group_id = $this->model->getIdByToken([':token' => $token]);
+                    $this->asignUserToGroup($group_id);
+                    return header('Location: /group');
+                }
             }
         }
-        return $this->showJoin(Alert::failed("Something went wrong."));
+        return $this->showJoin(Alert::failed("You are already in group."));
     }
 
     public function quit()
     {
         $id = $_SESSION['user_id'];
         $user = new User;
-        $status = $user->quitGroup($id);
+        $status = $user->quitGroup([':id' => $id]);
         if($status) {
-            return $this->show(Alert::success("You have successfully left the group!"));
+            $_SESSION['user_group_id'] = null;
+            return header('Location: /group');
         }else{
             return $this->show(Alert::failed("Something went wrong."));
         }
@@ -99,6 +102,7 @@ class GroupController implements ViewControllerInterface
             ':group_id' => $group_id,
             ':id' => $_SESSION['user_id']
         ]);
+        $_SESSION['user_group_id']=$group_id;
     }
 
     public function getMyGroup() : array | false

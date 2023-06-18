@@ -7,10 +7,10 @@ echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]
 <div class="container">
     <div class="component" style="margin-bottom: 5rem;">
             <div>
-                <form class="form" method="POST" action="">
+                <form class="form" method="POST">
                     <div class="form-outline mb-4">
                         <input type="hidden" name="_method" value="join">
-                        <input type="text" name="name" class="form__input" placeholder="Invite token" required/>
+                        <input type="text" name="token" class="form__input" placeholder="Invite token" required/>
                         Token
                         <div class="error_slot">
                             <?php if(isset($errors) && !empty($errors)) echo $errors ?>
@@ -22,9 +22,9 @@ echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]
                     </div>
 
                     <div class="form-outline mb-3 d-flex justify-content-center">
-                        <a href="../schedule" style = "text-decoration: none;">
+                        <a href="../group" style = "text-decoration: none;">
                             <div class="btns btn__secondary">
-                                Schedule
+                                Group
                             </div>
                         </a>
                     </div>

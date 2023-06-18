@@ -19,11 +19,11 @@ $router->get('/schedule', ScheduleController::class, 'show')->only('member');
 
 $router->get('/event/create', EventController::class, 'showCreate')->only('member');
 
+$router->get('/group', GroupController::class, 'show');
+$router->delete('/group', GroupController::class, 'quit');
+
 $router->get('/group/create', GroupController::class, 'showCreate');
 $router->create('/group/create', GroupController::class, 'create');
-
-$router->get('/group/menage', GroupController::class, 'showMenage');
-$router->delete('/group/menage', GroupController::class, 'quit');
 
 $router->get('/group/join', GroupController::class, 'showJoin');
 $router->join('/group/join', GroupController::class, 'join');

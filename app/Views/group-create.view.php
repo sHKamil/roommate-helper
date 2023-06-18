@@ -28,9 +28,9 @@ echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]
                     </div>
 
                     <div class="form-outline mb-3 d-flex justify-content-center">
-                        <a href="../schedule" style = "text-decoration: none;">
+                        <a href="../group" style = "text-decoration: none;">
                             <div class="btns btn__secondary">
-                                Schedule
+                                Group
                             </div>
                         </a>
                     </div>
