@@ -1,3 +1,4 @@
 # Configs
 .gitignore
+.vscode
 config/db_config.php
