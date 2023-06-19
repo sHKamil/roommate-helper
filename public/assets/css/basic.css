@@ -45,7 +45,7 @@ body {
 }
 
 .components {
-  width: 75rem;
+  width: 65rem;
   min-height: 40rem;
   border-radius: 3rem;
   box-shadow: 
@@ -53,7 +53,7 @@ body {
   -0.2rem -0.2rem 1.8rem var(--white);
   padding: 4rem;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 45% 55%;
   grid-template-rows: repeat(autofit, -webkit-min-content);
   grid-template-rows: repeat(autofit, min-content);
   grid-column-gap: 5rem;
