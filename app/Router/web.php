@@ -5,6 +5,7 @@ use app\Controllers\GroupController;
 use app\Controllers\LoginController;
 use app\Controllers\RegisterController;
 use app\Controllers\ScheduleController;
+use app\Controllers\SupplyController;
 use app\Controllers\WelcomeController;
 
 $router->get('/', WelcomeController::class, 'show');
@@ -27,3 +28,5 @@ $router->create('/group/create', GroupController::class, 'create');
 
 $router->get('/group/join', GroupController::class, 'showJoin');
 $router->join('/group/join', GroupController::class, 'join');
+
+$router->get('/supply', SupplyController::class, 'show');

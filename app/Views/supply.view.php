@@ -44,53 +44,14 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 </div>
 
 <div class="container-main">
-	<div class="component-left">
-		<div class="clock-box">
-			<div class="clock">
-				<div class="hand hours"></div>
-				<div class="hand minutes"></div>
-				<div class="hand seconds"></div>
-				<div class="point"></div>
-				<div class="marker">
-					<span class="marker__1"></span>
-					<span class="marker__2"></span>
-					<span class="marker__3"></span>
-					<span class="marker__4"></span>
-				</div>
-			</div>
-			<div class="date">
-				<p id="actual_date"></p>
-			</div>
-		</div>
-		<div class="supply">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col" style="text-align:center;">Quantity (last check)</th>
-						<th scope="col" style="text-align:center;">ITEM</th>
-						<th scope="col" style="text-align:center;">Expected end</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">3/12</th>
-						<td style="text-align: center;vertical-align: middle;">Papier toaletowy</td>
-						<td style="text-align: center;vertical-align: middle;">22.06.2023</td>
-					</tr>
-					<tr>
-						<th scope="row">1/2</th>
-						<td style="text-align: center;vertical-align: middle;">Ręcznik papierowy</td>
-						<td style="text-align: center;vertical-align: middle;">26.06.2023</td>
-					</tr>
-					<tr>
-						<th scope="row">40/100</th>
-						<td style="text-align: center;vertical-align: middle;">Pieprz</td>
-						<td style="text-align: center;vertical-align: middle;">27.06.2023</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div></div>
+	<div class="component-form">
+		<form action="" method="post">
+            <input class="form__input" type="text" name="name" placeholder="Name">
+            <input class="form__input" type="text" name="quantity_max" placeholder="Max quantity">
+            <input class="form__input" type="text" name="quantity" placeholder="Actual quantity">
+            <input class="form__input" type="text" name="days_until_ends" placeholder="Days until ends">
+            <input  type="submit" class="btns btn__primary">
+        </form>
 	</div>
 	<div class="component-schedule">
 		<table class="table">

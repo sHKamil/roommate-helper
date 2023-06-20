@@ -8,7 +8,7 @@ class Guest
     {
         if($_SESSION['user_type'] ?? false)
         {
-            header('Location: /');
+            header('Location: /schedule');
             exit();
         }
     }

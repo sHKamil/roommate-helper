@@ -119,6 +119,29 @@ body {
   background-color: var( --greyLight-2);
 }
 
+/* SUPPLY */
+.component-form {
+  min-width: 30rem;
+  min-height: max(70vh, 30rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: max(8vh, 4rem);
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+}
+.component-form form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
 /* MAIN */
 .container-main {
   margin: 3vh auto;
@@ -161,6 +184,7 @@ body {
 .supply {
   min-width: 30rem;
   min-height: max(31vh, 13rem);
+  padding: 1.5rem;
   border-radius: 3rem;
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
