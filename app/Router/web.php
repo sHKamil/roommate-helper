@@ -30,3 +30,5 @@ $router->get('/group/join', GroupController::class, 'showJoin');
 $router->join('/group/join', GroupController::class, 'join');
 
 $router->get('/supply', SupplyController::class, 'show');
+$router->post('/supply', SupplyController::class, 'create');
+$router->delete('/supply', SupplyController::class, 'delete');

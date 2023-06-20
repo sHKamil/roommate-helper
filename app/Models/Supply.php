@@ -41,16 +41,19 @@ class Supply
         $this->table = 'supply';
     }
         
-    public function addSupply(array $params = []) : void
+    public function addSupply(array $params = []) : bool
     {
         $fillable = $this->fillable;
         $columns = ModelHandler::prepareFillableForSQL($fillable);
         $placeholders = ModelHandler::preparePlaceholders($fillable);
         try
         {
-            $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
-        } catch (\Exception $e) {
+            if($this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params) !== false) {
+                return true;
+            };
+        } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();
+            return false;
         }
     }
         
@@ -60,7 +63,7 @@ class Supply
         {
             $result = $this->db->query("SELECT name FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
             return $result;
-        } catch (\Exception $e) {
+        } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
         return false;
@@ -73,10 +76,22 @@ class Supply
             if($this->db->query("UPDATE " . $this->table . " SET name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end WHERE id = :id AND group_id = :group_id", $params) !== false) {
                 return true;
             };
-        } catch (\Exception $e) {
+        } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
         return false;
+    }
+
+    public function deleteByGroupIdAndId(array $params = []) : bool
+    {
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id AND group_id = :group_id;";
+        try
+        {
+            if($this->db->query($query, $params) !== false) return true;
+        } catch (\PDOException $e) {
+            echo "Delete query failed: " . $e->getMessage();
+            return false;
+        }
     }
 
 
