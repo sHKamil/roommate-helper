@@ -15,8 +15,10 @@ class SupplyController implements ViewControllerInterface
 
     public function show(string $alert = '')
     {
+        $table = $this->prepareTable();
         return view('supply', [
-            "errors" => $this->errors
+            "errors" => $this->errors,
+            "table" => $table
         ], $alert);
     }
 
@@ -60,10 +62,11 @@ class SupplyController implements ViewControllerInterface
     public function delete()
     {
         $id = [];
-        foreach ($_POST['id'] as $id) {
-            $raw_id = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+        foreach ($_POST['id'] as $post_id) {
+            $raw_id = isset($post_id) ? htmlspecialchars($post_id) : '';
             array_push($id, $raw_id);
         }
+        $this->setModel(new Supply);
         if($this->_deleteByID($id)) return $this->show(Alert::success("You have successfully deleted an item!"));
     }
                 
@@ -73,12 +76,65 @@ class SupplyController implements ViewControllerInterface
         return;
     }
 
+    public function prepareTable() : string
+    {
+        $threads = [
+            'Select',
+            'ID',
+            'Name',
+            'Quantity',
+            'Quantity max',
+            'Expected end',
+            'Last check'
+        ];
+        $this->setModel(new Supply);
+        $rows = $this->model->getSuppliesByGroupID([':group_id' => $_SESSION['user_group_id']]);
+        $html = "
+        <table class='table' style='text-align:center;>
+            <tr scope='col' style='text-align:center;'>
+        ";
+        foreach ($threads as $column) {
+            $html .= "<th>$column</th>
+            ";
+        }
+        $html .= "</tr>
+            ";
+        foreach ($rows as $row) {
+            $html .= "<tr>
+                <td><input type='checkbox' name='id[]' value={$row['id']}></td>
+            ";
+            foreach ($row as $column) {
+                $html .= "  <td scope='row'>$column</td>
+            ";
+            }
+            $html .= "
+                <td>" . $this->_addHTMLEditForm($row['id']) . "</td>
+            </tr>
+            ";
+        }
+        $html .= "
+        </table>";
+        return $html;
+    }
+
+    private function _addHTMLEditForm($id) : string
+    {
+        $form = "
+        <form method='POST'>
+            <input type='hidden' name='_method' value='edit'>
+            <input type='hidden' name='id_edit' value=$id>
+            <input type='submit' class='btns btn__secondary' value='edit'>
+        </form>
+        ";
+        return $form;
+    }
+
     private function _deleteByID(array $id = []) : bool // deletes form db selected supplies from group
     {
         foreach ($id as $supply_id) {
             if($this->model->deleteByGroupIdAndId([
                 ':id' => $supply_id,
-                ':group_id' => $_SESSION['group_id']
+                ':group_id' => $_SESSION['user_group_id']
             ]) === false) return false;
         }
         return true;

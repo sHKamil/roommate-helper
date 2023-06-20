@@ -57,11 +57,11 @@ class Supply
         }
     }
         
-    public function findSuppliesByGroupID(array $params = []) : array | false
+    public function getSuppliesByGroupID(array $params = []) : array | false
     {
         try
         {
-            $result = $this->db->query("SELECT name FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
+            $result = $this->db->query("SELECT id, name, quantity, quantity_max, expected_end, last_check FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
             return $result;
         } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();

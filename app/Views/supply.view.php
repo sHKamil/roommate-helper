@@ -54,7 +54,12 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
         </form>
 	</div>
 	<div class="component-schedule">
-		<table class="table">
+        <form action="" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <?php echo $table; ?>
+            <input type="submit" class="btns btn__danger" value="DELETE">
+        </form>
+		<!-- <table class="table">
 			<thead>
 				<tr>
 				<th scope="col" style="text-align:center;">Godziny</th>
@@ -74,7 +79,7 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 				<td colspan="3" style="text-align: center;vertical-align: middle;">Sprzątanie klatki schodowej</td>
 				</tr>
 			</tbody>
-		</table>
+		</table> -->
 	</div>
 </div>
 
