@@ -2,9 +2,12 @@
 
 use app\Services\HtmlFactory;
 
-echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]);
+echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css", "/assets/css/clock.css"]);
 ?>
 <div class="nav-component">
+	<div class="logo">
+		<img src="/assets/images/logo_helper6.png" alt="Logo" width="100px">
+	</div>
 	<div class="nav-buttons">
 		<form method="POST" action="">
 			<div>
@@ -35,9 +38,54 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]
 	</div>
 </div>
 
+<div class="container-main">
+	<div class="component-left">
+		<div class="clock-box">
+			<div class="clock">
+				<div class="hand hours"></div>
+				<div class="hand minutes"></div>
+				<div class="hand seconds"></div>
+				<div class="point"></div>
+				<div class="marker">
+					<span class="marker__1"></span>
+					<span class="marker__2"></span>
+					<span class="marker__3"></span>
+					<span class="marker__4"></span>
+				</div>
+			</div>
+			<div class="date">
+				<p id="actual_date"></p>
+			</div>
+		</div>
+		<div class="supply">
+
+		</div>
+		<div></div>
+	</div>
+	<div class="component-schedule">
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="text-align:center;">Godziny</th>
+      <th scope="col" colspan="3" style="text-align:center;">PONIEDZIAŁEK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">12</th>
+      <td colspan="3" rowspan="2" style="text-align: center;vertical-align: middle;">Sprzątanie mieszkania</td>
+    </tr>
+    <tr>
+      <th scope="row">16</th>
+    </tr>
+    <tr>
+      <th scope="row">17</th>
+      <td colspan="3" style="text-align: center;vertical-align: middle;">Sprzątanie klatki schodowej</td>
+    </tr>
+  </tbody>
+</table>
+	</div>
 </div>
-
-
 
 
 
@@ -131,4 +179,4 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]
 		</table>
 	</div>
 </div> -->
-<?php echo HtmlFactory::buildFooter(['/assets/js/schedule.js','/bootstrap/js/bootstrap.min.js']); ?>
+<?php echo HtmlFactory::buildFooter(['/assets/js/schedule.js','/bootstrap/js/bootstrap.min.js', '/assets/js/clock.js']); ?>

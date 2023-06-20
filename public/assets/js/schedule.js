@@ -1,38 +1,37 @@
-var date = new Date();
-var ad = $('#actual_date');
-var day = date.getDate();
-ad.text(date.getDate()+"."+date.getMonth()+"."+date.getFullYear());
+// setDay(getCookie("today"));
 
-console.log(getCookie("today"));
+// function getCookie(name) {
+//   let pattern = RegExp(name + "=[^;]*");
+//   const matched = document.cookie.match(pattern);
 
-setDay(getCookie("today"));
+//   if (matched) {
+//     const cookie = matched[0].split('=');
+//     let string = cookie[1];
+//     pattern = RegExp(/[%22]*/g); // fix needed
+//     string = string.replace(pattern,'');
+//     return string;
+//   }
+//   return null;
+// }
 
-function getCookie(name) {
-  let pattern = RegExp(name + "=[^;]*");
-  const matched = document.cookie.match(pattern);
+// function setDay(day) {
+//   clearActualDay()
+//   const element = document.getElementById('d'+day);
+//   element.classList.add('actual_day');
+// }
 
-  if (matched) {
-    const cookie = matched[0].split('=');
-    let string = cookie[1];
-    pattern = RegExp(/[%22]*/g); // fix needed
-    string = string.replace(pattern,'');
-    return string;
-  }
-  return null;
+// function clearActualDay() {
+//   const elements = document.querySelectorAll('.actual_day');
+
+//   elements.forEach((element) => {
+//     element.classList.remove('actual_day');
+//   });
+// }
+
+setActualDate = () => {
+  var date = new Date();
+  var ad = $('#actual_date');
+  ad.text(date.getDate()+"."+date.getMonth()+"."+date.getFullYear());
 }
 
-function setDay(day) {
-  clearActualDay()
-  const element = document.getElementById('d'+day);
-  element.classList.add('actual_day');
-}
-
-function clearActualDay() {
-  const elements = document.querySelectorAll('.actual_day');
-
-  elements.forEach((element) => {
-    element.classList.remove('actual_day');
-  });
-}
-
-
+setActualDate();

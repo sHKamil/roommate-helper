@@ -1,11 +1,11 @@
 :root {
-  --primary-light: #8abdff;
+  --primary-light: #8a8cff;
   --danger-light: #ff8a8a;
   --danger: #fc5d5d;
-  --primary: #6d5dfc;
+  --primary: #3f47cc;
   --secondary: rgba(255, 204, 0, 0);
   --danger-dark: #eb0e0e;
-  --primary-dark: #5b0eeb;
+  --primary-dark: #240eeb;
   --white: #ffffff;
   --greyLight-1: #e4ebf5;
   --greyLight-2: #c8d0e7;
@@ -74,7 +74,8 @@ body {
 
 /* NAV-BAR */
 .nav-component {
-  min-width: 100%;
+  margin: 1%;
+  min-width: 98%;
   height: max(18vh, 14rem);
   border-radius: 3rem;
   box-shadow: 
@@ -91,6 +92,9 @@ body {
   justify-content: space-between;
   flex-direction: row;
   gap: 3rem;
+}
+.logo {
+  padding-left: 3rem;
 }
 .profile {
   display: flex;
@@ -113,6 +117,63 @@ body {
   min-width: 100px;
   min-height: 100px;
   background-color: var( --greyLight-2);
+}
+
+/* MAIN */
+.container-main {
+  margin: 3vh auto;
+  min-height: 70vh;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: max(8vh, 4rem);
+}
+.component-left {
+  min-width: 30rem;
+  min-height: max(70vh, 30rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: max(8vh, 4rem);
+}
+.clock-box {
+  padding: 1.5rem;
+  min-width: 30rem;
+  height: 20rem;
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.date p {
+  color: var(--primary);
+  font-size: 3rem;
+  font-weight: bolder;
+}
+.supply {
+  min-width: 30rem;
+  min-height: max(31vh, 13rem);
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+}
+.component-schedule {
+  min-width: 80rem;
+  min-height: max(70vh, 30rem);
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+  padding: 3rem;
 }
 
 /*  BUTTONS  */

@@ -32,16 +32,16 @@ echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]
                     </div>
 
                     <div class="form-outline mb-3">
-                        <input type="time" name="hour" class="form__input" required/>
-                        Hour
+                        <input type="time" name="start" class="form__input" required/>
+                        Start
                         <div class="error_slot">
                             <?php if(isset($errors) && !empty($errors)) echo $errors ?>
                         </div>
                     </div>
 
                     <div class="form-outline mb-3">
-                        <input type="time" name="duration" class="form__input" required/>
-                        Duration
+                        <input type="time" name="end" class="form__input" required/>
+                        End
                         <div class="error_slot">
                             <?php if(isset($errors) && !empty($errors)) echo $errors ?>
                         </div>
