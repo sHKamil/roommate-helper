@@ -4,7 +4,45 @@ use app\Services\HtmlFactory;
 
 echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]);
 ?>
-<form method="POST" action="">
+<div class="nav-component">
+	<div class="nav-buttons">
+		<form method="POST" action="">
+			<div>
+				<input type="hidden" name="_method" value="LOGOUT">
+				<button class="btns btn__danger" type="submit">Wyloguj</button>
+			</div>
+		</form>
+		<a class="abtn" href="event/create">
+			<div class="btns btn__primary">
+				Create Event
+			</div>
+		</a>
+		<a class="abtn" href="group">
+			<div class="btns btn__primary">
+				My group
+			</div>
+		</a>
+	</div>
+	<div class="profile">
+		<div class="username">
+			<div class="username-spacer">
+			</div>
+			<p>Username</p>
+		</div>
+		<div class="avatar">
+			<img src="/assets/images/avatar.png" alt="Avatar" width="100px">
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- <form method="POST" action="">
 	<div>
 		<input type="hidden" name="_method" value="LOGOUT">
 		<button type="submit">Wyloguj</button>
@@ -92,5 +130,5 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css"]
 			</tbody>
 		</table>
 	</div>
-</div>
+</div> -->
 <?php echo HtmlFactory::buildFooter(['/assets/js/schedule.js','/bootstrap/js/bootstrap.min.js']); ?>
