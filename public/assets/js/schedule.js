@@ -31,7 +31,9 @@
 setActualDate = () => {
   var date = new Date();
   var ad = $('#actual_date');
-  ad.text(date.getDate()+"."+date.getMonth()+"."+date.getFullYear());
+  var month = date.getMonth()+1;
+  if(month.toString().length === 1) month = '0' + month;
+  ad.text(date.getDate()+"."+month+"."+date.getFullYear());
 }
 
 setActualDate();
