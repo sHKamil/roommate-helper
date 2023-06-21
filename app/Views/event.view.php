@@ -87,7 +87,7 @@ echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]
                     </div>
 
                     <div class="form-outline mb-3 d-flex justify-content-center">
-                        <input type="submit" class="btns btn__primary" value="Dodaj"/>
+                        <input type="submit" class="btns btn__primary" value="Add"/>
                     </div>
 
                     <div class="form-outline mb-3 d-flex justify-content-center">

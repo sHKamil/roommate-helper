@@ -93,27 +93,7 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 		<div></div>
 	</div>
 	<div class="component-schedule">
-		<table class="table">
-			<thead>
-				<tr>
-				<th scope="col" style="text-align:center;">Godziny</th>
-				<th scope="col" colspan="3" style="text-align:center;">PONIEDZIAŁEK</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-				<th scope="row">12:00</th>
-				<td colspan="3" rowspan="2" style="text-align: center;vertical-align: middle;">Sprzątanie mieszkania</td>
-				</tr>
-				<tr>
-				<th scope="row">16:00</th>
-				</tr>
-				<tr>
-				<th scope="row">17:00</th>
-				<td colspan="3" style="text-align: center;vertical-align: middle;">Sprzątanie klatki schodowej</td>
-				</tr>
-			</tbody>
-		</table>
+		<?php echo $schedule ?>
 	</div>
 </div>
 

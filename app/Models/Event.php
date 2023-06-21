@@ -66,4 +66,40 @@ class Event
         }
         return false;
     }
+
+    public function getAllGroupEvents(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT start, end, day, event_name, content  FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
+    public function getWeeklyGroupEvents(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT start, end, day, event_name, content  FROM " . $this->table . " WHERE group_id = :group_id AND day >= :monday AND day <= :sunday ORDER BY day", $params)->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
+    public function getDailyGroupEvents(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT start, end, event_name, content  FROM " . $this->table . " WHERE group_id = :group_id AND day = :day ORDER BY start", $params)->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
 }
