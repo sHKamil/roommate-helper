@@ -32,3 +32,5 @@ $router->join('/group/join', GroupController::class, 'join');
 $router->get('/supply', SupplyController::class, 'show');
 $router->post('/supply', SupplyController::class, 'create');
 $router->delete('/supply', SupplyController::class, 'delete');
+$router->edit('/supply', SupplyController::class, 'showEdit');
+$router->patch('/supply', SupplyController::class, 'update');

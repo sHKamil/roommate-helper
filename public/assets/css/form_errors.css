@@ -1,9 +1,8 @@
 .error_slot{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: red;
     width: 70%;
 }
-
 .error_star{
     font-size: 1.2em;
     color: red;

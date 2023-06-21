@@ -29,7 +29,24 @@ class SupplyController implements ViewControllerInterface
         ], $alert);
     }
 
-    public function create()
+    public function showEdit(string $alert = '')
+    {
+        $this->setModel(new Supply);
+        $id = $_POST['id_edit'];
+        $data = $this->model->getSupplyByGroupIdAndId([
+            ':id' => $id,
+            ':group_id' => $_SESSION['user_group_id']
+        ]);
+        $user = new User;
+        $last_user = $user->getUserNameById([':id' => $data['user_id']]); // get username of user that lastly edited that record
+        return view('supply-edit', [
+            "errors" => $this->errors,
+            "data" => $data,
+            "last_user" => $last_user['name']
+        ], $alert);
+    }
+
+    public function update()
     {
         if($_SESSION['user_group_id'] !== null)
         {
@@ -37,6 +54,38 @@ class SupplyController implements ViewControllerInterface
             $quantity_max = isset($_POST['quantity_max']) ? htmlspecialchars($_POST['quantity_max']) : '';
             $quantity = isset($_POST['quantity']) ? htmlspecialchars($_POST['quantity']) : '';
             $days_until_ends = isset($_POST['days_until_ends']) ? htmlspecialchars($_POST['days_until_ends']) : '';
+
+            if($this->_validate($name, $quantity_max, $quantity, $days_until_ends)) {
+                $days_until_ends = $days_until_ends ? '' : 0;
+                $expected_end = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . $days_until_ends . ' days'));
+                $datatime = date("Y-m-d H:i:s");
+                $this->setModel(new Supply);
+                if($this->model->updateById([
+                        ':id' => $_POST['id'],
+                        ':group_id' => $_SESSION['user_group_id'],
+                        ':user_id' => $_SESSION['user_id'],
+                        ':name' => $name,
+                        ':quantity_max' => $quantity_max,
+                        ':quantity' => $quantity,
+                        ':expected_end' => $expected_end,
+                        ':last_check' => $datatime
+                    ])) return $this->show(Alert::success("You have successfully added a new item!"));
+                return $this->show(Alert::failed("Something went wrong"));
+            }
+            return $this->show(Alert::failed("Something went wrong"));
+        } else {
+            return header('Location: /group/create');
+        }
+    }
+
+    public function create()
+    {
+        if($_SESSION['user_group_id'] !== null)
+        {
+            $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+            $quantity_max = isset($_POST['quantity_max']) ? htmlspecialchars($_POST['quantity_max']) : null;
+            $quantity = isset($_POST['quantity']) ? htmlspecialchars($_POST['quantity']) : null;
+            $days_until_ends = isset($_POST['days_until_ends']) ? htmlspecialchars($_POST['days_until_ends']) : null;
 
             if($this->_validate($name, $quantity_max, $quantity, $days_until_ends)) {
                 $expected_end = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . $days_until_ends . ' days'));
@@ -101,7 +150,9 @@ class SupplyController implements ViewControllerInterface
             ";
         foreach ($rows as $row) {
             $html .= "<tr>
-                <td><input type='checkbox' name='id[]' value={$row['id']}></td>
+                <td class='checkbox'>
+                        <input class='_checkbox' type='checkbox' name='id[]' value={$row['id']}>
+                </td>
             ";
             foreach ($row as $column) {
                 $html .= "  <td scope='row'>$column</td>
@@ -140,10 +191,15 @@ class SupplyController implements ViewControllerInterface
         return true;
     }
 
-    private function _validate(string $name, int $quantity_max, int $quantity, int $days_until_ends) : bool
+    private function _validate(string $name, int $quantity_max, int $quantity, $days_until_ends) : bool
     {
+        $days_until_ends = intval($days_until_ends);
         if(!Validator::string($name, 1, 45)) $this->_addError('Name is too short or too long (min 1 and max 45 char)');
-        if(!is_int($quantity_max) || !is_int($quantity) || !is_int($days_until_ends)) $this->_addError('You need to use intiger in fields: Quantity, Quantity max, Days until ends');
+        if(!is_int($quantity) || !is_int($quantity_max) || !is_int($days_until_ends)) {
+            $this->_addError('You need to use intiger in fields: Quantity, Quantity max, Days until ends');
+        } else {
+            if($quantity > $quantity_max) $this->_addError('Actual quantity cannot be greater than the max quantity');
+        }
         if(empty($this->errors)) return true;
         return false;
     }

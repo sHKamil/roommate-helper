@@ -43,27 +43,27 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 	</div>
 </div>
 
-<div class="container-main">
+<div class="container">
 	<div class="component-form">
 		<form action="" method="post">
-            <input class="form__input" type="text" name="name" placeholder="Name">
-            <input class="form__input" type="number" name="quantity_max" placeholder="Max quantity">
-            <input class="form__input" type="number" name="quantity" placeholder="Actual quantity">
-            <input class="form__input" type="number" name="days_until_ends" placeholder="Days until ends">
-            <div class="error_slot">
-                <?php foreach ($errors as $error) {
-                    echo "<p>$error</p>";
-                } ?>
+            <div class="info">
+                <p>Last edit by: <?php echo $last_user ?> </p>
+                <p>Expected end: <?php echo $data['expected_end'] ?> </p>
+                <p>Supply ID: <?php echo $data['id'] ?> </p>
             </div>
+            
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="id" value=<?php echo $data['id'] ?>>
+            <input class="form__input" type="text" name="name" placeholder="Name" value=<?php echo $data['name'] ?> required>
+            <input class="form__input" type="text" name="quantity_max" placeholder="Max quantity" value=<?php echo $data['quantity_max'] ?> required>
+            <input class="form__input" type="text" name="quantity" placeholder="Actual quantity" value=<?php echo $data['quantity'] ?> required>
+            <input class="form__input" type="text" name="days_until_ends" placeholder="Days until ends" required>
             <input  type="submit" class="btns btn__primary">
-        </form>
-	</div>
-	<div class="component-schedule">
-        <form action="" method="post">
-            <input type="submit" class="btns btn__danger" value="DELETE">
-            <input type="hidden" name="_method" value="delete">
-            <?php echo $table; ?>
-        </form>
+            
+            <a href="supply" class="abtn" >
+                <div class="btns btn__second"> Back </div>
+            </a>
+    </form>
 	</div>
 </div>
 

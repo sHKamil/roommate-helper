@@ -68,12 +68,25 @@ class Supply
         }
         return false;
     }
+        
+    public function getSupplyByGroupIdAndId(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT id, name, quantity, quantity_max, expected_end, last_check, user_id FROM " . $this->table . " WHERE group_id = :group_id AND id = :id", $params)->fetch();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
 
     public function updateById(array $params = []) : bool
     {
         try
         {
-            if($this->db->query("UPDATE " . $this->table . " SET name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end WHERE id = :id AND group_id = :group_id", $params) !== false) {
+
+            if($this->db->query("UPDATE " . $this->table . " SET user_id = :user_id, name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end, last_check = :last_check WHERE id = :id AND group_id = :group_id", $params) !== false) {
                 return true;
             };
         } catch (\PDOException $e) {

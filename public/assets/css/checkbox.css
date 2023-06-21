@@ -1,0 +1,15 @@
+.checkbox{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+._checkbox{
+box-shadow: 
+    0.3rem 0.3rem 0.6rem var(--greyLight-2),
+    -0.2rem -0.2rem 0.5rem var(--white);
+border-radius: 0.5rem;
+width: 2.8rem;
+height: 2.8rem;
+cursor: pointer;
+color: var(--greyDark);
+}

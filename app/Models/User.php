@@ -148,4 +148,10 @@ class User
         $stmt = $this->db->query("SELECT id, login, password, name, lastname, group_id, email, user_type FROM users WHERE login = :login", $params)->fetch();
         return $stmt;
     }
+
+    public function getUserNameById(array $params = []) : array | false
+    {
+        $result = $this->db->query("SELECT name FROM users WHERE id = :id", $params)->fetch();
+        return $result;
+    }
 }

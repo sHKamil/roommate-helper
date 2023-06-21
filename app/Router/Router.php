@@ -60,6 +60,11 @@ class Router
     {
         return $this->add($uri, $class, $class_method, 'CREATE');
     }
+
+    public function edit($uri, $class, $class_method)
+    {
+        return $this->add($uri, $class, $class_method, 'EDIT');
+    }
     
     private function abort($code = 404)
     {

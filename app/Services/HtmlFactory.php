@@ -12,7 +12,8 @@ class HtmlFactory
             '/bootstrap/css/bootstrap.min.css',
             'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css',
             '/assets/css/basic.css',
-            '/assets/css/footer.css'
+            '/assets/css/footer.css',
+            '/assets/css/form_errors.css'
         ];
         $css = static::_createLinks($css_url, $default_css, '<link rel="stylesheet" href="', '">');
         $head =
