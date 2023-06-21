@@ -158,6 +158,7 @@ class LoginController implements ViewControllerInterface
         $_SESSION['user_type'] = $user_data['user_type'];
         $_SESSION['user_email'] = $user_data['email'];
         $_SESSION['user_group_id'] = $user_data['group_id'];
+        $_SESSION['user_avatar'] = $user_data['avatar'];
         $_SESSION['client_ip'] = $_SERVER['REMOTE_ADDR'];
     }
 }

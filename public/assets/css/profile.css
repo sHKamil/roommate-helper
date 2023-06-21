@@ -1,0 +1,77 @@
+#component-profile .avatar {
+    margin-top: 2vh;
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    background-color: var(--greyLight-2);
+}
+#component-profile {
+    gap: 2rem;
+}
+.component-left {
+    gap: unset !important;
+}
+.container-profile {
+    margin: 3vh auto;
+    min-height: 70vh;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  .component-profile {
+    min-width: 30rem;
+    max-height: max(70vh, 30rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+
+  /* Group */
+  .group {
+    display: flex;
+    justify-content: center;    
+  }
+  .table-group {
+    font-size: 2rem;
+  }
+  .table-group tr th{
+    text-align: right;
+    padding: 1rem;
+  }
+  .table-group tr td{
+    text-align: left;
+    padding: 1rem;
+  }
+  .profile-buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .group-info p {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  .leave-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+  .component-group {
+    min-width: 40rem;
+    min-height: min(70vh, 30rem);
+    border-radius: 3rem;
+    box-shadow: 
+    0.8rem 0.8rem 1.4rem var(--greyLight-2),
+    -0.2rem -0.2rem 1.8rem var(--white);
+    padding: 3rem;
+  }

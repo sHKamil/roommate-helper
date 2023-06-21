@@ -20,10 +20,13 @@ echo HtmlFactory::buildNav();
             </div>
             <input  type="submit" class="btns btn__primary">
         </form>
+		<div></div>
+		<div></div>
 	</div>
 	<div class="component-schedule">
         <form action="" method="post">
-            <input type="submit" class="btns btn__danger" value="DELETE">
+			<div class="form_title">Supply</div>
+			<button id="delete" type="submit" class="btns btn__danger"><i class="bi bi-trash"></i></button>
             <input type="hidden" name="_method" value="delete">
             <?php echo $table; ?>
         </form>

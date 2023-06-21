@@ -3,6 +3,7 @@
 use app\Controllers\EventController;
 use app\Controllers\GroupController;
 use app\Controllers\LoginController;
+use app\Controllers\ProfileController;
 use app\Controllers\RegisterController;
 use app\Controllers\ScheduleController;
 use app\Controllers\SupplyController;
@@ -17,6 +18,8 @@ $router->get('/register', RegisterController::class, 'show')->only('guest');
 $router->post('/register', RegisterController::class, 'register')->only('guest');
 
 $router->get('/schedule', ScheduleController::class, 'show')->only('member');
+
+$router->get('/profile', ProfileController::class, 'show')->only('member');
 
 $router->get('/event', EventController::class, 'show')->only('member');
 $router->create('/event', EventController::class, 'create')->only('member');

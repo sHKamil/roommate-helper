@@ -35,42 +35,35 @@ END;
 
     public  static function buildNav() : string
     {
-        return '<div class="nav-component">
-        <div class="logo">
-            <img src="/assets/images/logo_helper6.png" alt="Logo" width="100px">
-        </div>
+        return '
+        <div class="nav-component">
+            <a href="/">
+            <div class="logo">
+                <img src="/assets/images/logo_helper7.png" alt="Logo" width="350px">
+            </div>
+            </a>
         <div class="nav-buttons">
+
+        </div>
+        <div class="profile-box">
+            <a class="abtn" href="profile">
+                <div class="profile">
+                    <div class="username">
+                        <div class="username-spacer">
+                        </div>
+                        <p>' . $_SESSION['user_name'] . '</p>
+                    </div>
+                    <div class="avatar">
+                    <img src="avatar/' . $_SESSION['user_avatar'] . '" alt="Avatar">
+                    </div>
+                </div>
+            </a>
             <form method="POST" action="">
                 <div>
                     <input type="hidden" name="_method" value="LOGOUT">
-                    <button class="btns btn__danger" type="submit">Wyloguj</button>
+                    <button class="btns btn__danger" type="submit" style="width: 4rem; height: 4rem; font-size: 3rem; line-height: 1.5rem;"><i class="bi bi-dash-circle"></i></button>
                 </div>
             </form>
-            <a class="abtn" href="event/create">
-                <div class="btns btn__primary">
-                    Create Event
-                </div>
-            </a>
-            <a class="abtn" href="group">
-                <div class="btns btn__primary">
-                    My group
-                </div>
-            </a>
-            <a class="abtn" href="supply">
-                <div class="btns btn__primary">
-                    Supply
-                </div>
-            </a>
-        </div>
-        <div class="profile">
-            <div class="username">
-                <div class="username-spacer">
-                </div>
-                <p>' . $_SESSION['user_name'] . '</p>
-            </div>
-            <div class="avatar">
-                <img src="/assets/images/avatar.png" alt="Avatar" width="100px">
-            </div>
         </div>
     </div>';
     }

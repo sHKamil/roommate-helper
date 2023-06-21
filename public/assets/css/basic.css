@@ -76,7 +76,7 @@ body {
 .nav-component {
   margin: 1%;
   min-width: 98%;
-  height: max(18vh, 14rem);
+  height: max(18vh, 16rem);
   border-radius: 3rem;
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
@@ -100,7 +100,18 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  gap: 3rem;
+  gap: 1.5rem;
+}
+.profile-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.profile-box form{
+  height: 4rem;
+  width: 4rem;
+  margin-inline: 4rem;
 }
 .username {
   display: flex;
@@ -116,13 +127,16 @@ body {
 .avatar {
   min-width: 100px;
   min-height: 100px;
-  background-color: var( --greyLight-2);
+  /* background-color: var( --greyLight-2); */
+}
+.logo img{
+  width: 15vw;
 }
 
 /* SUPPLY */
 .component-form {
   min-width: 30rem;
-  min-height: max(70vh, 30rem);
+  min-height: min(70vh, 30rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -160,7 +174,7 @@ body {
 }
 .component-left {
   min-width: 30rem;
-  min-height: max(70vh, 30rem);
+  min-height: min(70vh, 30rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -196,7 +210,7 @@ body {
 }
 .component-schedule {
   min-width: 80rem;
-  min-height: max(70vh, 30rem);
+  min-height: min(70vh, 30rem);
   border-radius: 3rem;
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
@@ -292,4 +306,29 @@ body {
 .form__input:focus {
   outline: none;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+}
+.form_title {
+  text-align: center;
+  color: var(--primary);
+  font-size: 3rem;
+  font-weight: bolder
+}
+#delete {
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: .5rem;
+}
+#edit {
+  width: 6rem;
+  height: 3rem;
+}
+td {
+  background-color: var(--greyLight-1) !important;
+  cursor: default !important;
+  font-size: 1.5rem;
+}
+a {
+  text-decoration: none;
 }

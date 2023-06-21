@@ -25,14 +25,16 @@ echo HtmlFactory::buildNav();
 				<p id="actual_date"></p>
 			</div>
 		</div>
-		<div class="supply">
+		<a href="supply" class="supply">
+			<div class="form_title" style="margin-bottom: 2rem;">Supply</div>
 			<?php echo $supply ?>
-		</div>
+		</a>
 		<div></div>
 	</div>
-	<div class="component-schedule">
+	<a href="event" class="component-schedule">
+		<div class="form_title" style="margin-bottom: 2rem;">Schedule</div>
 		<?php echo $schedule ?>
-	</div>
+	</a>
 </div>
 
 <?php echo HtmlFactory::buildFooter(['/assets/js/schedule.js','/bootstrap/js/bootstrap.min.js', '/assets/js/clock.js']); ?>

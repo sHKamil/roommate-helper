@@ -3,6 +3,7 @@
 use app\Services\HtmlFactory;
 
 echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]);
+echo HtmlFactory::buildNav();
 ?>
 
 <div class="container-main">
@@ -64,7 +65,8 @@ echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]
     </div>
     <div class="component-schedule">
         <form action="" method="post">
-            <input type="submit" class="btns btn__danger" value="DELETE">
+            <div class="form_title">Events</div>
+            <button id="delete" type="submit" class="btns btn__danger"><i class="bi bi-trash"></i></button>
             <input type="hidden" name="_method" value="delete">
             <?php echo $table; ?>
         </form>

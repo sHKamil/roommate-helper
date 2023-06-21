@@ -105,7 +105,7 @@ class EventController implements ViewControllerInterface
         <form method='POST'>
             <input type='hidden' name='_method' value='edit'>
             <input type='hidden' name='id_edit' value=$id>
-            <input type='submit' class='btns btn__secondary' value='edit'>
+            <input id='edit' type='submit' class='btns btn__secondary' value='edit'>
         </form>
         ";
         return $form;

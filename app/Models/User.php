@@ -145,7 +145,7 @@ class User
 
     public function getUserData(array $params = []) : array | false
     {
-        $stmt = $this->db->query("SELECT id, login, password, name, lastname, group_id, email, user_type FROM users WHERE login = :login", $params)->fetch();
+        $stmt = $this->db->query("SELECT id, login, password, name, lastname, group_id, email, user_type, avatar FROM users WHERE login = :login", $params)->fetch();
         return $stmt;
     }
 
