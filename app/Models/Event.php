@@ -26,8 +26,8 @@ class Event
             'event_name',
             'content',
             'day',
-            'hour',
-            'duration'
+            'start',
+            'end'
         ];
         $this->fillable = [
             'group_id',
@@ -35,32 +35,33 @@ class Event
             'event_name',
             'content',
             'day',
-            'hour',
-            'duration'
+            'start',
+            'end'
         ];
         $this->table = 'events';
     }
         
-    public function addEvent(array $params = []) : void
+    public function addEvent(array $params = []) : bool
     {
         $fillable = $this->fillable;
         $columns = ModelHandler::prepareFillableForSQL($fillable);
         $placeholders = ModelHandler::preparePlaceholders($fillable);
-        $params = ModelHandler::createDictionaryParams($this->fillable, $params);
         try
         {
-            $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
+            if($this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params) !== false) return true;
         } catch (\Exception $e) {
             echo "Insert query failed: " . $e->getMessage();
+            return false;
         }
     }
 
-    public function getAllGroupEvents(array $params = []) : array | false
+    public function getEventsByGroupID(array $params = []) : array | false
     {
         try
         {
-            return $this->db->query("SELECT user_id, event_name, content, day, hour, duration FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
-        } catch (\Exception $e) {
+            $result = $this->db->query("SELECT id, event_name, content, day, start, end FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();
         }
         return false;

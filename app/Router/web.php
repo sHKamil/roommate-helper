@@ -18,7 +18,8 @@ $router->post('/register', RegisterController::class, 'register')->only('guest')
 
 $router->get('/schedule', ScheduleController::class, 'show')->only('member');
 
-$router->get('/event/create', EventController::class, 'showCreate')->only('member');
+$router->get('/event', EventController::class, 'show')->only('member');
+$router->create('/event', EventController::class, 'create')->only('member');
 
 $router->get('/group', GroupController::class, 'show');
 $router->delete('/group', GroupController::class, 'quit');
