@@ -43,7 +43,7 @@ class ScheduleController implements ViewControllerInterface
             ]);
             if(!empty($rows)) {
                 $html .= "
-                <br><h1>" . $this->getDayName($day) . "</h1><br>
+                <br><h1 class='week-day'>" . $this->getDayName($day) . "</h1><br>
                 <table class='table'>
                     <tr>
                 ";

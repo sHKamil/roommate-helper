@@ -8,7 +8,7 @@ echo HtmlFactory::buildHeader("Rhelper - LogIn", ["/assets/css/form_errors.css"]
     <div class="components" style="margin-bottom: 5rem;">
             <div class="d-flex justify-content-center">
                 <a href="/">
-                    <img src="/assets/images/logo_helper6.png" class="img-fluid" alt="Sample image">
+                    <img src="assets/images/sygnet.png" class="img-fluid" alt="Sample image" style="width:23rem;">
                 </a>
             </div>
             <div>

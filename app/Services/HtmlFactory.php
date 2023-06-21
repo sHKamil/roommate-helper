@@ -39,7 +39,7 @@ END;
         <div class="nav-component">
             <a href="/">
             <div class="logo">
-                <img src="/assets/images/logo_helper7.png" alt="Logo" width="350px">
+                <img src="/assets/images/logo.png" alt="Logo" width="350px">
             </div>
             </a>
         <div class="nav-buttons">

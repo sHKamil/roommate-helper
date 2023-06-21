@@ -8,7 +8,7 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
     <div class="components" style="margin-bottom: 5rem;">
         <div>
             <a href="/">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+                <img src="assets/images/sygnet.png" class="img-fluid" alt="Sygnet" style="width:23rem;">
             </a>
         </div>
         <form method="POST" action="">

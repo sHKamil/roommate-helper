@@ -1,11 +1,11 @@
 :root {
-  --primary-light: #8a8cff;
+  --primary-light: #9046ff;
   --danger-light: #ff8a8a;
   --danger: #fc5d5d;
-  --primary: #3f47cc;
+  --primary: #5a2ca0ff;
   --secondary: rgba(255, 204, 0, 0);
-  --danger-dark: #eb0e0e;
-  --primary-dark: #240eeb;
+  --danger-dark: #ff0000ff ;
+  --primary-dark: rgb(63, 31, 112);
   --white: #ffffff;
   --greyLight-1: #e4ebf5;
   --greyLight-2: #c8d0e7;
@@ -100,7 +100,6 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  gap: 1.5rem;
 }
 .profile-box {
   display: flex;
@@ -247,9 +246,10 @@ body {
 .btn__danger {
   grid-column: 1/2;
   grid-row: 4/5;
-  background: var(--danger);
-  box-shadow: inset 0.2rem 0.2rem 1rem var( --danger-light), inset -0.2rem -0.2rem 1rem var(--danger-dark), 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+  background: var(--danger-dark);
+  box-shadow: inset 0.2rem 0.2rem 1rem var( --danger), inset -0.2rem -0.2rem 1rem var(--danger-dark), 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
   color: var(--greyLight-1);
+  transition: all .2s ease;
 }
 .btn__primary:hover {
   color: var(--white);
@@ -262,6 +262,7 @@ body {
   grid-column: 1/2;
   grid-row: 5/6;
   color: var(--greyDark);
+  transition: all .2s ease;
 }
 .btn__secondary:hover {
   color: var(--primary);
@@ -331,4 +332,10 @@ td {
 }
 a {
   text-decoration: none;
+}
+.week-day {
+  color: var(--danger-dark);
+}
+th {
+  font-size: 1.6rem;;
 }

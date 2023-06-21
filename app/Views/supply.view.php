@@ -19,6 +19,11 @@ echo HtmlFactory::buildNav();
                 } ?>
             </div>
             <input  type="submit" class="btns btn__primary">
+                        <a href="../schedule" style = "text-decoration: none;">
+                            <div class="btns btn__secondary">
+                                Schedule
+                            </div>
+                        </a>
         </form>
 	</div>
 	<div class="component-schedule">
