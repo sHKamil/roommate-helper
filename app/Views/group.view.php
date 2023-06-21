@@ -3,6 +3,7 @@
 use app\Services\HtmlFactory;
 
 echo HtmlFactory::buildHeader("Rhelper - Group", ["/assets/css/form_errors.css"]);
+echo HtmlFactory::buildNav();
 ?>
 <div class="container">
         <?php
