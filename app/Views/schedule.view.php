@@ -35,7 +35,7 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 		<div class="username">
 			<div class="username-spacer">
 			</div>
-			<p>Username</p>
+			<p><?php echo $_SESSION['user_name'] ?></p>
 		</div>
 		<div class="avatar">
 			<img src="/assets/images/avatar.png" alt="Avatar" width="100px">
@@ -63,32 +63,7 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 			</div>
 		</div>
 		<div class="supply">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col" style="text-align:center;">Quantity (last check)</th>
-						<th scope="col" style="text-align:center;">ITEM</th>
-						<th scope="col" style="text-align:center;">Expected end</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">3/12</th>
-						<td style="text-align: center;vertical-align: middle;">Papier toaletowy</td>
-						<td style="text-align: center;vertical-align: middle;">22.06.2023</td>
-					</tr>
-					<tr>
-						<th scope="row">1/2</th>
-						<td style="text-align: center;vertical-align: middle;">Ręcznik papierowy</td>
-						<td style="text-align: center;vertical-align: middle;">26.06.2023</td>
-					</tr>
-					<tr>
-						<th scope="row">40/100</th>
-						<td style="text-align: center;vertical-align: middle;">Pieprz</td>
-						<td style="text-align: center;vertical-align: middle;">27.06.2023</td>
-					</tr>
-				</tbody>
-			</table>
+			<?php echo $supply ?>
 		</div>
 		<div></div>
 	</div>

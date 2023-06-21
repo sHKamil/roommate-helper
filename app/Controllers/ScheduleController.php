@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use app\Interfaces\ViewControllerInterface;
 use app\Models\Event;
+use app\Models\Supply;
 
 class ScheduleController implements ViewControllerInterface
 {
@@ -16,8 +17,10 @@ class ScheduleController implements ViewControllerInterface
     public function show()
     {
         $schedule = $this->prepareTable();
+        $supply = $this->prepareSupplyTable();
         return view('schedule', [
             'errors' => $this->errors,
+            'supply' => $supply,
             'schedule' => $schedule
         ]);
     }
@@ -100,5 +103,38 @@ class ScheduleController implements ViewControllerInterface
         ];
         
         return $days[$dayOfWeek];
+      }
+
+      public function prepareSupplyTable() : string
+      {
+          $threads = [
+              'Quantity',
+              'Item',
+              'Expected end'
+          ];
+          $supply = new Supply;
+          $rows = $supply->getSuppliesByGroupID([':group_id' => $_SESSION['user_group_id']]);
+          $html = "
+          <table class='table' style='text-align:center;>
+              <tr scope='col' style='text-align:center;'>
+          ";
+          foreach ($threads as $column) {
+              $html .= "<th>$column</th>
+              ";
+          }
+          $html .= "</tr>
+              ";
+          foreach ($rows as $row) {
+              $html .= "
+              <tr>
+                  <td>" . $row['quantity'] . "/" . $row['quantity_max'] . "</td>
+                  <td>" . $row['name'] . "</td>
+                  <td>" . $row['expected_end'] . "</td>
+              </tr>
+              ";
+          }
+          $html .= "
+          </table>";
+          return $html;
       }
 }

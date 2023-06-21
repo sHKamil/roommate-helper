@@ -69,6 +69,18 @@ class Supply
         return false;
     }
         
+    public function getMiniSuppliesByGroupID(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT quantity, quantity_max, name, expected_end FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+        
     public function getSupplyByGroupIdAndId(array $params = []) : array | false
     {
         try
