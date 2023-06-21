@@ -29,7 +29,6 @@ echo HtmlFactory::buildNav();
 			<div class="form_title" style="margin-bottom: 2rem;">Supply</div>
 			<?php echo $supply ?>
 		</a>
-		<div></div>
 	</div>
 	<a href="event" class="component-schedule">
 		<div class="form_title" style="margin-bottom: 2rem;">Schedule</div>

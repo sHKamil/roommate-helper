@@ -7,7 +7,7 @@ echo HtmlFactory::buildNav();
 ?>
 
 <div class="container-main">
-    <div class="component" style="margin-bottom: 5rem;">
+    <div class="component">
             <div>
                 <form class="form" method="POST" action="">
 

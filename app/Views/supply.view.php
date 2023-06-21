@@ -20,8 +20,6 @@ echo HtmlFactory::buildNav();
             </div>
             <input  type="submit" class="btns btn__primary">
         </form>
-		<div></div>
-		<div></div>
 	</div>
 	<div class="component-schedule">
         <form action="" method="post">
