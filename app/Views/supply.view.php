@@ -13,11 +13,15 @@ echo HtmlFactory::buildNav();
             <input class="form__input" type="number" name="quantity_max" placeholder="Max quantity">
             <input class="form__input" type="number" name="quantity" placeholder="Actual quantity">
             <input class="form__input" type="number" name="days_until_ends" placeholder="Days until ends">
-            <div class="error_slot">
-                <?php foreach ($errors as $error) {
-                    echo "<p>$error</p>";
-                } ?>
-            </div>
+			<div class="error_slot">
+				<?php 
+				if(isset($errors) && !empty($errors)){
+					foreach ($errors as $error) {
+						echo '<p>' . $error . '</p>';
+					}
+				}
+					?>
+			</div>
             <input  type="submit" class="btns btn__primary" value="Create">
                         <a href="../schedule" style = "text-decoration: none;">
                             <div class="btns btn__secondary">

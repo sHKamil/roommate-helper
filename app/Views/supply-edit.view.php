@@ -7,13 +7,15 @@ echo HtmlFactory::buildNav();
 ?>
 
 <div class="container">
+	<div class="component-pin">
+		<div class="info">
+			<p>Last edit by: <?php echo $last_user ?> </p>
+			<p>Expected end: <?php echo $data['expected_end'] ?> </p>
+			<p>Supply ID: <?php echo $data['id'] ?> </p>
+		</div>
+	</div>
 	<div class="component-form">
 		<form action="" method="post">
-            <div class="info">
-                <p>Last edit by: <?php echo $last_user ?> </p>
-                <p>Expected end: <?php echo $data['expected_end'] ?> </p>
-                <p>Supply ID: <?php echo $data['id'] ?> </p>
-            </div>
             
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="id" value=<?php echo $data['id'] ?>>

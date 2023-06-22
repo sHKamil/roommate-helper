@@ -185,9 +185,10 @@ class EventController implements ViewControllerInterface
         if(!Validator::string($name, 1, 30)) $this->_addError('Name can only contain 1-30 characters.');
         if(!Validator::string($content)) $this->_addError('Content can only contain 1-255 characters.');
         if(!Validator::date($day)) $this->_addError('Wrong date format.');
-        // if(!is_int($start)) $this->_addError('Wrong start format.');
-        // if(!is_int($end)) $this->_addError('Wrong end format.');
-        // if($start>$end) $this->_addError('End cannot be greater than start.');
+
+        $start = strtotime($start);
+        $end = strtotime($end);
+        if($start > $end) $this->_addError('Start cannot be greater than end.');
         if(empty($this->errors)) return true;
         return false;
     }

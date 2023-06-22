@@ -2,7 +2,7 @@
 
 use app\Services\HtmlFactory;
 
-echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css"]);
+echo HtmlFactory::buildHeader("Rhelper - Event", ["/assets/css/form_errors.css", "/assets/css/checkbox.css"]);
 echo HtmlFactory::buildNav();
 ?>
 
@@ -20,32 +20,29 @@ echo HtmlFactory::buildNav();
                     <div class="form-outline mb-3">
                         <input type="text" name="content" class="form__input" placeholder="Enter content" required/>
                         Content
-                        <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
-                        </div>
                     </div>
 
                     <div class="form-outline mb-3">
                         <input type="date" name="day" class="form__input" required/>
                         Day
-                        <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
-                        </div>
                     </div>
 
                     <div class="form-outline mb-3">
                         <input type="time" name="start" class="form__input" required/>
                         Start
-                        <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
-                        </div>
                     </div>
 
                     <div class="form-outline mb-3">
                         <input type="time" name="end" class="form__input" required/>
                         End
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
+                            <?php 
+                            if(isset($errors) && !empty($errors)){
+                                foreach ($errors as $error) {
+                                    echo '<p>' . $error . '</p>';
+                                }
+                            }
+                             ?>
                         </div>
                     </div>
 

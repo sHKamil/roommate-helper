@@ -56,7 +56,7 @@ class SupplyController implements ViewControllerInterface
             $days_until_ends = isset($_POST['days_until_ends']) ? htmlspecialchars($_POST['days_until_ends']) : '';
 
             if($this->_validate($name, $quantity_max, $quantity, $days_until_ends)) {
-                $days_until_ends = $days_until_ends ? '' : 0;
+                if($days_until_ends === '') $days_until_ends = 0;
                 $expected_end = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . $days_until_ends . ' days'));
                 $datatime = date("Y-m-d H:i:s");
                 $this->setModel(new Supply);
