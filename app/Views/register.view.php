@@ -4,7 +4,7 @@ use app\Services\HtmlFactory;
 
 echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css']);
 ?>
-<div class="container">
+<div class="container-raw">
     <div class="components" style="margin-bottom: 5rem;">
         <div>
             <a href="/">

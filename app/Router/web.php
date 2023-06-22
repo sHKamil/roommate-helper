@@ -11,14 +11,14 @@ use app\Controllers\WelcomeController;
 
 $router->get('/', WelcomeController::class, 'show');
 $router->get('/login', LoginController::class, 'show')->only('guest');
-$router->post('/login', LoginController::class, 'login');
+$router->post('/login', LoginController::class, 'login')->only('guest');
 
-$router->logout('/schedule', LoginController::class, 'logout');
-$router->logout('/profile', LoginController::class, 'logout');
-$router->logout('/event', LoginController::class, 'logout');
-$router->logout('/group-create', LoginController::class, 'logout');
-$router->logout('/group-join', LoginController::class, 'logout');
-$router->logout('/supply', LoginController::class, 'logout');
+$router->logout('/schedule', LoginController::class, 'logout')->only('member');
+$router->logout('/profile', LoginController::class, 'logout')->only('member');
+$router->logout('/event', LoginController::class, 'logout')->only('member');
+$router->logout('/group-create', LoginController::class, 'logout')->only('member');
+$router->logout('/group-join', LoginController::class, 'logout')->only('member');
+$router->logout('/supply', LoginController::class, 'logout')->only('member');
 
 $router->get('/register', RegisterController::class, 'show')->only('guest');
 $router->post('/register', RegisterController::class, 'register')->only('guest');
@@ -34,17 +34,17 @@ $router->edit('/event', EventController::class, 'showEdit')->only('member');
 $router->patch('/event', EventController::class, 'update')->only('member');
 $router->delete('/event', EventController::class, 'delete')->only('member');
 
-$router->get('/group', GroupController::class, 'show');
-$router->delete('/group', GroupController::class, 'quit');
+$router->get('/group', GroupController::class, 'show')->only('member');
+$router->delete('/group', GroupController::class, 'quit')->only('member');
 
-$router->get('/group-create', GroupController::class, 'showCreate');
-$router->create('/group-create', GroupController::class, 'create');
+$router->get('/group-create', GroupController::class, 'showCreate')->only('member');
+$router->create('/group-create', GroupController::class, 'create')->only('member');
 
-$router->get('/group-join', GroupController::class, 'showJoin');
-$router->join('/group-join', GroupController::class, 'join');
+$router->get('/group-join', GroupController::class, 'showJoin')->only('member');
+$router->join('/group-join', GroupController::class, 'join')->only('member');
 
-$router->get('/supply', SupplyController::class, 'show');
-$router->post('/supply', SupplyController::class, 'create');
-$router->delete('/supply', SupplyController::class, 'delete');
-$router->edit('/supply', SupplyController::class, 'showEdit');
-$router->patch('/supply', SupplyController::class, 'update');
+$router->get('/supply', SupplyController::class, 'show')->only('member');
+$router->post('/supply', SupplyController::class, 'create')->only('member');
+$router->delete('/supply', SupplyController::class, 'delete')->only('member');
+$router->edit('/supply', SupplyController::class, 'showEdit')->only('member');
+$router->patch('/supply', SupplyController::class, 'update')->only('member');

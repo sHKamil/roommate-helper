@@ -45,6 +45,14 @@ body {
   align-items:start;
   flex-wrap: wrap;
 }
+.container-raw {
+  min-height: 90vh;
+  min-width: 100%;
+  padding: 50vh auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .components {
   width: 65rem;
   min-height: 40rem;
