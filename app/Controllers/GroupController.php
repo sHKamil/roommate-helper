@@ -107,8 +107,11 @@ class GroupController implements ViewControllerInterface
 
     public function getMyGroup() : array | false
     {
+        $group = false;
         $this->setModel(new Group);
+        if($_SESSION['user_group_id'] !== null) {
         $group = $this->model->getGroup([':id' => $_SESSION['user_group_id']])->fetch();
+        }
 
         return $group;
     }

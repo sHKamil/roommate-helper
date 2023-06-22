@@ -55,6 +55,32 @@ class Event
         }
     }
 
+    public function updateById(array $params = []) : bool
+    {
+        try
+        {
+
+            if($this->db->query("UPDATE " . $this->table . " SET user_id = :user_id, event_name = :event_name, content = :content, day = :day, start = :start, end = :end WHERE id = :id AND group_id = :group_id", $params) !== false) {
+                return true;
+            };
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
+    public function getEventByGroupIdAndId(array $params = []) : array | false
+    {
+        try
+        {
+            $result = $this->db->query("SELECT id, event_name, content, day, start, end, user_id FROM " . $this->table . " WHERE group_id = :group_id AND id = :id", $params)->fetch();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
     public function getEventsByGroupID(array $params = []) : array | false
     {
         try
@@ -101,5 +127,17 @@ class Event
             echo "Insert query failed: " . $e->getMessage();
         }
         return false;
+    }
+
+    public function deleteByGroupIdAndId(array $params = []) : bool
+    {
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id AND group_id = :group_id;";
+        try
+        {
+            if($this->db->query($query, $params) !== false) return true;
+        } catch (\PDOException $e) {
+            echo "Delete query failed: " . $e->getMessage();
+            return false;
+        }
     }
 }

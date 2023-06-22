@@ -12,7 +12,13 @@ use app\Controllers\WelcomeController;
 $router->get('/', WelcomeController::class, 'show');
 $router->get('/login', LoginController::class, 'show')->only('guest');
 $router->post('/login', LoginController::class, 'login');
+
 $router->logout('/schedule', LoginController::class, 'logout');
+$router->logout('/profile', LoginController::class, 'logout');
+$router->logout('/event', LoginController::class, 'logout');
+$router->logout('/group-create', LoginController::class, 'logout');
+$router->logout('/group-join', LoginController::class, 'logout');
+$router->logout('/supply', LoginController::class, 'logout');
 
 $router->get('/register', RegisterController::class, 'show')->only('guest');
 $router->post('/register', RegisterController::class, 'register')->only('guest');
@@ -20,18 +26,22 @@ $router->post('/register', RegisterController::class, 'register')->only('guest')
 $router->get('/schedule', ScheduleController::class, 'show')->only('member');
 
 $router->get('/profile', ProfileController::class, 'show')->only('member');
+$router->edit('/profile', ProfileController::class, 'update')->only('member');
 
 $router->get('/event', EventController::class, 'show')->only('member');
 $router->create('/event', EventController::class, 'create')->only('member');
+$router->edit('/event', EventController::class, 'showEdit')->only('member');
+$router->patch('/event', EventController::class, 'update')->only('member');
+$router->delete('/event', EventController::class, 'delete')->only('member');
 
 $router->get('/group', GroupController::class, 'show');
 $router->delete('/group', GroupController::class, 'quit');
 
-$router->get('/group/create', GroupController::class, 'showCreate');
-$router->create('/group/create', GroupController::class, 'create');
+$router->get('/group-create', GroupController::class, 'showCreate');
+$router->create('/group-create', GroupController::class, 'create');
 
-$router->get('/group/join', GroupController::class, 'showJoin');
-$router->join('/group/join', GroupController::class, 'join');
+$router->get('/group-join', GroupController::class, 'showJoin');
+$router->join('/group-join', GroupController::class, 'join');
 
 $router->get('/supply', SupplyController::class, 'show');
 $router->post('/supply', SupplyController::class, 'create');

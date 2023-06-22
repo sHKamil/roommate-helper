@@ -29,9 +29,9 @@ echo HtmlFactory::buildNav();
                     </div>
 
                     <div class="form-outline mb-3 d-flex justify-content-center">
-                        <a href="../group" style = "text-decoration: none;">
+                        <a href="../profile" style = "text-decoration: none;">
                             <div class="btns btn__secondary">
-                                Group
+                               Profile
                             </div>
                         </a>
                     </div>

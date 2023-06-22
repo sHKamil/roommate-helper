@@ -13,3 +13,8 @@ height: 2.8rem;
 cursor: pointer;
 color: var(--greyDark);
 }
+td {
+    background-color: var(--greyLight-1) !important;
+    cursor: default !important;
+    font-size: 1.5rem;
+  }

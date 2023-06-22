@@ -113,11 +113,6 @@ class LoginController implements ViewControllerInterface
         return null;
     }
 
-    // public function getUserId()
-    // {
-    //     return $this->model->id;
-    // }
-
     private function _checkName($login) : bool
     {
         $this->setModel(new User);

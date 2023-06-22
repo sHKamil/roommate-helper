@@ -39,6 +39,12 @@ echo HtmlFactory::buildHeader('Rhelper - Register',['assets/css/form_errors.css'
                 <input type="text" name="name" class="form__input" placeholder="Enter name" required/>
             </div>
             <div class="form-outline mb-3">
+                <input type="text" name="lastname" class="form__input" placeholder="Enter last name" required/>
+            </div>
+            <div class="form-outline mb-3">
+                <input type="email" name="email" class="form__input" placeholder="Enter e-mail" required/>
+            </div>
+            <div class="form-outline mb-3">
                 <input type="submit" class="btns btn__primary" value="Register"/>
             </div>
             <div class="form-outline mb-3">

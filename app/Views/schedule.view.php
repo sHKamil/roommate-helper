@@ -27,12 +27,22 @@ echo HtmlFactory::buildNav();
 		</div>
 		<a href="supply" class="supply">
 			<div class="form_title" style="margin-bottom: 2rem;">Supply</div>
-			<?php echo $supply ?>
+			<?php if(isset($supply) && !empty($supply)) {
+				echo $supply;
+			 } else {
+				echo '<h1 style="text-align:center; color: var(--danger-dark); font-size: 4rem;">Click to add</h1>';
+			 } ?>
 		</a>
 	</div>
-	<a href="event" class="component-schedule">
+	<a href="event" class="component-schedule event">
 		<div class="form_title" style="margin-bottom: 2rem;">Schedule</div>
-		<?php echo $schedule ?>
+		<?php 
+		if(isset($schedule) && !empty($schedule)) {
+			echo $schedule;
+		} else {
+			echo '<h1 style="text-align:center; color: var(--danger-dark); font-size: 4rem;">Click to add</h1>';
+		}
+		?>
 	</a>
 </div>
 

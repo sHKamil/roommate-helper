@@ -71,6 +71,20 @@ class User
         }
     }
 
+    public function updateById(array $params = []) : bool
+    {
+        try
+        {
+
+            if($this->db->query("UPDATE " . $this->table . " SET name = :user_name, lastname = :user_lastname, email = :user_email WHERE id = :id ", $params) !== false) {
+                return true;
+            };
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
     public function getFailedAttempts(array $params = []) : int | null
     {
         try

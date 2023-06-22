@@ -12,11 +12,11 @@ echo HtmlFactory::buildNav();
             <div class="avatar">
                 <img src="<?php echo 'avatar/' . $_SESSION['user_avatar'] ?>" alt="Avatar">
             </div>
-            <form class="user-info">
+            <form class="user-info" method="POST">
                 <div class="login">
                     <input type="hidden" name="_method" value="edit">
                     <input type="hidden" name="user_id" value=<?php echo $_SESSION['user_id'] ?>>
-                    <input class="form__input" type="text" name="login" placeholder="Login" value="<?php echo $_SESSION['user_login'] ?>" required>
+                    <div class="form__input" style="display: flex; align-items: center;"><?php echo $_SESSION['user_login'] ?></div>
                 </div>
                 <div class="user-name">
                     <input class="form__input" type="text" name="user_name" placeholder="Name" value="<?php echo $_SESSION['user_name'] ?>" required>
@@ -57,7 +57,7 @@ echo HtmlFactory::buildNav();
                 </form>
                     ";
             } else {
-                echo "<div class='component' style='margin-bottom: 5rem;'>";
+                echo "";
             }
         ?>
         <div class="profile-buttons">
@@ -65,12 +65,12 @@ echo HtmlFactory::buildNav();
                 <p>Don't you have a group?</p>
                 <p>Join an existing one or start your own!</p>
             </div>
-            <a href="group/create">
+            <a href="group-create">
                 <div class="btns btn__primary">
                     Create Group
                 </div>
             </a>
-            <a href="group/join">
+            <a href="group-join">
                 <div class="btns btn__primary">
                     Join to group
                 </div>

@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use app\Interfaces\ViewControllerInterface;
 use app\Models\Event;
+use app\Models\User;
 use app\Services\Alert;
 use app\Services\Validator;
 
@@ -18,6 +19,23 @@ class EventController implements ViewControllerInterface
         return view('event', [
             "errors" => $this->errors,
             "table" => $table
+        ], $alert);
+    }
+    
+    public function showEdit(string $alert = '')
+    {
+        $this->setModel(new Event);
+        $id = $_POST['id_edit'];
+        $data = $this->model->getEventByGroupIdAndId([
+            ':id' => $id,
+            ':group_id' => $_SESSION['user_group_id']
+        ]);
+        $user = new User;
+        $last_user = $user->getUserNameById([':id' => $data['user_id']]); // get username of user that lastly edited that record
+        return view('event-edit', [
+            "errors" => $this->errors,
+            "data" => $data,
+            "last_user" => $last_user['name']
         ], $alert);
     }
 
@@ -46,8 +64,60 @@ class EventController implements ViewControllerInterface
             }
             return $this->show(Alert::failed("Something went wrong"));
         } else {
-            return header('Location: /event/create');
+            return header('Location: /group-create');
         }
+    }
+
+    public function update()
+    {
+        if($_SESSION['user_group_id'] !== null)
+        {
+            $name = isset($_POST['event_name']) ? htmlspecialchars($_POST['event_name']) : '';
+            $content = isset($_POST['content']) ? htmlspecialchars($_POST['content']) : null;
+            $day = isset($_POST['day']) ? htmlspecialchars($_POST['day']) : null;
+            $start = isset($_POST['start']) ? htmlspecialchars($_POST['start']) : null;
+            $end = isset($_POST['end']) ? htmlspecialchars($_POST['end']) : null;
+
+            if($this->_validate($name, $content, $day, $start, $end)) {                
+                $this->setModel(new Event);
+                if($this->model->updateById([
+                    ':id' => $_POST['id'],
+                    ':group_id' => $_SESSION['user_group_id'],
+                    ':user_id' => $_SESSION['user_id'],
+                    ':event_name' => $name,
+                    ':content' => $content,
+                    ':day' => $day,
+                    ':start' => $start,
+                    ':end' => $end
+                    ])) return $this->show(Alert::success("You have successfully updated an item!"));
+                return $this->show(Alert::failed("Something went wrong"));
+            }
+            return $this->show(Alert::failed("Something went wrong"));
+        } else {
+            return header('Location: /group-create');
+        }
+    }
+
+    public function delete()
+    {
+        $id = [];
+        foreach ($_POST['id'] as $post_id) {
+            $raw_id = isset($post_id) ? htmlspecialchars($post_id) : '';
+            array_push($id, $raw_id);
+        }
+        $this->setModel(new Event);
+        if($this->_deleteByID($id)) return $this->show(Alert::success("You have successfully deleted an item!"));
+    }
+
+    private function _deleteByID(array $id = []) : bool // deletes form db selected supplies from group
+    {
+        foreach ($id as $supply_id) {
+            if($this->model->deleteByGroupIdAndId([
+                ':id' => $supply_id,
+                ':group_id' => $_SESSION['user_group_id']
+            ]) === false) return false;
+        }
+        return true;
     }
 
     public function setModel(Event $event) : void
@@ -103,9 +173,8 @@ class EventController implements ViewControllerInterface
     {
         $form = "
         <form method='POST'>
-            <input type='hidden' name='_method' value='edit'>
             <input type='hidden' name='id_edit' value=$id>
-            <input id='edit' type='submit' class='btns btn__secondary' value='edit'>
+            <input id='edit' type='submit' class='btns btn__secondary' name='_method' value='edit'>
         </form>
         ";
         return $form;

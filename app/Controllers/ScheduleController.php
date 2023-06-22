@@ -44,7 +44,7 @@ class ScheduleController implements ViewControllerInterface
             if(!empty($rows)) {
                 $html .= "
                 <br><h1 class='week-day'>" . $this->getDayName($day) . "</h1><br>
-                <table class='table'>
+                <table class='table' style='cursor:pointer;'>
                     <tr>
                 ";
                 foreach ($threads as $column) {
@@ -58,17 +58,15 @@ class ScheduleController implements ViewControllerInterface
                     $html .= "<tr>";
                     foreach ($row as $column) {
                         $html .= "
-                        <td style='text-align: center;vertical-align: middle;'>$column</td>
+                        <td style='text-align: center;vertical-align: middle;cursor:pointer;'>$column</td>
                         ";
                     }
                     $html .= "</tr>";
                 }
                 $html .= "
-                </tr>
+                </table>
                 ";
             }
-            $html .= "
-            </table>";
         }
         return $html;
     }
@@ -113,28 +111,31 @@ class ScheduleController implements ViewControllerInterface
               'Expected end'
           ];
           $supply = new Supply;
+          $html = '';
           $rows = $supply->getSuppliesByGroupID([':group_id' => $_SESSION['user_group_id']]);
-          $html = "
-          <table class='table' style='text-align:center;>
-              <tr scope='col' style='text-align:center;'>
-          ";
-          foreach ($threads as $column) {
-              $html .= "<th>$column</th>
-              ";
-          }
-          $html .= "</tr>
-              ";
-          foreach ($rows as $row) {
-              $html .= "
-              <tr>
-                  <td>" . $row['quantity'] . "/" . $row['quantity_max'] . "</td>
-                  <td>" . $row['name'] . "</td>
-                  <td>" . $row['expected_end'] . "</td>
-              </tr>
-              ";
-          }
-          $html .= "
-          </table>";
+          if(!empty($rows)) {
+            $html = "
+            <table class='table' style='text-align:center;>
+                <tr scope='col' style='text-align:center;'>
+            ";
+            foreach ($threads as $column) {
+                $html .= "<th>$column</th>
+                ";
+            }
+            $html .= "</tr>
+                ";
+            foreach ($rows as $row) {
+                $html .= "
+                <tr>
+                    <td>" . $row['quantity'] . "/" . $row['quantity_max'] . "</td>
+                    <td>" . $row['name'] . "</td>
+                    <td>" . $row['expected_end'] . "</td>
+                </tr>
+                ";
+            }
+            $html .= "
+            </table>";
+        }
           return $html;
       }
 }

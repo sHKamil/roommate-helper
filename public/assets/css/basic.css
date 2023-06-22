@@ -1,5 +1,6 @@
 :root {
   --primary-light: #9046ff;
+  --primary-light-2: #d4b8ff;
   --danger-light: #ff8a8a;
   --danger: #fc5d5d;
   --primary: #5a2ca0ff;
@@ -206,6 +207,12 @@ body {
   box-shadow: 
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
   -0.2rem -0.2rem 1.8rem var(--white);
+  transition: all .5s ease;
+}
+.supply:hover {
+  box-shadow: 
+  0.8rem 0.8rem 1.8rem var(--greyLight-2),
+  -0.2rem -0.2rem 2.4rem var(--primary-light-2);
 }
 .component-schedule {
   min-width: 80rem;
@@ -215,6 +222,12 @@ body {
   0.8rem 0.8rem 1.4rem var(--greyLight-2),
   -0.2rem -0.2rem 1.8rem var(--white);
   padding: 3rem;
+  transition: all .5s ease;
+}
+.component-schedule:hover {
+  box-shadow: 
+  0.8rem 0.8rem 1.8rem var(--greyLight-2),
+  -0.2rem -0.2rem 2.4rem var(--primary-light-2);
 }
 
 /*  BUTTONS  */
@@ -327,7 +340,6 @@ body {
 }
 td {
   background-color: var(--greyLight-1) !important;
-  cursor: default !important;
   font-size: 1.5rem;
 }
 a {

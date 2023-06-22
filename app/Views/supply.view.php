@@ -18,7 +18,7 @@ echo HtmlFactory::buildNav();
                     echo "<p>$error</p>";
                 } ?>
             </div>
-            <input  type="submit" class="btns btn__primary">
+            <input  type="submit" class="btns btn__primary" value="Create">
                         <a href="../schedule" style = "text-decoration: none;">
                             <div class="btns btn__secondary">
                                 Schedule
@@ -29,8 +29,7 @@ echo HtmlFactory::buildNav();
 	<div class="component-schedule">
         <form action="" method="post">
 			<div class="form_title">Supply</div>
-			<button id="delete" type="submit" class="btns btn__danger"><i class="bi bi-trash"></i></button>
-            <input type="hidden" name="_method" value="delete">
+			<button id="delete" name="_method" value="delete" type="submit" class="btns btn__danger"><i class="bi bi-trash"></i></button>
             <?php echo $table; ?>
         </form>
 	</div>

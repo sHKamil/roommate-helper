@@ -69,12 +69,12 @@ class SupplyController implements ViewControllerInterface
                         ':quantity' => $quantity,
                         ':expected_end' => $expected_end,
                         ':last_check' => $datatime
-                    ])) return $this->show(Alert::success("You have successfully added a new item!"));
+                    ])) return $this->show(Alert::success("You have successfully updated an item!"));
                 return $this->show(Alert::failed("Something went wrong"));
             }
             return $this->show(Alert::failed("Something went wrong"));
         } else {
-            return header('Location: /group/create');
+            return header('Location: /group-create');
         }
     }
 
@@ -172,9 +172,8 @@ class SupplyController implements ViewControllerInterface
     {
         $form = "
         <form method='POST'>
-            <input type='hidden' name='_method' value='edit'>
             <input type='hidden' name='id_edit' value=$id>
-            <input id='edit' type='submit' class='btns btn__secondary' value='edit'>
+            <input id='edit' name='_method' value='edit' type='submit' class='btns btn__secondary' value='edit'>
         </form>
         ";
         return $form;

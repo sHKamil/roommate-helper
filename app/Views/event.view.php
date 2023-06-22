@@ -21,7 +21,7 @@ echo HtmlFactory::buildNav();
                         <input type="text" name="content" class="form__input" placeholder="Enter content" required/>
                         Content
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors ?>
+                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@ echo HtmlFactory::buildNav();
                         <input type="date" name="day" class="form__input" required/>
                         Day
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors ?>
+                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
                         </div>
                     </div>
 
@@ -37,7 +37,7 @@ echo HtmlFactory::buildNav();
                         <input type="time" name="start" class="form__input" required/>
                         Start
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors ?>
+                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@ echo HtmlFactory::buildNav();
                         <input type="time" name="end" class="form__input" required/>
                         End
                         <div class="error_slot">
-                            <?php if(isset($errors) && !empty($errors)) echo $errors ?>
+                            <?php if(isset($errors) && !empty($errors)) echo $errors[0] ?>
                         </div>
                     </div>
 
@@ -66,8 +66,7 @@ echo HtmlFactory::buildNav();
     <div class="component-schedule">
         <form action="" method="post">
             <div class="form_title">Events</div>
-            <button id="delete" type="submit" class="btns btn__danger"><i class="bi bi-trash"></i></button>
-            <input type="hidden" name="_method" value="delete">
+            <button id="delete" type="submit" name='_method' value='delete' class="btns btn__danger"><i class="bi bi-trash"></i></button>
             <?php echo $table; ?>
         </form>
 	</div>
