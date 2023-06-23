@@ -104,7 +104,7 @@ class SupplyController implements ViewControllerInterface
             }
             return $this->show(Alert::failed("Something went wrong"));
         } else {
-            return header('Location: /group/create');
+            return header('Location: /group-create');
         }
     }
 
