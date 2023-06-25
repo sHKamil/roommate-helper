@@ -168,4 +168,10 @@ class User
         $result = $this->db->query("SELECT name FROM users WHERE id = :id", $params)->fetch();
         return $result;
     }
+
+    public function getUserAvatarById(array $params = []) : array | false
+    {
+        $result = $this->db->query("SELECT avatar FROM users WHERE id = :id", $params)->fetch();
+        return $result;
+    }
 }
