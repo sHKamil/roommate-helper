@@ -85,6 +85,20 @@ class User
         return false;
     }
 
+    public function updateAvatarById(array $params = []) : bool
+    {
+        try
+        {
+
+            if($this->db->query("UPDATE " . $this->table . " SET avatar = :avatar WHERE id = :id ", $params) !== false) {
+                return true;
+            };
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
     public function getFailedAttempts(array $params = []) : int | null
     {
         try
