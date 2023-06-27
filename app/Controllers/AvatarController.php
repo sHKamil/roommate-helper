@@ -12,10 +12,10 @@ class AvatarController
 
     public static function getUserAvatar() : string
     {
-        $dir = base_path('avatars/');
+        $dir = 'avatars/';
         $path = $dir . 'default.png'; // path to default avatar image
-        $user_avatar = AvatarTrait::makeAvatarName(); // path to default avatar image
-        $extensions = ['.png', 'jpg']; // avatar extensions
+        $user_avatar = self::makeAvatarName(); // path to default avatar image
+        $extensions = ['.png', '.jpg']; // avatar extensions
         $avatars = scandir($dir);
 
 
@@ -29,7 +29,7 @@ class AvatarController
         return $path;
     }
 
-    private function findAvatar($avatars, $user_avatars, $extensions = []) : bool
+    protected static function findAvatar($avatars, $user_avatars, $extensions = []) : bool
     {
         foreach ($extensions as $extension) {
             foreach ($avatars as $avatar) {

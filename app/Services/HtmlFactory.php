@@ -2,6 +2,8 @@
 
 namespace app\Services;
 
+use app\Controllers\AvatarController;
+
 class HtmlFactory
 {
 
@@ -36,6 +38,7 @@ END;
 
     public  static function buildNav() : string
     {
+        $avatar_path = AvatarController::getUserAvatar();
         return '
         <div class="nav-component">
             <a href="/">
@@ -55,7 +58,7 @@ END;
                         <p>' . $_SESSION['user_name'] . '</p>
                     </div>
                     <div class="avatar">
-                    <img src="avatar/' . $_SESSION['user_avatar'] . '" alt="Avatar">
+                    <img src= "' . $avatar_path . '" alt="Avatar">
                     </div>
                 </div>
             </a>
