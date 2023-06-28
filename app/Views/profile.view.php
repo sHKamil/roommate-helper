@@ -10,7 +10,7 @@ echo HtmlFactory::buildNav();
 	<div id="component-profile" class="component-form">
         <div class="component-left">
             <div class="avatar">
-                <img src="<?php echo 'avatar/' . $_SESSION['user_avatar'] ?>" alt="Avatar">
+                <img src="<?php echo $avatar_path ?>" alt="Avatar">
             </div>
             <form class="user-info" method="POST">
                 <div class="login">

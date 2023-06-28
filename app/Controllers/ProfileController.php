@@ -15,9 +15,11 @@ class ProfileController implements ViewControllerInterface
 
     public function show(string $alert = '')
     {
+        $avatar = AvatarController::getUserAvatar();
         return view('profile', [
             'errors' => $this->errors,
-            'group' => $this->prepareGroupData()
+            'group' => $this->prepareGroupData(),
+            'avatar_path' => $avatar
         ], $alert);
     }
 
