@@ -38,12 +38,12 @@ class Validator
         return false;
     }
 
-    // public static function fileType($string) : bool
-    // {
-    //     $allowedFileTypes = ['application/pdf'];
-    //     if (in_array($string, $allowedFileTypes)) return true;
-    //     return false;
-    // }
+    public static function imgType($string) : bool
+    {
+        $allowedFileTypes = ['image/png', 'image/jpeg'];
+        if (in_array($string, $allowedFileTypes)) return true;
+        return false;
+    }
 
     public static function isNotDoubled($table, $row, $param) : bool
     {
