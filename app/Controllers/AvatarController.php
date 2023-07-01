@@ -21,7 +21,7 @@ class AvatarController
 
         if (self::findAvatar($avatars, $user_avatar, $extensions)) {
             $user = new User;
-            $db_user_avatar = $user->getUserAvatarById([':id' => $_SESSION['user_id']]);
+            $db_user_avatar = $user->getUserAvatarById([':id' => $_SESSION['user_id']])['avatar'];
             if ($db_user_avatar !== false) {
                 $path = $dir . $db_user_avatar;
             }

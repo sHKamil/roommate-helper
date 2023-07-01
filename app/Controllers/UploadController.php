@@ -27,6 +27,7 @@ class UploadController
                 ':avatar' => $this->img_name
                 ])) {
                     move_uploaded_file($this->img['tmp_name'], $this->destination);
+                    return true;
             }
         }
         return false;
@@ -35,15 +36,15 @@ class UploadController
     
     private function _setImgAttributes() : void
     {
-        $this->img = $_FILES['img'];
-        $this->img_name = self::makeAvatarName() . pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+        $this->img = $_FILES['file'];
+        $this->img_name = self::makeAvatarName() . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         $this->destination = 'avatars/' . $this->img_name;
         return;
     }
 
     private function _validateImage() : bool
     {
-        if (isset($_FILES['img'])) {
+        if (isset($_FILES['file'])) {
             $this->_setImgAttributes();
             try
             {

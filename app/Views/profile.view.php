@@ -12,7 +12,7 @@ echo HtmlFactory::buildNav();
             <div class="avatar">
                 <img src="<?php echo $avatar_path ?>" alt="Avatar">
             </div>
-            <form class="user-info" method="POST">
+            <form class="user-info" method="POST" enctype="multipart/form-data">
                 <div class="login">
                     <input type="hidden" name="_method" value="edit">
                     <input type="hidden" name="user_id" value=<?php echo $_SESSION['user_id'] ?>>
@@ -26,6 +26,9 @@ echo HtmlFactory::buildNav();
                 </div>
                 <div class="user-email">
                     <input class="form__input" type="text" name="user_email" placeholder="E-mail" value="<?php echo $_SESSION['user_email'] ?>" required>
+                </div>
+                <div class="user-email">
+                    <input class="btn__secondary" type="file" name="file" id="upload-img">
                 </div>
                 <div class="user-submit">
                     <input class="btns btn__primary" type="submit" value="Save">
