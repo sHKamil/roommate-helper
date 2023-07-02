@@ -37,11 +37,14 @@ class ProfileController implements ViewControllerInterface
         $user_lastname = isset($_POST['user_lastname']) ? htmlspecialchars($_POST['user_lastname']) : '';
         $user_email = isset($_POST['user_email']) ? htmlspecialchars($_POST['user_email']) : '';
         if($this->validateInputs($user_name, $user_lastname)) {
-            $user = new User;
             if(isset($_FILES)) {
                 $avatar = new UploadController;
                 $avatar->upload();
+                if(!empty($avatar->errors)) {
+                    return $this->show(Alert::failed('Image size or format error! (only 100x100px with extensions jpeg and png are allowed')); // just for now
+                }
             }
+            $user = new User;
             if($user->updateById([
                 ':id' => $_SESSION['user_id'],
                 ':user_name' => $user_name,

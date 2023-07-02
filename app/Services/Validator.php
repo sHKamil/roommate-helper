@@ -45,6 +45,13 @@ class Validator
         return false;
     }
 
+    public static function propperImgSize($file_tmp, $width = 100, $height = 100) : bool
+    {
+        $img_info = getimagesize($file_tmp);
+        if($width === $img_info[0] && $height === $file_tmp[1]) return true;
+        return false;
+    }
+
     public static function isNotDoubled($table, $row, $param) : bool
     {
         $db = new DatabasePDO;

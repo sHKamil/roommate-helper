@@ -44,11 +44,12 @@ class UploadController
 
     private function _validateImage() : bool
     {
-        if (isset($_FILES['file'])) {
+        if (!empty($_FILES['file']['tmp_path'])) {
             $this->_setImgAttributes();
             try
             {
                 if(Validator::imgType($this->img['type']) === false) $this->errors['img_type'] = "Wrong file type. (Only png and jpg are allowed).";
+                if(Validator::propperImgSize($this->img['tmp_name']) === false) $this->errors['img_size'] = "Wrong image sizing. (Avatar must be 100x100px).";
             } catch (\Exception $e) {
                 echo "Error: " . $e->getMessage();
             }
