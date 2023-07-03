@@ -27,6 +27,7 @@ class UploadController
                 ':avatar' => $this->img_name
                 ])) {
                     move_uploaded_file($this->img['tmp_name'], $this->destination);
+                    $_SESSION['user_avatar'] = $this->img_name;
                     return true;
             }
         }
@@ -44,7 +45,7 @@ class UploadController
 
     private function _validateImage() : bool
     {
-        if (!empty($_FILES['file']['tmp_path'])) {
+        if (!empty($_FILES['file']['tmp_name'])) {
             $this->_setImgAttributes();
             try
             {
