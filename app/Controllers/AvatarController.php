@@ -10,11 +10,6 @@ class AvatarController
     use AvatarTrait;
     public $errors = [];
 
-    public function show()
-    {
-        return base_path('avatars/' . $_SESSION['user_avatar']);
-    }
-
     public static function getUserAvatar() : string
     {
         $dir = 'avatars/';

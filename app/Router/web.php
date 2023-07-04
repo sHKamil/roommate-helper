@@ -50,4 +50,3 @@ $router->delete('/supply', SupplyController::class, 'delete')->only('member');
 $router->edit('/supply', SupplyController::class, 'showEdit')->only('member');
 $router->patch('/supply', SupplyController::class, 'update')->only('member');
 
-// $router->get('/avatar', AvatarController::class, 'show')->only('member');
