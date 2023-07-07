@@ -12,6 +12,20 @@ abstract class AbstractModel
     public $fillable = [];
     public $table;
         
+    public function getAll() : array | false
+    {
+        $fillable = $this->fillable;
+        $columns = ModelHandler::prepareFillableForSQL($fillable);
+        try
+        {
+            $result = $this->db->query("SELECT $columns FROM " . $this->table .";")->fetchAll();
+            return $result;
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
     public function add(array $params = []) : bool
     {
         $fillable = $this->fillable;

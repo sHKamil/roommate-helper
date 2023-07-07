@@ -1,11 +1,9 @@
-.gitignore
-
-#Xdebug
+# Xdebug
 .vscode
 
 # Configs
 config/db_config.php
 
-#public
+# public
 public/avatars/*
 !public/avatars/default.php
