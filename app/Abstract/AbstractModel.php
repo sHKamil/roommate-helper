@@ -2,7 +2,6 @@
 
 namespace app\Abstract;
 
-use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
 abstract class AbstractModel

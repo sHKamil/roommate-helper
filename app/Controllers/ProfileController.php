@@ -50,7 +50,9 @@ class ProfileController implements ViewControllerInterface
                 ':user_name' => $user_name,
                 ':user_lastname' => $user_lastname,
                 ':user_email' => $user_email
-            ])) {
+            ],
+            'id, user_name, user_lastname, user_email')) 
+            {
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['user_lastname'] = $user_lastname;
                 $_SESSION['user_email'] = $user_email;

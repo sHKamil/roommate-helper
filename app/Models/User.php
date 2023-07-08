@@ -2,10 +2,11 @@
 
 namespace app\Models;
 
+use app\Abstract\AbstractModel;
 use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
-class User
+class User extends AbstractModel
 {
     private $db;
     public $allColumns = [];
@@ -53,34 +54,6 @@ class User
         if ($attempt->rowCount() === 1) {
             $data = $attempt->fetch();
             if(password_verify($password, $data['password'])) return true;
-        }
-        return false;
-    }
-        
-    public function addUser(array $params = []) : void
-    {
-        $fillable = $this->fillable;
-        $columns = ModelHandler::prepareFillableForSQL($fillable);
-        $placeholders = ModelHandler::preparePlaceholders($fillable);
-        $params = ModelHandler::createDictionaryParams($this->fillable, $params);
-        try
-        {
-            $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-    }
-
-    public function updateById(array $params = []) : bool
-    {
-        try
-        {
-
-            if($this->db->query("UPDATE " . $this->table . " SET name = :user_name, lastname = :user_lastname, email = :user_email WHERE id = :id ", $params) !== false) {
-                return true;
-            };
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
         }
         return false;
     }
