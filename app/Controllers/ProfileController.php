@@ -37,7 +37,7 @@ class ProfileController implements ViewControllerInterface
         $user_lastname = isset($_POST['user_lastname']) ? htmlspecialchars($_POST['user_lastname']) : '';
         $user_email = isset($_POST['user_email']) ? htmlspecialchars($_POST['user_email']) : '';
         if($this->validateInputs($user_name, $user_lastname)) {
-            if(isset($_FILES)) {
+            if(!empty($_FILES['file']['tmp_name'])) {
                 $avatar = new UploadController;
                 $avatar->upload();
                 if(!empty($avatar->errors)) {
@@ -51,7 +51,7 @@ class ProfileController implements ViewControllerInterface
                 ':user_lastname' => $user_lastname,
                 ':user_email' => $user_email
             ],
-            'id, user_name, user_lastname, user_email')) 
+            'name = :user_name, lastname = :user_lastname, email = :user_email')) 
             {
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['user_lastname'] = $user_lastname;

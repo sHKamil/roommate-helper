@@ -2,11 +2,12 @@
 
 namespace app\Abstract;
 
+use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
 abstract class AbstractModel
 {
-    private $db;
+    protected $db;
     public $allColumns = [];
     public $fillable = [];
     public $table;
@@ -39,12 +40,12 @@ abstract class AbstractModel
         }
     }
 
-    public function updateById(array $params = [], string $columns) : bool
+    public function updateById(array $params, string $columns) : bool
     {
         try
         {
-
-            if($this->db->query("UPDATE $this->table SET $columns WHERE id = :id", $params) !== false) {
+            $db = new DatabasePDO;
+            if($db->query("UPDATE $this->table SET $columns WHERE id = :id", $params) !== false) {
                 return true;
             };
         } catch (\PDOException $e) {
@@ -53,11 +54,11 @@ abstract class AbstractModel
         return false;
     }
 
-    public function getByWhere(array $params = [],string $select, string $where) : array | false
+    public function getByWhere(array $params, string $select, string $where) : array | false
     {
         try
         {
-            $result = $this->db->query("SELECT $select FROM " . $this->table . " WHERE $where", $params)->fetch();
+            $result = $this->db->query("SELECT $select FROM " . $this->table . " WHERE $where", $params)->fetchAll();
             return $result;
         } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();
