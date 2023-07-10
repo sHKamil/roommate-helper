@@ -2,10 +2,11 @@
 
 namespace app\Models;
 
+use app\Abstract\AbstractModel;
 use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
-class Supply
+class Supply extends AbstractModel
 {
     private $db;
     public $allColumns = [];
@@ -93,18 +94,11 @@ class Supply
         return false;
     }
 
-    public function updateById(array $params = []) : bool
+    public function updateByGroupIdAndId(array $params = []) : bool
     {
-        try
-        {
-
-            if($this->db->query("UPDATE " . $this->table . " SET user_id = :user_id, name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end, last_check = :last_check WHERE id = :id AND group_id = :group_id", $params) !== false) {
-                return true;
-            };
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        $columns = 'user_id = :user_id, name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end, last_check = :last_check';
+        $where = 'id = :id AND group_id = :group_id';
+        return $this->updateByWhere($params, $columns, $where);
     }
 
     public function deleteByGroupIdAndId(array $params = []) : bool

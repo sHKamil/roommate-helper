@@ -54,6 +54,20 @@ abstract class AbstractModel
         return false;
     }
 
+    public function updateByWhere(array $params, string $columns, string $where) : bool
+    {
+        try
+        {
+            $db = new DatabasePDO;
+            if($db->query("UPDATE $this->table SET $columns WHERE $where", $params) !== false) {
+                return true;
+            };
+        } catch (\PDOException $e) {
+            echo "Insert query failed: " . $e->getMessage();
+        }
+        return false;
+    }
+
     public function getByWhere(array $params, string $select, string $where) : array | false
     {
         try

@@ -60,7 +60,7 @@ class SupplyController implements ViewControllerInterface
                 $expected_end = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . $days_until_ends . ' days'));
                 $datatime = date("Y-m-d H:i:s");
                 $this->setModel(new Supply);
-                if($this->model->updateById([
+                if($this->model->updateByGroupIdAndId([
                         ':id' => $_POST['id'],
                         ':group_id' => $_SESSION['user_group_id'],
                         ':user_id' => $_SESSION['user_id'],
@@ -69,7 +69,7 @@ class SupplyController implements ViewControllerInterface
                         ':quantity' => $quantity,
                         ':expected_end' => $expected_end,
                         ':last_check' => $datatime
-                    ])) return $this->show(Alert::success("You have successfully updated an item!"));
+                ])) return $this->show(Alert::success("You have successfully updated an item!"));
                 return $this->show(Alert::failed("Something went wrong"));
             }
             return $this->show(Alert::failed("Something went wrong"));
