@@ -8,10 +8,6 @@ use app\Services\ModelHandler;
 
 class Supply extends AbstractModel
 {
-    private $db;
-    public $allColumns = [];
-    public $fillable = [];
-    public $table;
 
     public function __construct() {
         $this->_prepareFields();
