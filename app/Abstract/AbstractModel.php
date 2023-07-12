@@ -68,11 +68,11 @@ abstract class AbstractModel
         return false;
     }
 
-    public function getByWhere(array $params, string $select, string $where) : array | false
+    public function getByWhere(array $params, string $select, string $where) : object
     {
         try
         {
-            $result = $this->db->query("SELECT $select FROM " . $this->table . " WHERE $where", $params)->fetchAll();
+            $result = $this->db->query("SELECT $select FROM " . $this->table . " WHERE $where", $params);
             return $result;
         } catch (\PDOException $e) {
             echo "Insert query failed: " . $e->getMessage();

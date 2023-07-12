@@ -2,15 +2,12 @@
 
 namespace app\Models;
 
+use app\Abstract\AbstractModel;
 use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
-class Group
+class Group extends AbstractModel
 {
-    private $db;
-    public $allColumns = [];
-    public $fillable = [];
-    public $table;
 
     public function __construct() {
         $this->_prepareFields();
@@ -33,52 +30,20 @@ class Group
         $this->table = 'user_groups';
     }
         
-    public function addGroup(array $params = []) : void
-    {
-        $fillable = $this->fillable;
-        $columns = ModelHandler::prepareFillableForSQL($fillable);
-        $placeholders = ModelHandler::preparePlaceholders($fillable);
-        try
-        {
-            $this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params);
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-    }
-        
     public function findGroupByToken(array $params = [])
     {
-        try
-        {
-            $stmt = $this->db->query("SELECT name FROM " . $this->table . " WHERE token = :token ", $params);
-            return $stmt;
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'name', 'token = :token');
     }
         
     public function getIdByToken(array $params = [])
     {
-        try
-        {
-            $stmt = $this->db->query("SELECT id FROM " . $this->table . " WHERE token = :token ", $params)->fetch()['id'];
-            return $stmt;
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id', 'token = :token')->fetch()['id'];
     }
             
     public function getGroup(array $params = [])
     {
-        try
-        {
-            $stmt = $this->db->query("SELECT id, name, token, user_id FROM " . $this->table . " WHERE id = :id ", $params);
-            return $stmt;
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        $select = 'id, name, token, user_id';
+        $where = 'id = :id';
+        return $this->getByWhere($params, $select, $where);
     }
 }
