@@ -28,6 +28,7 @@ $router->get('/schedule', ScheduleController::class, 'show')->only('member');
 
 $router->get('/profile', ProfileController::class, 'show')->only('member');
 $router->edit('/profile', ProfileController::class, 'update')->only('member');
+$router->delete('/profile', GroupController::class, 'quit')->only('member');
 
 $router->get('/event', EventController::class, 'show')->only('member');
 $router->create('/event', EventController::class, 'create')->only('member');
