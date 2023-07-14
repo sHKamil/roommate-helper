@@ -36,9 +36,6 @@ $router->edit('/event', EventController::class, 'showEdit')->only('member');
 $router->patch('/event', EventController::class, 'update')->only('member');
 $router->delete('/event', EventController::class, 'delete')->only('member');
 
-$router->get('/group', GroupController::class, 'show')->only('member');
-$router->delete('/group', GroupController::class, 'quit')->only('member');
-
 $router->get('/group-create', GroupController::class, 'showCreate')->only('member');
 $router->create('/group-create', GroupController::class, 'create')->only('member');
 
