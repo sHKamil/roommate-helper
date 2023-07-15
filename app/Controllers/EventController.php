@@ -80,7 +80,7 @@ class EventController implements ViewControllerInterface
 
             if($this->_validate($name, $content, $day, $start, $end)) {                
                 $this->setModel(new Event);
-                if($this->model->updateById([
+                if($this->model->updateByIdAndGroupId([
                     ':id' => $_POST['id'],
                     ':group_id' => $_SESSION['user_group_id'],
                     ':user_id' => $_SESSION['user_id'],
@@ -89,7 +89,9 @@ class EventController implements ViewControllerInterface
                     ':day' => $day,
                     ':start' => $start,
                     ':end' => $end
-                    ])) return $this->show(Alert::success("You have successfully updated an item!"));
+                ],
+                'user_id = :user_id, event_name = :event_name, content = :content, day = :day, start = :start, end = :end'
+                )) return $this->show(Alert::success("You have successfully updated an item!"));
                 return $this->show(Alert::failed("Something went wrong"));
             }
             return $this->show(Alert::failed("Something went wrong"));

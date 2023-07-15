@@ -2,15 +2,12 @@
 
 namespace app\Models;
 
+use app\Abstract\AbstractModel;
 use app\Database\DatabasePDO;
 use app\Services\ModelHandler;
 
-class Event
+class Event extends AbstractModel
 {
-    private $db;
-    public $allColumns = [];
-    public $fillable = [];
-    public $table;
 
     public function __construct() {
         $this->_prepareFields();
@@ -54,21 +51,11 @@ class Event
             return false;
         }
     }
-
-    public function updateById(array $params = []) : bool
+    public function updateByIdAndGroupId(array $params, string $columns) : bool
     {
-        try
-        {
-
-            if($this->db->query("UPDATE " . $this->table . " SET user_id = :user_id, event_name = :event_name, content = :content, day = :day, start = :start, end = :end WHERE id = :id AND group_id = :group_id", $params) !== false) {
-                return true;
-            };
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->updateByWhere($params, $columns, 'id = :id AND group_id = :group_id');
     }
-
+    
     public function getEventByGroupIdAndId(array $params = []) : array | false
     {
         try
