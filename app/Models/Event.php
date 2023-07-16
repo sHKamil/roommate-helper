@@ -38,19 +38,6 @@ class Event extends AbstractModel
         $this->table = 'events';
     }
         
-    public function addEvent(array $params = []) : bool
-    {
-        $fillable = $this->fillable;
-        $columns = ModelHandler::prepareFillableForSQL($fillable);
-        $placeholders = ModelHandler::preparePlaceholders($fillable);
-        try
-        {
-            if($this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params) !== false) return true;
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-            return false;
-        }
-    }
     public function updateByIdAndGroupId(array $params, string $columns) : bool
     {
         return $this->updateByWhere($params, $columns, 'id = :id AND group_id = :group_id');

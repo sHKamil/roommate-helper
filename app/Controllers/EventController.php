@@ -51,7 +51,7 @@ class EventController implements ViewControllerInterface
 
             if($this->_validate($name, $content, $day, $start, $end)) {
                 $this->setModel(new Event);
-                if($this->model->addEvent([
+                if($this->model->add([
                         ':group_id' => $_SESSION['user_group_id'],
                         ':user_id' => $_SESSION['user_id'],
                         ':event_name' => $name,
