@@ -113,9 +113,9 @@ class EventController implements ViewControllerInterface
 
     private function _deleteByID(array $id = []) : bool // deletes form db selected supplies from group
     {
-        foreach ($id as $supply_id) {
+        foreach ($id as $event_id) {
             if($this->model->deleteByGroupIdAndId([
-                ':id' => $supply_id,
+                ':id' => $event_id,
                 ':group_id' => $_SESSION['user_group_id']
             ]) === false) return false;
         }
