@@ -45,38 +45,17 @@ class Event extends AbstractModel
     
     public function getEventByGroupIdAndId(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT id, event_name, content, day, start, end, user_id FROM " . $this->table . " WHERE group_id = :group_id AND id = :id", $params)->fetch();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id, event_name, content, day, start, end, user_id', 'group_id = :group_id AND id = :id')->fetch();
     }
 
     public function getEventsByGroupID(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT id, event_name, content, day, start, end FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id, event_name, content, day, start, end', 'group_id = :group_id')->fetchAll();
     }
 
     public function getAllGroupEvents(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT start, end, day, event_name, content  FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'start, end, day, event_name, content', 'group_id = :group_id')->fetchAll();
     }
 
     public function getWeeklyGroupEvents(array $params = []) : array | false
