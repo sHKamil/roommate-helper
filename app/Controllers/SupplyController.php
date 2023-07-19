@@ -91,7 +91,7 @@ class SupplyController implements ViewControllerInterface
                 $expected_end = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . $days_until_ends . ' days'));
                 $datatime = date("Y-m-d H:i:s");
                 $this->setModel(new Supply);
-                if($this->model->addSupply([
+                if($this->model->add([
                         ':group_id' => $_SESSION['user_group_id'],
                         ':user_id' => $_SESSION['user_id'],
                         ':name' => $name,

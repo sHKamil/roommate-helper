@@ -37,23 +37,7 @@ class Supply extends AbstractModel
         ];
         $this->table = 'supply';
     }
-        
-    public function addSupply(array $params = []) : bool
-    {
-        $fillable = $this->fillable;
-        $columns = ModelHandler::prepareFillableForSQL($fillable);
-        $placeholders = ModelHandler::preparePlaceholders($fillable);
-        try
-        {
-            if($this->db->query("INSERT INTO " . $this->table . "(" . $columns . ") VALUES (" . $placeholders . ")", $params) !== false) {
-                return true;
-            };
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-            return false;
-        }
-    }
-        
+                
     public function getSuppliesByGroupID(array $params = []) : array | false
     {
         try
