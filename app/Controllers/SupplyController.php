@@ -69,7 +69,9 @@ class SupplyController implements ViewControllerInterface
                         ':quantity' => $quantity,
                         ':expected_end' => $expected_end,
                         ':last_check' => $datatime
-                ])) return $this->show(Alert::success("You have successfully updated an item!"));
+                ],
+                'user_id = :user_id, name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end, last_check = :last_check'
+                )) return $this->show(Alert::success("You have successfully updated an item!"));
                 return $this->show(Alert::failed("Something went wrong"));
             }
             return $this->show(Alert::failed("Something went wrong"));

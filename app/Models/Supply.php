@@ -74,9 +74,8 @@ class Supply extends AbstractModel
         return false;
     }
 
-    public function updateByGroupIdAndId(array $params = []) : bool
+    public function updateByGroupIdAndId(array $params, string $columns) : bool
     {
-        $columns = 'user_id = :user_id, name = :name, quantity_max = :quantity_max, quantity = :quantity, expected_end = :expected_end, last_check = :last_check';
         $where = 'id = :id AND group_id = :group_id';
         return $this->updateByWhere($params, $columns, $where);
     }
