@@ -40,38 +40,17 @@ class Supply extends AbstractModel
                 
     public function getSuppliesByGroupID(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT id, name, quantity, quantity_max, expected_end, last_check FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id, name, quantity, quantity_max, expected_end, last_check', 'group_id = :group_id')->fetchAll();
     }
         
     public function getMiniSuppliesByGroupID(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT quantity, quantity_max, name, expected_end FROM " . $this->table . " WHERE group_id = :group_id ", $params)->fetchAll();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'quantity, quantity_max, name, expected_end', 'group_id = :group_id')->fetchAll();
     }
         
     public function getSupplyByGroupIdAndId(array $params = []) : array | false
     {
-        try
-        {
-            $result = $this->db->query("SELECT id, name, quantity, quantity_max, expected_end, last_check, user_id FROM " . $this->table . " WHERE group_id = :group_id AND id = :id", $params)->fetch();
-            return $result;
-        } catch (\PDOException $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id, name, quantity, quantity_max, expected_end, last_check, user_id', 'group_id = :group_id AND id = :id')->fetch();
     }
 
     public function updateByGroupIdAndId(array $params, string $columns) : bool
