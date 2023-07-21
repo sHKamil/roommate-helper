@@ -4,7 +4,6 @@ namespace app\Models;
 
 use app\Abstract\AbstractModel;
 use app\Database\DatabasePDO;
-use app\Services\ModelHandler;
 
 class User extends AbstractModel
 {

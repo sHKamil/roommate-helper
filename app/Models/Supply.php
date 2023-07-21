@@ -70,6 +70,4 @@ class Supply extends AbstractModel
             return false;
         }
     }
-
-
 }
