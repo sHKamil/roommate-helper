@@ -69,13 +69,7 @@ class User extends AbstractModel
 
     public function getFailedAttempts(array $params = []) : int | null
     {
-        try
-        {
-            return $this->db->query("SELECT failed_attempts FROM " . $this->table . " WHERE login = :login ", $params)->fetch()['failed_attempts'];
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return null;
+        return $this->getByWhere($params, 'failed_attempts', 'login = :login')->fetch()['failed_attempts'];
     }
     
     public function blockAccount(array $params = []) : void // sets block_date for user in db 
@@ -113,24 +107,13 @@ class User extends AbstractModel
     
     public function getUserNameByLogin(array $params = []) : bool
     {
-        try
-        {
-            if($this->db->query("SELECT name FROM " . $this->table . " WHERE login = :login ", $params)->rowCount()===1) return true;
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
+        if($this->getByWhere($params, 'name', 'login = :login')->rowCount()===1) return true;
         return false;
     }
 
     public function getUserBlockedtimeStmt(array $params = [])
     {
-        try
-        {
-            return $this->db->query("SELECT id, password, blocked_time FROM users WHERE login = :login", $params);
-        } catch (\Exception $e) {
-            echo "Insert query failed: " . $e->getMessage();
-        }
-        return false;
+        return $this->getByWhere($params, 'id, password, blocked_time', 'login = :login');
     }
 
     public function quitGroup(array $params = []) : bool
@@ -141,19 +124,16 @@ class User extends AbstractModel
 
     public function getUserData(array $params = []) : array | false
     {
-        $stmt = $this->db->query("SELECT id, login, password, name, lastname, group_id, email, user_type, avatar FROM users WHERE login = :login", $params)->fetch();
-        return $stmt;
+        return $this->getByWhere($params, 'id, login, password, name, lastname, group_id, email, user_type, avatar', 'login = :login')->fetch();
     }
 
     public function getUserNameById(array $params = []) : array | false
     {
-        $result = $this->db->query("SELECT name FROM users WHERE id = :id", $params)->fetch();
-        return $result;
+        return $this->getByWhere($params, 'name', 'id = :id')->fetch();
     }
 
     public function getUserAvatarById(array $params = []) : array | false
     {
-        $result = $this->db->query("SELECT avatar FROM users WHERE id = :id", $params)->fetch();
-        return $result;
+        return $this->getByWhere($params, 'avatar', 'id = :id')->fetch();
     }
 }
