@@ -1,6 +1,5 @@
 <?php
 
-use app\Controllers\AvatarController;
 use app\Controllers\EventController;
 use app\Controllers\GroupController;
 use app\Controllers\LoginController;
@@ -8,9 +7,9 @@ use app\Controllers\ProfileController;
 use app\Controllers\RegisterController;
 use app\Controllers\ScheduleController;
 use app\Controllers\SupplyController;
-use app\Controllers\WelcomeController;
 
-$router->get('/', WelcomeController::class, 'show');
+$router->get('/', LoginController::class, 'show')->only('guest');
+$router->post('/', LoginController::class, 'login')->only('guest');
 $router->get('/login', LoginController::class, 'show')->only('guest');
 $router->post('/login', LoginController::class, 'login')->only('guest');
 
