@@ -81,6 +81,48 @@ body {
   justify-content: center;
   gap: 5rem;
 }
+.component-form {
+  min-width: 30rem;
+  min-height: min(70vh, 30rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: max(8vh, 4rem);
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+}
+.component-pin {
+  margin-right: 2rem;
+  min-width: 15rem;
+  min-height: 10rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3rem;
+  box-shadow: 
+  0.8rem 0.8rem 1.4rem var(--greyLight-2),
+  -0.2rem -0.2rem 1.8rem var(--white);
+}
+.component-pin .info {
+  font-weight: bold;
+}
+.component-form form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem auto;
+}
+.info p {
+  color: var(--primary);
+  font-size: 1.4rem;
+}
 
 /* NAV-BAR */
 .nav-component {
@@ -140,50 +182,6 @@ body {
 }
 .logo img{
   width: 15vw;
-}
-
-/* SUPPLY */
-.component-form {
-  min-width: 30rem;
-  min-height: min(70vh, 30rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  gap: max(8vh, 4rem);
-  border-radius: 3rem;
-  box-shadow: 
-  0.8rem 0.8rem 1.4rem var(--greyLight-2),
-  -0.2rem -0.2rem 1.8rem var(--white);
-}
-.component-pin {
-  margin-right: 2rem;
-  min-width: 15rem;
-  min-height: 10rem;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3rem;
-  box-shadow: 
-  0.8rem 0.8rem 1.4rem var(--greyLight-2),
-  -0.2rem -0.2rem 1.8rem var(--white);
-}
-.component-pin .info {
-  font-weight: bold;
-}
-.component-form form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 2rem auto;
-}
-.info p {
-  color: var(--primary);
-  font-size: 1.4rem;
 }
 
 /* MAIN */
