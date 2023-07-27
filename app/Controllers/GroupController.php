@@ -15,11 +15,11 @@ class GroupController implements ViewControllerInterface
 
     public function show(string $alert = '')
     {
-        $group = $this->getMyGroup();
-        return view('group', [
-            "errors" => $this->errors,
-            "group" => $group,
-        ], $alert);
+        // $group = $this->getMyGroup();
+        // return view('group', [
+        //     "errors" => $this->errors,
+        //     "group" => $group,
+        // ], $alert);
     }
 
     public function showCreate(string $alert = '')
@@ -45,7 +45,7 @@ class GroupController implements ViewControllerInterface
 
             if($token !== '' && $name !== '') {
                 if($this->_validate($name, $token) && !$this->_groupExist($token)) {
-                    $this->model->addGroup([
+                    $this->model->add([
                         ':token' => $token,
                         ':name' => $name,
                         ':user_id' => $_SESSION['user_id']
