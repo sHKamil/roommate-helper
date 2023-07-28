@@ -153,8 +153,8 @@ class EventController implements ViewControllerInterface
             ";
         foreach ($rows as $row) {
             $html .= "<tr>
-                <td class='checkbox'>
-                        <input class='_checkbox' type='checkbox' name='id[]' value={$row['id']}>
+                <td>
+                    <input class='_checkbox' type='checkbox' name='id[]' value={$row['id']}>
                 </td>
             ";
             foreach ($row as $column) {
