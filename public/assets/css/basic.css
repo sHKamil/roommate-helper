@@ -351,6 +351,9 @@ body {
   font-size: 3rem;
   font-weight: bolder
 }
+.input-with-name {
+  width: 100%;
+}
 #delete {
   width: 4rem;
   display: flex;
