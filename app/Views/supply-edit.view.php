@@ -6,7 +6,7 @@ echo HtmlFactory::buildHeader("Rhelper - Schedule", ["/assets/css/schedule.css",
 echo HtmlFactory::buildNav();
 ?>
 
-<div class="container">
+<div class="container" style="margin-top:2vh; min-height: 50vh;">
 	<div class="component-form">
 		<form action="" method="post">
             <div class="form_title">Supply</div>

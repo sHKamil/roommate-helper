@@ -9,6 +9,7 @@ echo HtmlFactory::buildNav();
 <div class="container" style="margin-top:2vh; min-height: 50vh;">
 	<div class="component-form">
 		<form action="" method="post">
+            <div class="form_title">Event</div>
             <div class="info">
                 <p>Last edit by: <?php echo $last_user ?> </p>
                 <p>Event ID: <?php echo $data['id'] ?> </p>
