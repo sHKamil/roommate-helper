@@ -1,0 +1,38 @@
+services:
+
+# MariaDB
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: rhelper
+    volumes:
+      - './mysqldata:/var/lib/mysql'
+      - './MariaDB:/docker-entrypoint-initdb.d/'
+    ports:
+      - "3306:3306"
+    # command: ["--init-file", "/docker-entrypoint-initdb.d/default.sql"]
+
+# NGINX
+  web:
+    image: nginx:latest
+    ports:
+      - "8070:80"
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./Rhelper/:/var/www/html/
+    depends_on:
+      - mariadb
+
+# APP
+  app:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./Rhelper/:/var/www/html/
+    depends_on:
+      - mariadb
+
+
