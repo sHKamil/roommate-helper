@@ -6,7 +6,7 @@
 
 # public
 Rhelper/public/avatars/*
-!Rhelper/public/avatars/default.php
+!Rhelper/public/avatars/default.png
 
 # Docker
 mysqldata/*
