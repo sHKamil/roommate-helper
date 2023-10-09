@@ -8,7 +8,7 @@ class Member
 {
     public function handle()
     {
-        if(!$_SESSION['user_type'] ?? false)
+        if(!isset($_SESSION['user_type']) || $_SESSION['user_type']!== 'member')
         {
             $this->_logout();
         }

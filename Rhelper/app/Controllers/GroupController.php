@@ -53,6 +53,8 @@ class GroupController implements ViewControllerInterface
                     $group_id = $this->model->getIdByToken([':token' => $token]);
                     $this->asignUserToGroup($group_id);
                     return $this->showCreate(Alert::success("You have successfully created your own group!"));
+                } else {
+                    return $this->showCreate(Alert::failed("You are already in group!"));
                 }
             }
         } else {
@@ -83,7 +85,7 @@ class GroupController implements ViewControllerInterface
         $status = $user->quitGroup([':id' => $id]);
         if($status) {
             $_SESSION['user_group_id'] = null;
-            return header('Location: /group');
+            return header('Location: /profile');
         }else{
             return $this->show(Alert::failed("Something went wrong."));
         }

@@ -28,6 +28,7 @@ services:
 # APP
   app:
     build:
+      target: runtime
       dockerfile: Dockerfile
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
