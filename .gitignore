@@ -2,7 +2,7 @@
 .vscode
 
 # Configs
-Rhelper/config/db_config.php
+# Rhelper/config/db_config.php
 
 # public
 Rhelper/public/avatars/*
