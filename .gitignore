@@ -10,3 +10,4 @@ Rhelper/public/avatars/*
 
 # Docker
 mysqldata/*
+docker-compose.local.yml

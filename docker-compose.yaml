@@ -13,6 +13,8 @@ services:
     ports:
       - "3306:3306"
     # command: ["--init-file", "/docker-entrypoint-initdb.d/default.sql"]
+    networks:
+      - back
 
 # NGINX
   web:
@@ -24,6 +26,8 @@ services:
       - ./Rhelper/:/var/www/html/
     depends_on:
       - mariadb
+    networks:
+      - back
 
 # APP
   app:
@@ -35,5 +39,11 @@ services:
       - ./Rhelper/:/var/www/html/
     depends_on:
       - mariadb
+    networks:
+      - back
+
+networks:
+  back:
+
 
 
